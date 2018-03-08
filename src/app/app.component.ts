@@ -12,7 +12,7 @@ export class AppComponent {
   private chatConfig: object = {
     name: 'help',
     selector: 'help-root',
-    baseScriptUrl: '/src/apps/help/dist',
+    baseScriptUrl: '/assets/app1',
     styles: [
       'styles.bundle.css',
     ],
