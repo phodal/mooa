@@ -1,4 +1,7 @@
 import {StatusEnum} from './constants';
+import {toLoadPromise} from './lifecycles/load';
+import {toBootstrapPromise} from './lifecycles/bootstrap';
+import {toMountPromise} from './lifecycles/mount';
 
 class Mooa {
   started = false;
@@ -36,31 +39,31 @@ class Mooa {
 
     }
 
-    async function performAppChanges() {
+    async function performAppChanges(apps) {
       // unload -> unmount
       // load -> mount
-      const appsToLoad = this.apps;
+      const appsToLoad = apps;
       const loadThenMountPromises = appsToLoad.map(app => {
-        // return toLoadPromise(app)
-        //   .then(toBootstrapPromise)
-        //   .then(async function(app) {
-        //     await unmountAllPromise;
-        //     return toMountPromise(app);
-        //   });
+        return toLoadPromise(app)
+          .then(toBootstrapPromise)
+          .then(async function (toMountApp) {
+            // await unmountAllPromise;
+            return toMountPromise(toMountApp);
+          });
       });
 
+      await loadThenMountPromises;
     }
 
     if (this.started) {
-      return performAppChanges();
+      return performAppChanges(this.apps);
     } else {
       return loadApps();
     }
   }
 
   private createApp(appConfig: object) {
-    const app = appConfig.map(x => Object.assign({}, x));
-    return app;
+    return appConfig;
   }
 }
 
