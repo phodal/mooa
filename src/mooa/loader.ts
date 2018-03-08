@@ -69,6 +69,15 @@ function loadAllAssets(opts: any) {
   });
 }
 
+function getContainerEl(opts) {
+  let el = document.querySelector(opts.selector);
+  if (!el) {
+    el = document.createElement(opts.selector);
+    document.body.appendChild(el);
+  }
+  return el;
+}
+
 function bootstrap(opts) {
   return new Promise((resolve, reject) => {
     loadAllAssets(opts.appConfig).then(resolve, reject);
@@ -82,8 +91,10 @@ function load(opts) {
 
 function mount(opts) {
   // setContainer
-  console.log('mount', opts);
-  return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    getContainerEl(opts.appConfig);
+    resolve();
+  });
 }
 
 function unmount(opts) {
