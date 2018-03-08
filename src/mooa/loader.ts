@@ -1,3 +1,5 @@
+import assetsLoaderHelper from './helper/assets-loader-helper';
+
 /**
  * Robin Coma Delperier
  * Licensed under the Apache-2.0 License
@@ -7,31 +9,16 @@
  *
  */
 
-const hashCode = (str: string): string => {
-  let hash = 0;
-  if (str.length === 0) {
-    return '';
-  }
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash |= 0;
-  }
-  return hash.toString();
-};
-
-const loadScriptTag = (url: string) => {
+const loadScriptTag = (src: string) => {
   return () => {
     return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
+      const script = assetsLoaderHelper.createScriptTag(src);
       script.onload = function () {
         resolve();
       };
       script.onerror = err => {
         reject(err);
       };
-      script.src = url;
-      script.id = hashCode(url);
       document.head.appendChild(script);
     });
   };
@@ -40,16 +27,13 @@ const loadScriptTag = (url: string) => {
 const loadLinkTag = (url: string) => {
   return () => {
     return new Promise((resolve, reject) => {
-      const link = document.createElement('link');
+      const link = assetsLoaderHelper.createLinkTag(url);
       link.onload = function () {
         resolve();
       };
       link.onerror = err => {
         reject(err);
       };
-      link.href = url;
-      link.rel = 'stylesheet';
-      link.id = hashCode(url);
       document.head.appendChild(link);
     });
   };
