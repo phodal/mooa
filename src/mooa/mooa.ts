@@ -3,6 +3,7 @@ import {toLoadPromise} from './lifecycles/load';
 import {toBootstrapPromise} from './lifecycles/bootstrap';
 import {toMountPromise} from './lifecycles/mount';
 import loader from './loader';
+import {ensureValidAppTimeouts} from './helper/timeouts';
 
 class Mooa {
   started = false;
@@ -70,6 +71,7 @@ class Mooa {
     appOpt.mount = _loader.mount;
     appOpt.unload = _loader.unload;
     appOpt.unmount = _loader.unmount;
+    appOpt.timeouts = ensureValidAppTimeouts(appOpt.timeouts);
     return appOpt;
   }
 }
