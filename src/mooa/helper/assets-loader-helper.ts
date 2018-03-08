@@ -16,6 +16,7 @@ const assetsLoaderHelper = {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = src;
+    script.charset = 'UTF-8';
     script.id = hashCode(src);
     return script;
   },
