@@ -24,7 +24,7 @@ export class AppComponent {
   };
 
   constructor() {
-    mooa.registerApplication('chat', this.chatConfig, mooaRouter.hashPrefix('/**'));
+    mooa.registerApplication('chat', this.chatConfig, mooaRouter.hashPrefix(''));
 
     mooa.start();
   }

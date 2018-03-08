@@ -1,10 +1,8 @@
-function prefix() {
-
-}
-
 const mooaRouter = {
-  hashPrefix(path: string) {
-    return prefix;
+  hashPrefix(prefix: string) {
+    return function (location) {
+      return location.pathname.indexOf(`${prefix}`) === 0;
+    };
   }
 };
 
