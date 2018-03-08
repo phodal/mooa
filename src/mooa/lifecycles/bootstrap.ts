@@ -16,6 +16,5 @@ export async function toBootstrapPromise(app) {
     throw new Error(err);
   }
 
-  console.log(app.status);
   return app;
 }

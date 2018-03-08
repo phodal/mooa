@@ -11,6 +11,7 @@ function load(opts) {
 
 function mount(opts) {
   // setContainer
+  console.log('mount', opts);
   return Promise.resolve();
 }
 
