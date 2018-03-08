@@ -1,10 +1,35 @@
-export let Loader = null;
+function bootstrap(opts) {
+  // load assets
+  console.log('bootstrap', opts);
+  return Promise.resolve();
+}
 
-export function setLoader(loader) {
-  if (!loader || typeof loader.import !== 'function') {
-    throw new Error(`'loader' is not a real loader. Must have an import function that returns a Promise`);
-  }
-  Loader = loader;
-  console.error('Warning: singleSpa.setLoader is deprecated. Please declare apps with a loading function instead. ' +
-    'See https://github.com/CanopyTax/single-spa/blob/master/docs/single-spa-config.md#loading-function');
+function load(opts) {
+  console.log('load', opts);
+  return Promise.resolve();
+}
+
+function mount(opts) {
+  // setContainer
+  return Promise.resolve();
+}
+
+function unmount(opts) {
+  // removeContainer
+  return Promise.resolve();
+}
+
+function unload(opts) {
+  // removeScript
+  return Promise.resolve();
+}
+
+export default function loader(opts) {
+  return {
+    bootstrap: bootstrap.bind(null, opts),
+    load: load.bind(null, opts),
+    mount: mount.bind(null, opts),
+    unload: unload.bind(null, opts),
+    unmount: unmount.bind(null, opts),
+  };
 }

@@ -2,6 +2,7 @@ import {StatusEnum} from './constants';
 import {toLoadPromise} from './lifecycles/load';
 import {toBootstrapPromise} from './lifecycles/bootstrap';
 import {toMountPromise} from './lifecycles/mount';
+import loader from './loader';
 
 class Mooa {
   started = false;
@@ -16,7 +17,7 @@ class Mooa {
       throw new Error(`The activeWhen argument must be a function`);
     }
 
-    const appConfig = {
+    const appOpt = {
       name: appName,
       appConfig,
       activeWhen,
@@ -24,7 +25,7 @@ class Mooa {
       customProps: customProps
     };
 
-    this.apps.push(this.createApp(appConfig));
+    this.apps.push(this.createApp(appOpt));
 
     this.reRouter();
   }
@@ -62,8 +63,14 @@ class Mooa {
     }
   }
 
-  private createApp(appConfig: object) {
-    return appConfig;
+  private createApp(appOpt) {
+    const _loader = loader(appOpt);
+    appOpt.bootstrap = _loader.bootstrap;
+    appOpt.load = _loader.load;
+    appOpt.mount = _loader.mount;
+    appOpt.unload = _loader.unload;
+    appOpt.unmount = _loader.unmount;
+    return appOpt;
   }
 }
 
