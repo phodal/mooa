@@ -67,6 +67,6 @@ const LoaderHelper = {
   loadAllAssets: loadAllAssets,
   loadLinkTag: loadLinkTag,
   loadScriptTag: loadScriptTag,
-}
+};
 
 export default LoaderHelper;

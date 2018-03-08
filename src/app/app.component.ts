@@ -1,4 +1,4 @@
-import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import mooa from '../mooa/mooa';
 import mooaRouter from '../mooa/router';
 
@@ -7,9 +7,9 @@ import mooaRouter from '../mooa/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'app';
-  @ViewChild('child') childApp: ElementRef;
+  @ViewChild('child') childElement: ElementRef;
 
   private chatConfig: object = {
     name: 'help',
@@ -27,15 +27,16 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2) {
     mooa.registerApplication('chat', this.chatConfig, mooaRouter.hashPrefix(''));
+  }
 
+  ngAfterViewInit() {
     this.createChildApp(this.chatConfig);
     mooa.start();
   }
 
   private createChildApp(chatConfig: {}) {
-    let childElement;
-    childElement = this.renderer.createElement(chatConfig['selector']);
-    console.log(childElement)
-    // this.renderer.appendChild(this.childApp.nativeElement, childElement);
+    let appElement;
+    appElement = this.renderer.createElement(chatConfig['selector']);
+    this.renderer.appendChild(this.childElement.nativeElement, appElement);
   }
 }
