@@ -64,6 +64,10 @@ class Mooa {
     appOpt.timeouts = ensureValidAppTimeouts(appOpt.timeouts);
     return appOpt;
   }
+
+  getApps() {
+    return apps;
+  }
 }
 
 const mooa = new Mooa();

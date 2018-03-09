@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   startApp() {
-    mooa.start();
+    return mooa.start();
   }
 
   private createChildApp(chatConfig: {}) {
