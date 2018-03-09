@@ -79,12 +79,7 @@ class Mooa {
     return appOpt;
   }
 
-  getApps() {
-    return apps;
-  }
-
   customEvent(eventName, eventArgs?) {
-    console.log(eventName);
     window.dispatchEvent(new CustomEvent(eventName, eventArgs));
   }
 }

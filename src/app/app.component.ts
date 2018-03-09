@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import mooa from '../mooa/mooa';
 import mooaRouter from '../mooa/router';
 import {HttpClient} from '@angular/common/http';
@@ -8,8 +8,7 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'app';
+export class AppComponent {
   @ViewChild('child') childElement: ElementRef;
 
   constructor(private renderer: Renderer2, http: HttpClient) {
@@ -20,14 +19,6 @@ export class AppComponent implements AfterViewInit {
         },
         err => console.log(err)
       );
-  }
-
-  ngAfterViewInit() {
-
-  }
-
-  startApp() {
-    return mooa.start();
   }
 
   private createChildApp(config: {}) {
@@ -41,5 +32,7 @@ export class AppComponent implements AfterViewInit {
       mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
       this.createChildApp(config);
     });
+
+    return mooa.start();
   }
 }
