@@ -6,9 +6,10 @@ import loader from './loader';
 import {ensureValidAppTimeouts} from './helper/timeouts';
 import StatusFilter from './helper/status-filter';
 
+const apps = [];
+
 class Mooa {
   started = false;
-  apps = [];
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
     if (!activeWhen) {
@@ -27,9 +28,7 @@ class Mooa {
       customProps: customProps
     };
 
-    this.apps.push(this.createApp(appOpt));
-
-    this.reRouter();
+    apps.push(this.createApp(appOpt));
   }
 
   start() {
@@ -38,13 +37,7 @@ class Mooa {
   }
 
   private reRouter() {
-    async function loadApps() {
-      console.log('loadApps');
-    }
-
-    async function performAppChanges(apps) {
-      // unload -> unmount
-      // load -> mount
+    async function performAppChanges() {
       const appsToLoad = StatusFilter.getAppsToLoad(apps);
       const loadThenMountPromises = appsToLoad.map(app => {
         return toLoadPromise(app)
@@ -58,11 +51,7 @@ class Mooa {
       await loadThenMountPromises;
     }
 
-    if (this.started) {
-      return performAppChanges(this.apps);
-    } else {
-      return loadApps();
-    }
+    return performAppChanges();
   }
 
   private createApp(appOpt) {
