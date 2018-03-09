@@ -1,4 +1,23 @@
 import {StatusEnum} from '../constants';
+import {getUnloadApps} from '../lifecycles/unload';
+
+
+export function isActive(app) {
+  return app.status === StatusEnum.MOUNTED;
+}
+
+export function isntActive(app) {
+  return !isActive(app);
+}
+
+export function shouldntBeActive(app) {
+  try {
+    return !app.activeWhen(window.location);
+  } catch (err) {
+    app.status = StatusEnum.SKIP_BECAUSE_BROKEN;
+    throw new Error(err);
+  }
+}
 
 export function notSkipped(item) {
   return item !== StatusEnum.SKIP_BECAUSE_BROKEN &&
@@ -29,6 +48,18 @@ const StatusFilter = {
       .filter(notSkipped)
       .filter(notLoaded)
       .filter(shouldBeActive);
+  },
+  getAppsToUnload: () => {
+    const appsToUnload = getUnloadApps();
+    return Object.keys(appsToUnload)
+      .map(appName => appsToUnload[appName].app)
+      .filter(isntActive);
+  },
+  getAppsToUnmount: (apps) => {
+    return apps
+      .filter(notSkipped)
+      .filter(isActive)
+      .filter(shouldntBeActive);
   }
 };
 

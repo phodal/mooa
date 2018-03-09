@@ -18,7 +18,10 @@ function mount(opts) {
 }
 
 function unmount(opts) {
-  return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    LoaderHelper.getContainerEl(opts.appConfig).remove;
+    resolve();
+  });
 }
 
 function unload(opts) {

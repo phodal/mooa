@@ -5,6 +5,8 @@ import {toMountPromise} from './lifecycles/mount';
 import loader from './loader';
 import {ensureValidAppTimeouts} from './helper/timeouts';
 import StatusFilter from './helper/status-filter';
+import {toUnloadPromise} from './lifecycles/unload';
+import {toUnmountPromise} from './lifecycles/unmount';
 
 const apps = [];
 
@@ -37,13 +39,25 @@ class Mooa {
   }
 
   private reRouter() {
+    const customEvent = this.customEvent;
     async function performAppChanges() {
+      customEvent('before-routing-event');
+      const unloadPromises = StatusFilter.getAppsToUnload().map(toUnloadPromise);
+
+      const unmountUnloadPromises = StatusFilter.getAppsToUnmount(apps)
+        .map(toUnmountPromise)
+        .map(unmountPromise => unmountPromise.then(toUnloadPromise));
+
+      const allUnmountPromises = unmountUnloadPromises.concat(unloadPromises);
+
+      const unmountAllPromise = Promise.all(allUnmountPromises);
+
       const appsToLoad = StatusFilter.getAppsToLoad(apps);
       const loadThenMountPromises = appsToLoad.map(app => {
         return toLoadPromise(app)
           .then(toBootstrapPromise)
           .then(async function (toMountApp) {
-            // await unmountAllPromise;
+            await unmountAllPromise;
             return toMountPromise(toMountApp);
           });
       });
@@ -67,6 +81,11 @@ class Mooa {
 
   getApps() {
     return apps;
+  }
+
+  customEvent(eventName, eventArgs?) {
+    console.log(eventName);
+    window.dispatchEvent(new CustomEvent(eventName, eventArgs));
   }
 }
 
