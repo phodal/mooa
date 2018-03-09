@@ -6,3 +6,12 @@ interface IAppOption {
   scripts: string[];
   prefix: string;
 }
+
+interface MooaApp extends IAppOption {
+  bootstrap: () => {};
+  load: () => {};
+  mount: () => {};
+  unload: () => {};
+  unmount: () => {};
+  timeouts: () => {};
+}

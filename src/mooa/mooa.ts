@@ -68,7 +68,7 @@ class Mooa {
     return performAppChanges();
   }
 
-  private createApp(appOpt) {
+  private createApp(appOpt): MooaApp {
     const _loader = loader(appOpt);
     appOpt.bootstrap = _loader.bootstrap;
     appOpt.load = _loader.load;

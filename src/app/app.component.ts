@@ -30,9 +30,9 @@ export class AppComponent implements AfterViewInit {
     return mooa.start();
   }
 
-  private createChildApp(chatConfig: {}) {
+  private createChildApp(config: {}) {
     let appElement;
-    appElement = this.renderer.createElement(chatConfig['selector']);
+    appElement = this.renderer.createElement(config['selector']);
     this.renderer.appendChild(this.childElement.nativeElement, appElement);
   }
 
