@@ -38,8 +38,9 @@ class Mooa {
     return this.reRouter();
   }
 
-  private reRouter() {
+  reRouter() {
     const customEvent = this.customEvent;
+
     async function performAppChanges() {
       customEvent('before-routing-event');
       const unloadPromises = StatusFilter.getAppsToUnload().map(toUnloadPromise);
