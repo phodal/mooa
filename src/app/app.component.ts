@@ -2,7 +2,7 @@ import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import mooa from '../mooa/mooa';
 import mooaRouter from '../mooa/router';
 import {HttpClient} from '@angular/common/http';
-import {NavigationStart, Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent {
     });
 
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
+      if (event instanceof NavigationEnd) {
         mooa.reRouter();
       }
     });
