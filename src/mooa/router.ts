@@ -1,7 +1,16 @@
+interface RouterConfig {
+  urlHash: boolean;
+}
+
 const mooaRouter = {
-  hashPrefix(prefix: string) {
+  hashPrefix(prefix: string, routerConfig?: RouterConfig) {
     return function (location) {
-      return location.pathname.indexOf(`${prefix}`) === 0;
+      if (routerConfig && routerConfig.urlHash) {
+        return location.hash.indexOf(`#${prefix}`) === 0;
+      } else {
+        return location.pathname.indexOf(`${prefix}`) === 0;
+      }
+
     };
   }
 };
