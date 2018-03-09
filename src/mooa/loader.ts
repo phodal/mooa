@@ -1,16 +1,19 @@
 import LoaderHelper from './helper/loader-helper';
 
 function bootstrap(opts) {
+  console.log(opts.name, opts.status);
   return new Promise((resolve, reject) => {
     LoaderHelper.loadAllAssets(opts.appConfig).then(resolve, reject);
   });
 }
 
 function load(opts) {
+  console.log(opts.name, opts.status);
   return Promise.resolve();
 }
 
 function mount(opts) {
+  console.log(opts.name, opts.status);
   return new Promise((resolve, reject) => {
     LoaderHelper.getContainerEl(opts.appConfig);
     resolve();
@@ -18,13 +21,15 @@ function mount(opts) {
 }
 
 function unmount(opts) {
+  console.log(opts.name, opts.status);
   return new Promise((resolve, reject) => {
-    LoaderHelper.getContainerEl(opts.appConfig).remove;
+    LoaderHelper.getContainerEl(opts.appConfig).remove();
     resolve();
   });
 }
 
 function unload(opts) {
+  console.log(opts.name, opts.status);
   return Promise.resolve();
 }
 

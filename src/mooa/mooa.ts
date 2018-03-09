@@ -63,7 +63,21 @@ class Mooa {
           });
       });
 
-      await loadThenMountPromises;
+      const mountPromises = StatusFilter.getAppsToMount(apps)
+        .filter(appToMount => appsToLoad.indexOf(appToMount) < 0)
+        .map(async function (appToMount) {
+          await toBootstrapPromise(appToMount);
+          await unmountAllPromise;
+          return toMountPromise(appToMount);
+        });
+
+      try {
+        await unmountAllPromise;
+      } catch (err) {
+        throw err;
+      }
+
+      await Promise.all(loadThenMountPromises.concat(mountPromises));
     }
 
     return performAppChanges();

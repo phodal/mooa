@@ -60,6 +60,13 @@ const StatusFilter = {
       .filter(notSkipped)
       .filter(isActive)
       .filter(shouldntBeActive);
+  },
+  getAppsToMount: (apps) => {
+    return apps
+      .filter(notSkipped)
+      .filter(isntActive)
+      .filter(isLoaded)
+      .filter(shouldBeActive);
   }
 };
 
