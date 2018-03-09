@@ -4,6 +4,7 @@ import {toBootstrapPromise} from './lifecycles/bootstrap';
 import {toMountPromise} from './lifecycles/mount';
 import loader from './loader';
 import {ensureValidAppTimeouts} from './helper/timeouts';
+import StatusFilter from './helper/status-filter';
 
 class Mooa {
   started = false;
@@ -44,7 +45,7 @@ class Mooa {
     async function performAppChanges(apps) {
       // unload -> unmount
       // load -> mount
-      const appsToLoad = apps;
+      const appsToLoad = StatusFilter.getAppsToLoad(apps);
       const loadThenMountPromises = appsToLoad.map(app => {
         return toLoadPromise(app)
           .then(toBootstrapPromise)
