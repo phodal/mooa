@@ -38,7 +38,7 @@ class Mooa {
 
   private reRouter() {
     async function loadApps() {
-
+      console.log('loadApps');
     }
 
     async function performAppChanges(apps) {

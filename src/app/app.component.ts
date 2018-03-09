@@ -23,6 +23,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+  }
+
+  startApp() {
     mooa.start();
   }
 
