@@ -16,6 +16,7 @@ function bootstrap(opts: MooaApp) {
     window.mooa = {};
   }
   window.mooa.isSingleSpa = true;
+  window.mooa.name = opts.name;
 
   console.log('bootstrap', opts.name, opts.status);
   return new Promise((resolve, reject) => {
