@@ -10,7 +10,6 @@ const mooaRouter = {
       } else {
         return location.pathname.indexOf(`${prefix}`) === 0;
       }
-
     };
   }
 };
