@@ -45,7 +45,7 @@ function mount(opts: MooaApp, props?: any) {
 
 function unmount(opts: MooaApp, props: any) {
   console.log('unmount props', props);
-  const { singleSpa: { unloadApplication, getAppNames } } = props
+  const { unloadApplication, getAppNames } = props
   return new Promise((resolve, reject) => {
     if (window.mooa[opts.name]) {
       window.mooa[opts.name].unmount();
