@@ -8,7 +8,7 @@
  */
 
 import LoaderHelper from '../helper/mooa-loader.helper';
-import {getContainerEl,removeContainerEl} from '../helper/app.helper';
+import {getContainerEl, removeContainerEl} from '../helper/app.helper';
 
 declare const window: any;
 
@@ -26,12 +26,10 @@ function bootstrap(opts: MooaApp) {
 }
 
 function load(opts: MooaApp) {
-  console.log('load', opts.name, opts.status);
   return Promise.resolve();
 }
 
 function mount(opts: MooaApp, props?: any) {
-  console.log('mount', opts.name, opts.status);
   return new Promise((resolve, reject) => {
     getContainerEl(opts.appConfig);
     if (window.mooa[opts.name]) {
@@ -46,13 +44,13 @@ function mount(opts: MooaApp, props?: any) {
 
 function unmount(opts: MooaApp, props: any) {
   console.log('unmount props', props);
-  const { unloadApplication, getAppNames } = props
+  const {unloadApplication, getAppNames} = props;
   return new Promise((resolve, reject) => {
     if (window.mooa[opts.name]) {
       window.mooa[opts.name].unmount();
       removeContainerEl(opts.appConfig);
       if (getAppNames().indexOf(opts.name) !== -1) {
-        unloadApplication(opts.name, { waitForUnmount: true });
+        unloadApplication(opts.name, {waitForUnmount: true});
         resolve();
       } else {
         reject(`Cannot unmount ${opts.name} because that ${opts.name} is not part of the decalred applications : ${getAppNames()}`);
