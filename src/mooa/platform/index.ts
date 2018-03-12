@@ -7,9 +7,6 @@
  *
  */
 
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
-
 declare const window: any;
 window.mooa = window.mooa || {};
 
@@ -17,19 +14,17 @@ export class MooaPlatform {
   name: string;
   router: any;
 
-  mount(name: string, router?: any): Observable<any> {
+  mount(name: string, router?: any) {
     this.name = name;
     this.router = router;
-    return Observable.create((observer: Observer<any>) => {
+    return new Promise((resolve, reject) => {
       if (this.isSingleSpaApp()) {
         window.mooa[this.name] = window.mooa[this.name] || {};
         window.mooa[this.name].mount = (props: any) => {
-          observer.next({props, attachUnmount: this.unmount.bind(this)});
-          observer.complete();
+          resolve({props, attachUnmount: this.unmount.bind(this)});
         };
       } else {
-        observer.next({props: {}, attachUnmount: this.unmount.bind(this)});
-        observer.complete();
+        resolve({props: {}, attachUnmount: this.unmount.bind(this)});
       }
     });
   }
