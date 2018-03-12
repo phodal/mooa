@@ -7,13 +7,13 @@
  *
  */
 
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import {Observable} from 'rxjs/Observable';
+import {Observer} from 'rxjs/Observer';
 
 declare const window: any;
 window.mooa = window.mooa || {};
 
-export class Platform {
+export class MooaPlatform {
     name: string;
     router: any;
 
@@ -51,3 +51,6 @@ export class Platform {
         return window.mooa.isSingleSpa;
     }
 }
+
+const mooaPlatform = new MooaPlatform();
+export default mooaPlatform;

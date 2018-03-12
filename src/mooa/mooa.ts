@@ -8,6 +8,8 @@ import StatusFilter from './helper/status-filter';
 import {toUnloadPromise} from './lifecycles/unload';
 import {toUnmountPromise} from './lifecycles/unmount';
 
+import './model/IAppOption';
+
 const apps = [];
 
 class Mooa {
