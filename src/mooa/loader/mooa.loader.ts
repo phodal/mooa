@@ -9,7 +9,6 @@
 
 import LoaderHelper from '../helper/mooa-loader.helper';
 import {getContainerEl, removeContainerEl} from '../helper/app.helper';
-import assetsLoaderHelper from '../helper/assets-loader.helper';
 
 declare const window: any;
 
