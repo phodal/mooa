@@ -50,7 +50,7 @@ function unmount(opts: MooaApp, props: any) {
   return new Promise((resolve, reject) => {
     if (window.mooa[opts.name]) {
       window.mooa[opts.name].unmount();
-      removeContainerEl(opts);
+      removeContainerEl(opts.appConfig);
       if (getAppNames().indexOf(opts.name) !== -1) {
         unloadApplication(opts.name, { waitForUnmount: true });
         resolve();
