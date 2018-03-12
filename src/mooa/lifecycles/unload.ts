@@ -32,6 +32,8 @@ export async function toUnloadPromise(app) {
     return app;
   }
 
+  finishUnloadingApp(app, unloadInfo);
+
   return app;
 }
 

@@ -53,17 +53,7 @@ function loadAllAssets(opts: any) {
   });
 }
 
-function getContainerEl(opts) {
-  let el = document.querySelector(opts.selector);
-  if (!el) {
-    el = document.createElement(opts.selector);
-    document.body.appendChild(el);
-  }
-  return el;
-}
-
 const MooaLoaderHelper = {
-  getContainerEl: getContainerEl,
   loadAllAssets: loadAllAssets,
   loadLinkTag: loadLinkTag,
   loadScriptTag: loadScriptTag,

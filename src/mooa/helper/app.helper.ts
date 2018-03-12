@@ -7,3 +7,16 @@ export function find(arr, func) {
 
   return null;
 }
+
+export function getContainerEl(opts) {
+  let el = document.querySelector(opts.selector);
+  if (!el) {
+    el = document.createElement(opts.selector);
+    document.body.appendChild(el);
+  }
+  return el;
+}
+
+export function removeContainerEl(opts) {
+  getContainerEl(opts).remove();
+}
