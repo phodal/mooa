@@ -7,7 +7,7 @@ interface IAppOption {
   prefix: string;
 }
 
-interface MooaApp {
+interface MooaApp extends IAppOption {
   appConfig: IAppOption;
   status: string;
   bootstrap: () => {};
