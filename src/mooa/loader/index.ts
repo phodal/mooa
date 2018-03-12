@@ -1,6 +1,22 @@
+/**
+ * Robin Coma Delperier
+ * Licensed under the Apache-2.0 License
+ * https://github.com/PlaceMe-SAS/single-spa-angular-cli/blob/master/LICENSE
+ *
+ * modified by Phodal HUANG
+ *
+ */
+
 import LoaderHelper from '../helper/loader-helper';
 
+declare const window: any;
+
 function bootstrap(opts) {
+  if (!window['mooa']) {
+    window.mooa = {};
+  }
+  window.mooa.isSingleSpa = true;
+
   console.log('bootstrap', opts.name, opts.status);
   return new Promise((resolve, reject) => {
     LoaderHelper.loadAllAssets(opts.appConfig).then(resolve, reject);
@@ -12,19 +28,38 @@ function load(opts) {
   return Promise.resolve();
 }
 
-function mount(opts) {
+function mount(opts, props?: any) {
   console.log('mount', opts.name, opts.status);
+  console.log('unmount props', props);
   return new Promise((resolve, reject) => {
     LoaderHelper.getContainerEl(opts.appConfig);
-    resolve();
+    if (window.mooa[opts.name]) {
+      window.mooa[opts.name].mount(props);
+      resolve();
+    } else {
+      console.error(`Cannot mount ${opts.name} because that is not bootstraped`);
+      reject();
+    }
   });
 }
 
-function unmount(opts) {
+function unmount(opts, props: any) {
   console.log('unmount', opts.name, opts.status);
+  console.log('unmount props', props);
+  const { singleSpa: { unloadApplication, getAppNames } } = props
   return new Promise((resolve, reject) => {
-    LoaderHelper.getContainerEl(opts.appConfig).remove();
-    resolve();
+    if (window.mooa[opts.name]) {
+      window.mooa[opts.name].unmount();
+      LoaderHelper.getContainerEl(opts.appConfig).remove();
+      if (getAppNames().indexOf(opts.name) !== -1) {
+        unloadApplication(opts.name, { waitForUnmount: true });
+        resolve();
+      } else {
+        reject(`Cannot unmount ${opts.name} because that ${opts.name} is not part of the decalred applications : ${getAppNames()}`);
+      }
+    } else {
+      reject(`Cannot unmount ${opts.name} because that is not bootstraped`);
+    }
   });
 }
 
