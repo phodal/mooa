@@ -8,7 +8,7 @@ const mooaRouter = {
       if (routerConfig && routerConfig.urlHash) {
         return location.hash.indexOf(`#${prefix}`) === 0;
       } else {
-        return location.pathname.indexOf(`${prefix}`) === 0;
+        return location.pathname === prefix;
       }
     };
   }

@@ -64,7 +64,6 @@ function unmount(opts: MooaApp, props: any) {
 }
 
 function unload(opts: MooaApp) {
-  console.log(opts.name, opts.status);
   return Promise.resolve();
 }
 
