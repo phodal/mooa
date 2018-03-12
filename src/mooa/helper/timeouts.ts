@@ -20,28 +20,6 @@ const globalTimeoutConfig = {
   },
 };
 
-export function setBootstrapMaxTime(time, dieOnTimeout = false) {
-  if (typeof time !== 'number' || time <= 0) {
-    throw new Error(`bootstrap max time must be a positive integer number of milliseconds`);
-  }
-
-  globalTimeoutConfig.bootstrap = {
-    millis: time,
-    dieOnTimeout,
-  };
-}
-
-export function setMountMaxTime(time, dieOnTimeout = false) {
-  if (typeof time !== 'number' || time <= 0) {
-    throw new Error(`mount max time must be a positive integer number of milliseconds`);
-  }
-
-  globalTimeoutConfig.mount = {
-    millis: time,
-    dieOnTimeout,
-  };
-}
-
 export function reasonableTime(promise, description, timeoutConfig, app?) {
   const warningPeriod = 1000;
 
