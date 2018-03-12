@@ -36,7 +36,7 @@ export class AppComponent {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        mooa.reRouter();
+        mooa.reRouter(event);
       }
     });
 

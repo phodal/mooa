@@ -38,8 +38,11 @@ class Mooa {
     return this.reRouter();
   }
 
-  reRouter() {
+  reRouter(eventArguments?) {
     const customEvent = this.customEvent;
+    if (eventArguments) {
+      console.log(eventArguments);
+    }
 
     async function performAppChanges() {
       customEvent('before-routing-event');
