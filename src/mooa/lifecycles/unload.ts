@@ -7,7 +7,7 @@ export async function toUnloadPromise(app) {
   const unloadInfo = appsToUnload[app.name];
 
   if (app.status === StatusEnum.NOT_LOADED) {
-    finishUnloadingApp(app, unloadInfo);
+    unloadingApp(app, unloadInfo);
     return app;
   }
 
@@ -32,12 +32,12 @@ export async function toUnloadPromise(app) {
     return app;
   }
 
-  finishUnloadingApp(app, unloadInfo);
+  unloadingApp(app, unloadInfo);
 
   return app;
 }
 
-function finishUnloadingApp(app, unloadInfo) {
+function unloadingApp(app, unloadInfo) {
   delete appsToUnload[app.name];
 
   delete app.bootstrap;

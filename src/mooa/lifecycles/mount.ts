@@ -10,7 +10,6 @@ export async function toMountPromise(app) {
     await reasonableTime(app.mount(), `Mounting application '${app.name}'`, app.timeouts.mount);
     app.status = StatusEnum.MOUNTED;
   } catch (err) {
-    console.log(err);
     app.status = StatusEnum.SKIP_BECAUSE_BROKEN;
     throw new Error(err);
   }
