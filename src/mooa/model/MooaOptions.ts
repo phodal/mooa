@@ -1,3 +1,0 @@
-interface MooaOptions {
-  parentElement: string;
-}
