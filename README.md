@@ -56,8 +56,6 @@ mooaPlatform.mount('help').then(({ props, attachUnmount }) => {
 
 ```
 
-
-
 License
 ---
 
