@@ -11,6 +11,8 @@ import {toUnmountPromise} from './lifecycles/unmount';
 const apps = [];
 
 class Mooa {
+  currentApp = null;
+  apps = apps;
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
