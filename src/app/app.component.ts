@@ -14,9 +14,7 @@ export class AppComponent {
   private mooa: Mooa;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
-    this.mooa = new Mooa({
-      parentElement: 'app-root'
-    });
+    this.mooa = new Mooa();
 
     http.get<IAppOption[]>('/assets/apps.json')
       .subscribe(

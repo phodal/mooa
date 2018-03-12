@@ -12,10 +12,6 @@ declare const window: any;
 const apps = [];
 
 class Mooa {
-  constructor(options: MooaOptions) {
-
-  }
-
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
