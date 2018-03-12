@@ -55,8 +55,6 @@ function loadAllAssets(opts: any) {
 
 const MooaLoaderHelper = {
   loadAllAssets: loadAllAssets,
-  loadLinkTag: loadLinkTag,
-  loadScriptTag: loadScriptTag,
 };
 
 export default MooaLoaderHelper;
