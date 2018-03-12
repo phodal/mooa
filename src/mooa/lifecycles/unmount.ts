@@ -24,7 +24,6 @@ function immediatelyUnloadApp(app, resolve, reject) {
 }
 
 export function unloadApplication(appName, opts = {waitForUnmount: false}) {
-  console.log('unloadApplication');
   if (typeof appName !== 'string') {
     throw new Error(`unloadApplication requires a string 'appName'`);
   }

@@ -19,7 +19,6 @@ function bootstrap(opts: MooaApp) {
   window.mooa.isSingleSpa = true;
   window.mooa.name = opts.name;
 
-  console.log('bootstrap', opts.name, opts.status);
   return new Promise((resolve, reject) => {
     LoaderHelper.loadAllAssets(opts.appConfig).then(resolve, reject);
   });
@@ -43,7 +42,6 @@ function mount(opts: MooaApp, props?: any) {
 }
 
 function unmount(opts: MooaApp, props: any) {
-  console.log('unmount props', props);
   const {unloadApplication, getAppNames} = props;
   return new Promise((resolve, reject) => {
     if (window.mooa[opts.name]) {

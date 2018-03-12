@@ -12,6 +12,10 @@ declare const window: any;
 const apps = [];
 
 class Mooa {
+  constructor(options: MooaOptions) {
+
+  }
+
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
@@ -43,7 +47,7 @@ class Mooa {
   reRouter(eventArguments?) {
     const customEvent = this.customEvent;
     if (eventArguments) {
-      console.log(eventArguments);
+
     }
 
     async function performAppChanges() {
