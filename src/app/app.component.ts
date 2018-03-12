@@ -22,16 +22,9 @@ export class AppComponent {
       );
   }
 
-  private createAppElement(config: {}) {
-    let appElement;
-    appElement = this.renderer.createElement(config['selector']);
-    this.renderer.appendChild(this.childElement.nativeElement, appElement);
-  }
-
   private createApps(data: IAppOption[]) {
     data.map((config) => {
       mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
-      this.createAppElement(config);
     });
 
     this.router.events.subscribe((event) => {
