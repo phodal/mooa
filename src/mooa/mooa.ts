@@ -12,7 +12,6 @@ declare const window: any;
 const apps = [];
 
 class Mooa {
-  currentApp = null;
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
@@ -94,5 +93,4 @@ class Mooa {
   }
 }
 
-const mooa = new Mooa();
-export default mooa;
+export default Mooa;

@@ -1,5 +1,5 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import mooa from '../mooa/mooa';
+import mooa, {default as Mooa} from '../mooa/mooa';
 import mooaRouter from '../mooa/router';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
@@ -11,8 +11,10 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class AppComponent {
   @ViewChild('child') childElement: ElementRef;
+  private mooa: Mooa;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
+    this.mooa = new Mooa();
     http.get<IAppOption[]>('/assets/apps.json')
       .subscribe(
         data => {
@@ -23,16 +25,17 @@ export class AppComponent {
   }
 
   private createApps(data: IAppOption[]) {
+    const that = this;
     data.map((config) => {
-      mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
+      that.mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
     });
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        mooa.reRouter(event);
+        that.mooa.reRouter(event);
       }
     });
 
-    return mooa.start();
+    return that.mooa.start();
   }
 }
