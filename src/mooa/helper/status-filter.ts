@@ -5,11 +5,11 @@ function isActive(app) {
   return app.status === StatusEnum.MOUNTED;
 }
 
-function isntActive(app) {
+function InActive(app) {
   return !isActive(app);
 }
 
-function shouldntBeActive(app) {
+function shouldNotBeActive(app) {
   try {
     return !app.activeWhen(window.location);
   } catch (err) {
@@ -52,7 +52,7 @@ const StatusFilter = {
     const appsToUnload = getUnloadApps();
     return Object.keys(appsToUnload)
       .map(appName => appsToUnload[appName].app)
-      .filter(isntActive);
+      .filter(InActive);
   },
   getAppUnloadInfo: (appName) => {
     const appsToUnload = getUnloadApps();
@@ -62,12 +62,12 @@ const StatusFilter = {
     return apps
       .filter(notSkipped)
       .filter(isActive)
-      .filter(shouldntBeActive);
+      .filter(shouldNotBeActive);
   },
   getAppsToMount: (apps) => {
     return apps
       .filter(notSkipped)
-      .filter(isntActive)
+      .filter(InActive)
       .filter(isLoaded)
       .filter(shouldBeActive);
   }
