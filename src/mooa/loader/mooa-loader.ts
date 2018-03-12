@@ -7,7 +7,7 @@
  *
  */
 
-import LoaderHelper from '../helper/loader-helper';
+import LoaderHelper from '../helper/mooa-loader.helper';
 
 declare const window: any;
 
@@ -67,7 +67,7 @@ function unload(opts: MooaApp) {
   return Promise.resolve();
 }
 
-export default function loader(opts) {
+export default function mooaLoader(opts) {
   return {
     bootstrap: bootstrap.bind(null, opts),
     load: load.bind(null, opts),

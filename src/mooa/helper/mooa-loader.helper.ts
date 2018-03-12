@@ -1,4 +1,4 @@
-import assetsLoaderHelper from './assets-loader-helper';
+import assetsLoaderHelper from './assets-loader.helper';
 
 /**
  * Robin Coma Delperier
@@ -62,11 +62,11 @@ function getContainerEl(opts) {
   return el;
 }
 
-const LoaderHelper = {
+const MooaLoaderHelper = {
   getContainerEl: getContainerEl,
   loadAllAssets: loadAllAssets,
   loadLinkTag: loadLinkTag,
   loadScriptTag: loadScriptTag,
 };
 
-export default LoaderHelper;
+export default MooaLoaderHelper;
