@@ -1,16 +1,15 @@
 import {StatusEnum} from '../constants';
 import {getUnloadApps} from '../lifecycles/unload';
 
-
-export function isActive(app) {
+function isActive(app) {
   return app.status === StatusEnum.MOUNTED;
 }
 
-export function isntActive(app) {
+function isntActive(app) {
   return !isActive(app);
 }
 
-export function shouldntBeActive(app) {
+function shouldntBeActive(app) {
   try {
     return !app.activeWhen(window.location);
   } catch (err) {
@@ -19,21 +18,21 @@ export function shouldntBeActive(app) {
   }
 }
 
-export function notSkipped(item) {
+function notSkipped(item) {
   return item !== StatusEnum.SKIP_BECAUSE_BROKEN &&
     (!item || item.status !== StatusEnum.SKIP_BECAUSE_BROKEN);
 }
 
-export function isLoaded(app) {
+function isLoaded(app) {
   return app.status !== StatusEnum.NOT_LOADED &&
     app.status !== StatusEnum.LOADING_SOURCE_CODE;
 }
 
-export function notLoaded(app) {
+function notLoaded(app) {
   return !isLoaded(app);
 }
 
-export function shouldBeActive(app) {
+function shouldBeActive(app) {
   try {
     return app.activeWhen(window.location);
   } catch (err) {
