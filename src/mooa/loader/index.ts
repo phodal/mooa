@@ -1,4 +1,4 @@
-import LoaderHelper from './helper/loader-helper';
+import LoaderHelper from '../helper/loader-helper';
 
 function bootstrap(opts) {
   console.log('bootstrap', opts.name, opts.status);

@@ -2,7 +2,7 @@ import {StatusEnum} from './constants';
 import {toLoadPromise} from './lifecycles/load';
 import {toBootstrapPromise} from './lifecycles/bootstrap';
 import {toMountPromise} from './lifecycles/mount';
-import loader from './loader';
+import loader from './loader/index';
 import {ensureValidAppTimeouts} from './helper/timeouts';
 import StatusFilter from './helper/status-filter';
 import {toUnloadPromise} from './lifecycles/unload';
