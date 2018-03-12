@@ -14,42 +14,42 @@ declare const window: any;
 window.mooa = window.mooa || {};
 
 export class MooaPlatform {
-    name: string;
-    router: any;
+  name: string;
+  router: any;
 
-    mount(name: string, router?: any): Observable<any> {
-        this.name = name;
-        this.router = router;
-        return Observable.create((observer: Observer<any>) => {
-            if (this.isSingleSpaApp()) {
-                window.mooa[this.name] = window.mooa[this.name] || {};
-                window.mooa[this.name].mount = (props: any) => {
-                    observer.next({ props, attachUnmount: this.unmount.bind(this) });
-                    observer.complete();
-                };
-            } else {
-                observer.next({ props: {}, attachUnmount: this.unmount.bind(this) });
-                observer.complete();
-            }
-        });
-    }
+  mount(name: string, router?: any): Observable<any> {
+    this.name = name;
+    this.router = router;
+    return Observable.create((observer: Observer<any>) => {
+      if (this.isSingleSpaApp()) {
+        window.mooa[this.name] = window.mooa[this.name] || {};
+        window.mooa[this.name].mount = (props: any) => {
+          observer.next({props, attachUnmount: this.unmount.bind(this)});
+          observer.complete();
+        };
+      } else {
+        observer.next({props: {}, attachUnmount: this.unmount.bind(this)});
+        observer.complete();
+      }
+    });
+  }
 
-    unmount(module: any) {
-        if (this.isSingleSpaApp()) {
-            window.mooa[this.name].unmount = () => {
-                if (module) {
-                    module.destroy();
-                    if (this.router) {
-                        module.injector.get(this.router).dispose();
-                    }
-                }
-            };
+  unmount(module: any) {
+    if (this.isSingleSpaApp()) {
+      window.mooa[this.name].unmount = () => {
+        if (module) {
+          module.destroy();
+          if (this.router) {
+            module.injector.get(this.router).dispose();
+          }
         }
+      };
     }
+  }
 
-    private isSingleSpaApp(): boolean {
-        return window.mooa.isSingleSpa;
-    }
+  private isSingleSpaApp(): boolean {
+    return window.mooa.isSingleSpa;
+  }
 }
 
 const mooaPlatform = new MooaPlatform();
