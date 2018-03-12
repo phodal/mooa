@@ -11,7 +11,7 @@ import LoaderHelper from '../helper/loader-helper';
 
 declare const window: any;
 
-function bootstrap(opts) {
+function bootstrap(opts: MooaApp) {
   if (!window['mooa']) {
     window.mooa = {};
   }
@@ -23,12 +23,12 @@ function bootstrap(opts) {
   });
 }
 
-function load(opts) {
+function load(opts: MooaApp) {
   console.log('load', opts.name, opts.status);
   return Promise.resolve();
 }
 
-function mount(opts, props?: any) {
+function mount(opts: MooaApp, props?: any) {
   console.log('mount', opts.name, opts.status);
   console.log('unmount props', props);
   return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ function mount(opts, props?: any) {
   });
 }
 
-function unmount(opts, props: any) {
+function unmount(opts: MooaApp, props: any) {
   console.log('unmount', opts.name, opts.status);
   console.log('unmount props', props);
   const { singleSpa: { unloadApplication, getAppNames } } = props
@@ -63,7 +63,7 @@ function unmount(opts, props: any) {
   });
 }
 
-function unload(opts) {
+function unload(opts: MooaApp) {
   console.log(opts.name, opts.status);
   return Promise.resolve();
 }
