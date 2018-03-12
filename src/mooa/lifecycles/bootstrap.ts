@@ -1,6 +1,6 @@
 import {ensureValidAppTimeouts, reasonableTime} from '../helper/timeouts';
 import {StatusEnum} from '../constants';
-import loader from '../loader/mooa-loader';
+import loader from '../loader/mooa.loader';
 
 export async function toBootstrapPromise(app) {
   if (app.status !== StatusEnum.NOT_BOOTSTRAPPED) {

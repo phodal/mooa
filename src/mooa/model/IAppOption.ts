@@ -5,6 +5,7 @@ interface IAppOption {
   styles: string[];
   scripts: string[];
   prefix: string;
+  parentElement: string;
 }
 
 interface MooaApp extends IAppOption {

@@ -12,11 +12,20 @@ export function getContainerEl(opts) {
   let el = document.querySelector(opts.selector);
   if (!el) {
     el = document.createElement(opts.selector);
-    document.body.appendChild(el);
+
+    if (opts.parentElement) {
+      let parentEl = document.querySelector(opts.parentElement);
+      parentEl.appendChild(el);
+    } else {
+      document.body.appendChild(el);
+    }
   }
   return el;
 }
 
 export function removeContainerEl(opts) {
-  getContainerEl(opts).remove();
+  let el = document.querySelector(opts.selector);
+  if (el) {
+    getContainerEl(opts).remove();
+  }
 }

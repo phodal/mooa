@@ -11,7 +11,8 @@
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ]
+    ],
+    "parentElement": "app-root"
   },
   {
     "name": "help",
@@ -25,6 +26,7 @@
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ]
+    ],
+    "parentElement": "app-root"
   }
 ]
