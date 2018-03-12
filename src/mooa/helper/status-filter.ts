@@ -55,6 +55,10 @@ const StatusFilter = {
       .map(appName => appsToUnload[appName].app)
       .filter(isntActive);
   },
+  getAppUnloadInfo: (appName) => {
+    const appsToUnload = getUnloadApps();
+    return appsToUnload[appName];
+  },
   getAppsToUnmount: (apps) => {
     return apps
       .filter(notSkipped)

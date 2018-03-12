@@ -16,4 +16,6 @@ interface MooaApp extends IAppOption {
   unload: () => {};
   unmount: () => {};
   timeouts: () => {};
+  unloadApplication: (any) => {};
+  getAppNames: () => {};
 }

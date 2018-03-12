@@ -8,13 +8,14 @@ import StatusFilter from './helper/status-filter';
 import {toUnloadPromise} from './lifecycles/unload';
 import {toUnmountPromise} from './lifecycles/unmount';
 
+declare const window: any;
+
 import './model/IAppOption';
 
 const apps = [];
 
 class Mooa {
   currentApp = null;
-  apps = apps;
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
@@ -35,6 +36,7 @@ class Mooa {
     };
 
     apps.push(this.createApp(appOpt));
+    window.apps = apps;
   }
 
   start() {

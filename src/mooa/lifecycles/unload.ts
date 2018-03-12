@@ -48,7 +48,11 @@ function finishUnloadingApp(app, unloadInfo) {
   unloadInfo.resolve();
 }
 
-
 export function getUnloadApps() {
   return appsToUnload;
+}
+
+export function addAppToUnload(app, promiseGetter, resolve, reject) {
+  appsToUnload[app.name] = {app, resolve, reject};
+  Object.defineProperty(appsToUnload[app.name], 'promise', {get: promiseGetter});
 }

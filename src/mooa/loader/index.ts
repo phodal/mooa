@@ -31,7 +31,6 @@ function load(opts: MooaApp) {
 
 function mount(opts: MooaApp, props?: any) {
   console.log('mount', opts.name, opts.status);
-  console.log('unmount props', props);
   return new Promise((resolve, reject) => {
     LoaderHelper.getContainerEl(opts.appConfig);
     if (window.mooa[opts.name]) {
@@ -45,7 +44,6 @@ function mount(opts: MooaApp, props?: any) {
 }
 
 function unmount(opts: MooaApp, props: any) {
-  console.log('unmount', opts.name, opts.status);
   console.log('unmount props', props);
   const { singleSpa: { unloadApplication, getAppNames } } = props
   return new Promise((resolve, reject) => {
