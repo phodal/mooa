@@ -42,28 +42,6 @@ export function setMountMaxTime(time, dieOnTimeout = false) {
   };
 }
 
-export function setUnmountMaxTime(time, dieOnTimeout = false) {
-  if (typeof time !== 'number' || time <= 0) {
-    throw new Error(`unmount max time must be a positive integer number of milliseconds`);
-  }
-
-  globalTimeoutConfig.unmount = {
-    millis: time,
-    dieOnTimeout,
-  };
-}
-
-export function setUnloadMaxTime(time, dieOnTimeout = false) {
-  if (typeof time !== 'number' || time <= 0) {
-    throw new Error(`unload max time must be a positive integer number of milliseconds`);
-  }
-
-  globalTimeoutConfig.unload = {
-    millis: time,
-    dieOnTimeout,
-  };
-}
-
 export function reasonableTime(promise, description, timeoutConfig, app?) {
   const warningPeriod = 1000;
 
