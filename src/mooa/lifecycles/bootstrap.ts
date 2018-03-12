@@ -12,6 +12,7 @@ export async function toBootstrapPromise(app) {
     await reasonableTime(app.bootstrap(), `Bootstrapping app '${app.name}'`, app.timeouts.bootstrap);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {
+    console.error(err);
     app.status = StatusEnum.SKIP_BECAUSE_BROKEN;
     throw new Error(err);
   }

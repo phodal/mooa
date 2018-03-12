@@ -76,7 +76,9 @@ export async function toUnmountPromise(app) {
     await reasonableTime(app.unmount(appendFunc(app)), `Unmounting application ${app.name}'`, app.timeouts.unmount);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {
+    console.error(err);
     app.status = StatusEnum.SKIP_BECAUSE_BROKEN;
+    throw new Error(err);
   }
 
   return app;
