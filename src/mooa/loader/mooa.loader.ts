@@ -9,6 +9,7 @@
 
 import LoaderHelper from '../helper/mooa-loader.helper';
 import {getContainerEl, removeContainerEl} from '../helper/app.helper';
+import assetsLoaderHelper from '../helper/assets-loader.helper';
 
 declare const window: any;
 
@@ -60,7 +61,14 @@ function unmount(opts: MooaApp, props: any) {
 }
 
 function unload(opts: MooaApp) {
-  return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    opts.appConfig.scripts.concat(opts.appConfig.styles).reduce(
+      (prev: Promise<undefined>, scriptName: string) => prev.then(LoaderHelper.unloadTag(opts.appConfig, scriptName)),
+      Promise.resolve(undefined)
+    );
+    resolve();
+  });
+
 }
 
 export default function mooaLoader(opts) {

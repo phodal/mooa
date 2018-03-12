@@ -53,8 +53,21 @@ function loadAllAssets(opts: any) {
   });
 }
 
+function unloadTag(opts: IAppOption, scriptName: string) {
+  return () => {
+    return new Promise((resolve, reject) => {
+      const tag = document.getElementById(assetsLoaderHelper.hashCode(`${opts.baseScriptUrl}/${scriptName}`));
+      if (tag) {
+        document.head.removeChild(tag);
+      }
+      resolve();
+    });
+  };
+}
+
 const MooaLoaderHelper = {
   loadAllAssets: loadAllAssets,
+  unloadTag: unloadTag
 };
 
 export default MooaLoaderHelper;
