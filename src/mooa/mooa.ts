@@ -10,11 +10,15 @@ import './model/IAppOption';
 declare const window: any;
 
 const apps = [];
+window.mooa = window.mooa || {};
 
 class Mooa {
 
   constructor(option: MooaOption) {
-    window.mooa.debug = option.debug;
+
+    if (window.mooa) {
+      window.mooa.debug = option.debug;
+    }
   }
 
   started = false;
