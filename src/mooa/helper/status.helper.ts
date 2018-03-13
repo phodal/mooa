@@ -41,7 +41,7 @@ function shouldBeActive(app) {
   }
 }
 
-const StatusFilter = {
+const StatusHelper = {
   getAppsToLoad: (apps) => {
     return apps
       .filter(notSkipped)
@@ -73,4 +73,4 @@ const StatusFilter = {
   }
 };
 
-export default StatusFilter;
+export default StatusHelper;

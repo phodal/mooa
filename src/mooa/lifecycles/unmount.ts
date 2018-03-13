@@ -1,6 +1,6 @@
 import {StatusEnum} from '../constants';
 import {reasonableTime} from '../helper/timeouts';
-import StatusFilter from '../helper/status-filter';
+import StatusHelper from '../helper/status.helper';
 import {addAppToUnload, toUnloadPromise} from './unload';
 import {find} from '../helper/app.helper';
 
@@ -32,7 +32,7 @@ export function unloadApplication(appName, opts = {waitForUnmount: false}) {
     throw new Error(`Could not unload application '${appName}' because no such application has been declared`);
   }
 
-  const appUnloadInfo = StatusFilter.getAppUnloadInfo(app.name);
+  const appUnloadInfo = StatusHelper.getAppUnloadInfo(app.name);
   if (opts && opts.waitForUnmount) {
 
     if (appUnloadInfo) {

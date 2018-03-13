@@ -1,5 +1,5 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import mooa, {default as Mooa} from '../mooa/mooa';
+import {default as Mooa} from '../mooa/mooa';
 import mooaRouter from '../mooa/router';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';

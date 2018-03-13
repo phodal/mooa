@@ -2,7 +2,7 @@ import {StatusEnum} from './constants';
 import {toLoadPromise} from './lifecycles/load';
 import {toBootstrapPromise} from './lifecycles/bootstrap';
 import {toMountPromise} from './lifecycles/mount';
-import StatusFilter from './helper/status-filter';
+import StatusHelper from './helper/status.helper';
 import {toUnloadPromise} from './lifecycles/unload';
 import {toUnmountPromise} from './lifecycles/unmount';
 import './model/IAppOption';
@@ -57,9 +57,9 @@ class Mooa {
 
     async function performAppChanges() {
       customEvent('before-routing-event');
-      const unloadPromises = StatusFilter.getAppsToUnload().map(toUnloadPromise);
+      const unloadPromises = StatusHelper.getAppsToUnload().map(toUnloadPromise);
 
-      const unmountUnloadPromises = StatusFilter.getAppsToUnmount(apps)
+      const unmountUnloadPromises = StatusHelper.getAppsToUnmount(apps)
         .map(toUnmountPromise)
         .map(unmountPromise => unmountPromise.then(toUnloadPromise));
 
@@ -67,7 +67,7 @@ class Mooa {
 
       const unmountAllPromise = Promise.all(allUnmountPromises);
 
-      const appsToLoad = StatusFilter.getAppsToLoad(apps);
+      const appsToLoad = StatusHelper.getAppsToLoad(apps);
       const loadThenMountPromises = appsToLoad.map(app => {
         return toLoadPromise(app)
           .then(toBootstrapPromise)
@@ -77,7 +77,7 @@ class Mooa {
           });
       });
 
-      const mountPromises = StatusFilter.getAppsToMount(apps)
+      const mountPromises = StatusHelper.getAppsToMount(apps)
         .filter(appToMount => appsToLoad.indexOf(appToMount) < 0)
         .map(async function (appToMount) {
           await toBootstrapPromise(appToMount);
