@@ -31,6 +31,7 @@ function load(opts: MooaApp) {
 function mount(opts: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
     getContainerEl(opts.appConfig);
+    console.log(window.mooa[opts.name]);
     if (window.mooa[opts.name]) {
       window.mooa[opts.name].mount(props);
       resolve();

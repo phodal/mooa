@@ -9,6 +9,7 @@ export async function toBootstrapPromise(app) {
   app.status = StatusEnum.BOOTSTRAPPING;
 
   try {
+    console.log(`Bootstrapping app '${app.name}'`);
     await reasonableTime(app.bootstrap(), `Bootstrapping app '${app.name}'`, app.timeouts.bootstrap);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {

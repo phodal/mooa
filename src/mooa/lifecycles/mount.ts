@@ -7,6 +7,7 @@ export async function toMountPromise(app) {
   }
 
   try {
+    console.log(`Mounting application '${app.name}'`);
     await reasonableTime(app.mount(), `Mounting application '${app.name}'`, app.timeouts.mount);
     app.status = StatusEnum.MOUNTED;
   } catch (err) {
