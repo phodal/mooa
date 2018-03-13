@@ -72,7 +72,7 @@ export async function toUnmountPromise(app) {
   }
 
   try {
-    mooaLog(`Unmounting application ${app.name}'`);
+    mooaLog('Unmounting application', app.name, app.status);
     await reasonableTime(app.unmount(appendFunc(app)), `Unmounting application ${app.name}'`, app.timeouts.unmount);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {

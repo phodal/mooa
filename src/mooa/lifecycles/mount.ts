@@ -8,7 +8,7 @@ export async function toMountPromise(app) {
   }
 
   try {
-    mooaLog(`Mounting application '${app.name}'`);
+    mooaLog('Mounting application', app.name, app.status);
     await reasonableTime(app.mount(), `Mounting application '${app.name}'`, app.timeouts.mount);
     app.status = StatusEnum.MOUNTED;
   } catch (err) {

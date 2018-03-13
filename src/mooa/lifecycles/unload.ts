@@ -27,7 +27,7 @@ export async function toUnloadPromise(app) {
 
   try {
     app.status = StatusEnum.UNLOADING;
-    mooaLog(`Unloading application '${app.name}'`);
+    mooaLog('Unloading application', app.name, app.status);
     await reasonableTime(app.unload(), `Unloading application '${app.name}'`, app.timeouts.unload);
   } catch (err) {
     console.error('Unloading Error', err);

@@ -1,6 +1,7 @@
 import {StatusEnum} from '../constants';
 import loader from '../loader/mooa.loader';
 import {ensureValidAppTimeouts} from '../helper/timeouts';
+import {mooaLog} from '../helper/app.helper';
 
 export async function toLoadPromise(app) {
   if (app.status !== StatusEnum.NOT_LOADED) {
@@ -9,6 +10,7 @@ export async function toLoadPromise(app) {
 
   createApp(app);
 
+  mooaLog('Loading application', app.name, app.status);
   app.status = StatusEnum.NOT_BOOTSTRAPPED;
   return app;
 }

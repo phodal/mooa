@@ -10,7 +10,7 @@ export async function toBootstrapPromise(app) {
   app.status = StatusEnum.BOOTSTRAPPING;
 
   try {
-    mooaLog(`Bootstrapping app '${app.name}'`);
+    mooaLog('Bootstrapping application', app.name, app.status);
     await reasonableTime(app.bootstrap(), `Bootstrapping app '${app.name}'`, app.timeouts.bootstrap);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {
