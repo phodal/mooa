@@ -1,3 +1,3 @@
 interface MooaOption {
-  debug: boolean;
+  debug: boolean
 }
