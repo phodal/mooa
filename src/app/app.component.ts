@@ -12,9 +12,13 @@ import {NavigationEnd, Router} from '@angular/router';
 export class AppComponent {
   @ViewChild('child') childElement: ElementRef;
   private mooa: Mooa;
+  private option: MooaOption;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
-    this.mooa = new Mooa();
+    this.option = {
+      debug: true
+    };
+    this.mooa = new Mooa(this.option);
 
     http.get<IAppOption[]>('/assets/apps.json')
       .subscribe(

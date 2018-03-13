@@ -12,6 +12,11 @@ declare const window: any;
 const apps = [];
 
 class Mooa {
+
+  constructor(option: MooaOption) {
+    window.mooa.debug = option.debug;
+  }
+
   started = false;
 
   registerApplication(appName: string, appConfig?, activeWhen?: {}, customProps: object = {}) {
