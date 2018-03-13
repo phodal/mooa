@@ -45,6 +45,12 @@ export class MooaPlatform {
   private isSingleSpaApp(): boolean {
     return window.mooa.isSingleSpa;
   }
+
+  get appBase() {
+    const locationPath = window.location.pathname.split('/')[1];
+    window.mooa.base = locationPath;
+    return locationPath;
+  }
 }
 
 const mooaPlatform = new MooaPlatform();
