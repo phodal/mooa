@@ -28,7 +28,7 @@ export class AppComponent {
   private createApps(data: IAppOption[]) {
     const that = this;
     data.map((config) => {
-      that.mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
+      that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
     });
 
     this.router.events.subscribe((event) => {

@@ -1,17 +1,52 @@
-interface RouterConfig {
-  urlHash: boolean;
-}
+/**
+ * Robin Coma Delperier
+ * Licensed under the Apache-2.0 License
+ * https://github.com/PlaceMe-SAS/single-spa-angular-cli/blob/master/LICENSE
+ *
+ * modified by Phodal HUANG
+ *
+ */
 
-const mooaRouter = {
-  hashPrefix(prefix: string, routerConfig?: RouterConfig) {
-    return function (location) {
-      if (routerConfig && routerConfig.urlHash) {
-        return location.hash.indexOf(`#${prefix}`) === 0;
+declare const history: History;
+
+export class Router {
+
+  routes: string[];
+  defaultRoute: string;
+
+  constructor() {
+    this.routes = [];
+  }
+
+  matchRoute(prefix: string, isDefaultPage?: boolean): (location: Location) => boolean {
+    this.routes.push(prefix);
+    if (isDefaultPage) {
+      this.defaultRoute = prefix;
+    }
+    return (location: Location): boolean => {
+      if (prefix === '/**') {
+        return true;
+      }
+      const route = this.routes.find(r => this.pathMatch(location, r));
+      if (route) {
+        return this.pathMatch(location, prefix);
       } else {
-        return location.pathname === prefix;
+        this.navigate(this.defaultRoute);
+        return false;
       }
     };
   }
-};
 
-export default mooaRouter;
+  public navigate(path: string): void {
+    history.pushState(null, null, path);
+  }
+
+  private pathMatch(location: Location, path: string): boolean {
+    const loc = location.pathname + location.search;
+    return loc.indexOf(path) !== -1;
+  }
+
+}
+
+const router = new Router();
+export default router;
