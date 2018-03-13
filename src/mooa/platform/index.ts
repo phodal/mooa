@@ -47,7 +47,10 @@ export class MooaPlatform {
   }
 
   get appBase() {
-    const locationPath = '/' + window.location.pathname.split('/')[1];
+    const pathNames = window.location.pathname.split('/');
+    const parentRouter = pathNames[1];
+    const appName = pathNames[2];
+    const locationPath = '/' + parentRouter + '/' + appName;
     window.mooa.basePath = locationPath;
     return locationPath;
   }
