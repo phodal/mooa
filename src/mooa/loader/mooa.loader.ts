@@ -24,46 +24,46 @@ function bootstrap(opts: MooaApp) {
   });
 }
 
-function load(opts: MooaApp) {
+function load(app: MooaApp) {
   return Promise.resolve();
 }
 
-function mount(opts: MooaApp, props?: any) {
+function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    getContainerEl(opts.appConfig);
-    console.log(window.mooa[opts.name]);
-    if (window.mooa[opts.name]) {
-      window.mooa[opts.name].mount(props);
+    getContainerEl(app.appConfig);
+    console.log(window.mooa[app.name]);
+    if (window.mooa[app.name]) {
+      window.mooa[app.name].mount(props);
       resolve();
     } else {
-      console.error(`Cannot mount ${opts.name} because that is not bootstraped`);
+      console.error(`Cannot mount ${app.name} because that is not bootstraped`);
       reject();
     }
   });
 }
 
-function unmount(opts: MooaApp, props: any) {
+function unmount(app: MooaApp, props: any) {
   const {unloadApplication, getAppNames} = props;
   return new Promise((resolve, reject) => {
-    if (window.mooa[opts.name]) {
-      window.mooa[opts.name].unmount();
-      removeContainerEl(opts.appConfig);
-      if (getAppNames().indexOf(opts.name) !== -1) {
-        unloadApplication(opts.name, {waitForUnmount: true});
+    if (window.mooa[app.name]) {
+      window.mooa[app.name].unmount();
+      removeContainerEl(app.appConfig);
+      if (getAppNames().indexOf(app.name) !== -1) {
+        unloadApplication(app.name, {waitForUnmount: true});
         resolve();
       } else {
-        reject(`Cannot unmount ${opts.name} because that ${opts.name} is not part of the decalred applications : ${getAppNames()}`);
+        reject(`Cannot unmount ${app.name} because that ${app.name} is not part of the decalred applications : ${getAppNames()}`);
       }
     } else {
-      reject(`Cannot unmount ${opts.name} because that is not bootstraped`);
+      reject(`Cannot unmount ${app.name} because that is not bootstraped`);
     }
   });
 }
 
-function unload(opts: MooaApp) {
+function unload(app: MooaApp) {
   return new Promise((resolve, reject) => {
-    opts.appConfig.scripts.concat(opts.appConfig.styles).reduce(
-      (prev: Promise<undefined>, scriptName: string) => prev.then(LoaderHelper.unloadTag(opts.appConfig, scriptName)),
+    app.appConfig.scripts.concat(app.appConfig.styles).reduce(
+      (prev: Promise<undefined>, scriptName: string) => prev.then(LoaderHelper.unloadTag(app.appConfig, scriptName)),
       Promise.resolve(undefined)
     );
     resolve();
