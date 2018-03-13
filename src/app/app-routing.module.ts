@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
         component: AppComponent
       },
       {
-        path: 'app/:app',
+        path: 'app/:appName/:route',
         component: AppComponent
       }
     ])
