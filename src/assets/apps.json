@@ -6,7 +6,7 @@
     "styles": [
       "styles.bundle.css"
     ],
-    "prefix": "/app1",
+    "prefix": "app/app1",
     "scripts": [
       "inline.bundle.js",
       "polyfills.bundle.js",

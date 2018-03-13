@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
         component: AppComponent
       },
       {
-        path: 'app1',
+        path: 'app/:app',
         component: AppComponent
       }
     ])

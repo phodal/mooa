@@ -47,8 +47,8 @@ export class MooaPlatform {
   }
 
   get appBase() {
-    const locationPath = window.location.pathname.split('/')[1];
-    window.mooa.base = locationPath;
+    const locationPath = '/' + window.location.pathname.split('/')[1];
+    window.mooa.basePath = locationPath;
     return locationPath;
   }
 }
