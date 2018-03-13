@@ -24,8 +24,8 @@ export class Router {
       this.defaultRoute = prefix;
     }
     return (location: Location): boolean => {
-      if (prefix === '/**' || prefix === '/') {
-        return true;
+      if (prefix === '/') {
+        return location.pathname === '/';
       }
       const route = this.routes.find(r => this.pathMatch(location, r));
       if (route) {
