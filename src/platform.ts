@@ -56,5 +56,4 @@ export class MooaPlatform {
   }
 }
 
-const mooaPlatform = new MooaPlatform()
-export default mooaPlatform
+export default MooaPlatform

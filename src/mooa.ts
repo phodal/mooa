@@ -7,6 +7,7 @@ import { toUnloadPromise } from './lifecycles/unload'
 import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
+import { MooaPlatform } from './platform'
 
 declare const window: any
 
@@ -113,4 +114,6 @@ export function mooaReRouter() {
 }
 
 export default Mooa
+
 export const mooaRouter = new MooaRouter()
+export const mooaPlatform = new MooaPlatform()
