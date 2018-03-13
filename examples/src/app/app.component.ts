@@ -1,8 +1,7 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import {default as Mooa} from '../mooa/mooa';
-import mooaRouter from '../mooa/router';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
+import Mooa, {mooaRouter} from 'mooa';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import {NavigationEnd, Router} from '@angular/router';
 export class AppComponent {
   @ViewChild('child') childElement: ElementRef;
   private mooa: Mooa;
-  private option: MooaOption;
+  private option: any;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
     this.option = {
@@ -20,7 +19,7 @@ export class AppComponent {
     };
     this.mooa = new Mooa(this.option);
 
-    http.get<IAppOption[]>('/assets/apps.json')
+    http.get<any[]>('/assets/apps.json')
       .subscribe(
         data => {
           this.createApps(data);
@@ -29,7 +28,7 @@ export class AppComponent {
       );
   }
 
-  private createApps(data: IAppOption[]) {
+  private createApps(data: any[]) {
     const that = this;
     data.map((config) => {
       that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
@@ -37,7 +36,7 @@ export class AppComponent {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        that.mooa.reRouter(event);
+        that.mooa.reRouter();
       }
     });
 

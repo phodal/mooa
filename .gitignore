@@ -43,3 +43,4 @@ testem.log
 Thumbs.db
 apps/
 examples/node_modules/
+.rpt2_cache/

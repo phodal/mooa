@@ -49,5 +49,4 @@ export class MooaRouter {
   }
 }
 
-const mooaRouter = new MooaRouter()
-export default mooaRouter
+export default MooaRouter

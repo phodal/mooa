@@ -6,6 +6,7 @@ import StatusHelper from './helper/status.helper'
 import { toUnloadPromise } from './lifecycles/unload'
 import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
+import MooaRouter from './router'
 
 declare const window: any
 
@@ -107,8 +108,9 @@ class Mooa {
   }
 }
 
-export function mooaRouter() {
+export function mooaReRouter() {
   return _instance.reRouter()
 }
 
 export default Mooa
+export const mooaRouter = new MooaRouter()
