@@ -2,7 +2,7 @@ import { StatusEnum } from '../constants'
 import { reasonableTime } from '../helper/timeouts'
 import { mooaLog } from '../helper/app.helper'
 
-export async function toMountPromise(app) {
+export async function toMountPromise(app: any) {
   if (app.status !== StatusEnum.NOT_MOUNTED) {
     return app
   }

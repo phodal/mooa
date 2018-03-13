@@ -1,4 +1,5 @@
 import assetsLoaderHelper from './assets-loader.helper'
+import { IAppOption } from '../model/IAppOption'
 
 /**
  * Robin Coma Delperier

@@ -20,7 +20,12 @@ const globalTimeoutConfig = {
   }
 }
 
-export function reasonableTime(promise, description, timeoutConfig, app?) {
+export function reasonableTime(
+  promise: any,
+  description: any,
+  timeoutConfig: any,
+  app?: any
+) {
   const warningPeriod = 1000
 
   return new Promise((resolve, reject) => {
@@ -28,11 +33,11 @@ export function reasonableTime(promise, description, timeoutConfig, app?) {
     let errored = false
 
     promise
-      .then(val => {
+      .then((val: any) => {
         finished = true
         resolve(val)
       })
-      .catch(val => {
+      .catch((val: any) => {
         finished = true
         reject(val)
       })
@@ -40,7 +45,7 @@ export function reasonableTime(promise, description, timeoutConfig, app?) {
     setTimeout(() => maybeTimingOut(1), warningPeriod)
     setTimeout(() => maybeTimingOut(true), timeoutConfig.millis)
 
-    function maybeTimingOut(shouldError) {
+    function maybeTimingOut(shouldError: any) {
       if (!finished) {
         if (shouldError === true) {
           errored = true

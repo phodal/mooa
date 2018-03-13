@@ -11,7 +11,7 @@ declare const history: History
 
 export class Router {
   routes: string[]
-  defaultRoute: string
+  defaultRoute: string = ''
 
   constructor() {
     this.routes = []
@@ -40,7 +40,7 @@ export class Router {
   }
 
   public navigate(path: string): void {
-    history.pushState(null, null, path)
+    history.pushState(null, '', path)
   }
 
   private pathMatch(location: Location, path: string): boolean {

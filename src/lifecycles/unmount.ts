@@ -3,14 +3,15 @@ import { reasonableTime } from '../helper/timeouts'
 import StatusHelper from '../helper/status.helper'
 import { addAppToUnload, toUnloadPromise } from './unload'
 import { find, mooaLog } from '../helper/app.helper'
+import { MooaApp } from '../model/IAppOption'
 
 declare const window: any
 
 export function getAppNames() {
-  return window.apps.map(app => app.name)
+  return window.apps.map((app: any) => app.name)
 }
 
-function immediatelyUnloadApp(app, resolve, reject) {
+function immediatelyUnloadApp(app: any, resolve: any, reject: any) {
   toUnmountPromise(app)
     .then(toUnloadPromise)
     .then(() => {
@@ -23,11 +24,14 @@ function immediatelyUnloadApp(app, resolve, reject) {
     .catch(reject)
 }
 
-export function unloadApplication(appName, opts = { waitForUnmount: false }) {
+export function unloadApplication(
+  appName: any,
+  opts = { waitForUnmount: false }
+) {
   if (typeof appName !== 'string') {
     throw new Error(`unloadApplication requires a string 'appName'`)
   }
-  const app = find(window.apps, App => App.name === appName)
+  const app = find(window.apps, (app: any) => app.name === appName)
   if (!app) {
     throw new Error(
       `Could not unload application '${appName}' because no such application has been declared`
@@ -45,7 +49,7 @@ export function unloadApplication(appName, opts = { waitForUnmount: false }) {
       return promise
     }
   } else {
-    let resultPromise
+    let resultPromise: any
 
     if (appUnloadInfo) {
       resultPromise = appUnloadInfo.promise
@@ -67,7 +71,7 @@ export function appendFunc(app: MooaApp) {
   return app
 }
 
-export async function toUnmountPromise(app) {
+export async function toUnmountPromise(app: any) {
   if (app.status !== StatusEnum.MOUNTED) {
     return app
   }

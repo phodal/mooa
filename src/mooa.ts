@@ -5,25 +5,25 @@ import { toMountPromise } from './lifecycles/mount'
 import StatusHelper from './helper/status.helper'
 import { toUnloadPromise } from './lifecycles/unload'
 import { toUnmountPromise } from './lifecycles/unmount'
-import './model/IAppOption'
+import { MooaOption } from './model/MooaOption'
 
 declare const window: any
 
-const apps = []
+const apps: any[] = []
 window.mooa = window.mooa || {}
 
 class Mooa {
+  started = false
+
   constructor(option: MooaOption) {
     if (window.mooa) {
       window.mooa.debug = option.debug
     }
   }
 
-  started = false
-
   registerApplication(
     appName: string,
-    appConfig?,
+    appConfig?: any,
     activeWhen?: {},
     customProps: object = {}
   ) {
@@ -52,9 +52,10 @@ class Mooa {
     return this.reRouter()
   }
 
-  reRouter(eventArguments?) {
+  reRouter(eventArguments?: any) {
     const customEvent = this.customEvent
     if (eventArguments) {
+      // TODO: log event
     }
 
     async function performAppChanges() {
@@ -63,14 +64,14 @@ class Mooa {
 
       const unmountUnloadPromises = StatusHelper.getAppsToUnmount(apps)
         .map(toUnmountPromise)
-        .map(unmountPromise => unmountPromise.then(toUnloadPromise))
+        .map((unmountPromise: any) => unmountPromise.then(toUnloadPromise))
 
       const allUnmountPromises = unmountUnloadPromises.concat(unloadPromises)
 
       const unmountAllPromise = Promise.all(allUnmountPromises)
 
       const appsToLoad = StatusHelper.getAppsToLoad(apps)
-      const loadThenMountPromises = appsToLoad.map(app => {
+      const loadThenMountPromises = appsToLoad.map((app: any) => {
         return toLoadPromise(app)
           .then(toBootstrapPromise)
           .then(async function(toMountApp) {
@@ -80,8 +81,8 @@ class Mooa {
       })
 
       const mountPromises = StatusHelper.getAppsToMount(apps)
-        .filter(appToMount => appsToLoad.indexOf(appToMount) < 0)
-        .map(async function(appToMount) {
+        .filter((appToMount: any) => appsToLoad.indexOf(appToMount) < 0)
+        .map(async function(appToMount: any) {
           await toBootstrapPromise(appToMount)
           await unmountAllPromise
           return toMountPromise(appToMount)
@@ -99,7 +100,7 @@ class Mooa {
     return performAppChanges()
   }
 
-  customEvent(eventName, eventArgs?) {
+  customEvent(eventName: any, eventArgs?: any) {
     window.dispatchEvent(new CustomEvent(eventName, eventArgs))
   }
 }

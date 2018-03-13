@@ -11,7 +11,7 @@ declare const window: any
 window.mooa = window.mooa || {}
 
 export class MooaPlatform {
-  name: string
+  name: string = ''
   router: any
 
   mount(name: string, router?: any) {

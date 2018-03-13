@@ -1,4 +1,4 @@
-interface IAppOption {
+export interface IAppOption {
   name: string
   selector: string
   baseScriptUrl: string
@@ -8,15 +8,15 @@ interface IAppOption {
   parentElement: string
 }
 
-interface MooaApp extends IAppOption {
+export interface MooaApp extends IAppOption {
   appConfig: IAppOption
   status: string
-  bootstrap: () => {}
-  load: () => {}
-  mount: () => {}
-  unload: () => {}
-  unmount: () => {}
-  timeouts: () => {}
-  unloadApplication: (any) => {}
-  getAppNames: () => {}
+  bootstrap: any
+  load: any
+  mount: any
+  unload: any
+  unmount: any
+  timeouts: any
+  unloadApplication: any
+  getAppNames: any
 }

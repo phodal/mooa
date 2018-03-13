@@ -2,8 +2,9 @@ import { StatusEnum } from '../constants'
 import loader from '../loader/mooa.loader'
 import { ensureValidAppTimeouts } from '../helper/timeouts'
 import { mooaLog } from '../helper/app.helper'
+import { MooaApp } from '../model/IAppOption'
 
-export async function toLoadPromise(app) {
+export async function toLoadPromise(app: any) {
   if (app.status !== StatusEnum.NOT_LOADED) {
     return app
   }
@@ -15,7 +16,7 @@ export async function toLoadPromise(app) {
   return app
 }
 
-function createApp(appOpt): MooaApp {
+function createApp(appOpt: any): MooaApp {
   const _loader = loader(appOpt)
   appOpt.bootstrap = _loader.bootstrap
   appOpt.load = _loader.load

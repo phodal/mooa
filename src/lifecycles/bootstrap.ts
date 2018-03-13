@@ -2,7 +2,7 @@ import { reasonableTime } from '../helper/timeouts'
 import { StatusEnum } from '../constants'
 import { mooaLog } from '../helper/app.helper'
 
-export async function toBootstrapPromise(app) {
+export async function toBootstrapPromise(app: any) {
   if (app.status !== StatusEnum.NOT_BOOTSTRAPPED) {
     return app
   }

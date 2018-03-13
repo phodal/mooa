@@ -1,3 +1,3 @@
-interface MooaOption {
+export interface MooaOption {
   debug: boolean
 }

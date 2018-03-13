@@ -1,15 +1,15 @@
 import { StatusEnum } from '../constants'
 import { getUnloadApps } from '../lifecycles/unload'
 
-function isActive(app) {
+function isActive(app: any) {
   return app.status === StatusEnum.MOUNTED
 }
 
-function InActive(app) {
+function InActive(app: any) {
   return !isActive(app)
 }
 
-function shouldNotBeActive(app) {
+function shouldNotBeActive(app: any) {
   try {
     return !app.activeWhen(window.location)
   } catch (err) {
@@ -18,25 +18,25 @@ function shouldNotBeActive(app) {
   }
 }
 
-function notSkipped(item) {
+function notSkipped(item: any) {
   return (
     item !== StatusEnum.SKIP_BECAUSE_BROKEN &&
     (!item || item.status !== StatusEnum.SKIP_BECAUSE_BROKEN)
   )
 }
 
-function isLoaded(app) {
+function isLoaded(app: any) {
   return (
     app.status !== StatusEnum.NOT_LOADED &&
     app.status !== StatusEnum.LOADING_SOURCE_CODE
   )
 }
 
-function notLoaded(app) {
+function notLoaded(app: any) {
   return !isLoaded(app)
 }
 
-function shouldBeActive(app) {
+function shouldBeActive(app: any) {
   try {
     return app.activeWhen(window.location)
   } catch (err) {
@@ -46,7 +46,7 @@ function shouldBeActive(app) {
 }
 
 const StatusHelper = {
-  getAppsToLoad: apps => {
+  getAppsToLoad: (apps: any) => {
     return apps
       .filter(notSkipped)
       .filter(notLoaded)
@@ -58,17 +58,17 @@ const StatusHelper = {
       .map(appName => appsToUnload[appName].app)
       .filter(InActive)
   },
-  getAppUnloadInfo: appName => {
+  getAppUnloadInfo: (appName: any) => {
     const appsToUnload = getUnloadApps()
     return appsToUnload[appName]
   },
-  getAppsToUnmount: apps => {
+  getAppsToUnmount: (apps: any) => {
     return apps
       .filter(notSkipped)
       .filter(isActive)
       .filter(shouldNotBeActive)
   },
-  getAppsToMount: apps => {
+  getAppsToMount: (apps: any) => {
     return apps
       .filter(notSkipped)
       .filter(InActive)
