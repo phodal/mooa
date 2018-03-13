@@ -29,3 +29,9 @@ export function removeContainerEl(opts) {
     getContainerEl(opts).remove();
   }
 }
+
+export function mooaLog(...args) {
+  if (window['mooa'] && window['mooa']['debug']) {
+    console.log(args);
+  }
+}

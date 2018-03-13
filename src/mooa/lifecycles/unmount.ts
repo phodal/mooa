@@ -2,7 +2,7 @@ import {StatusEnum} from '../constants';
 import {reasonableTime} from '../helper/timeouts';
 import StatusHelper from '../helper/status.helper';
 import {addAppToUnload, toUnloadPromise} from './unload';
-import {find} from '../helper/app.helper';
+import {find, mooaLog} from '../helper/app.helper';
 
 declare const window: any;
 
@@ -72,6 +72,7 @@ export async function toUnmountPromise(app) {
   }
 
   try {
+    mooaLog(`Unmounting application ${app.name}'`);
     await reasonableTime(app.unmount(appendFunc(app)), `Unmounting application ${app.name}'`, app.timeouts.unmount);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {

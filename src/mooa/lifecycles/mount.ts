@@ -1,5 +1,6 @@
 import {StatusEnum} from '../constants';
 import {reasonableTime} from '../helper/timeouts';
+import {mooaLog} from '../helper/app.helper';
 
 export async function toMountPromise(app) {
   if (app.status !== StatusEnum.NOT_MOUNTED) {
@@ -7,7 +8,7 @@ export async function toMountPromise(app) {
   }
 
   try {
-    console.log(`Mounting application '${app.name}'`);
+    mooaLog(`Mounting application '${app.name}'`);
     await reasonableTime(app.mount(), `Mounting application '${app.name}'`, app.timeouts.mount);
     app.status = StatusEnum.MOUNTED;
   } catch (err) {

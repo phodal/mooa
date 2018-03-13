@@ -1,5 +1,6 @@
 import {reasonableTime} from '../helper/timeouts';
 import {StatusEnum} from '../constants';
+import {mooaLog} from '../helper/app.helper';
 
 export async function toBootstrapPromise(app) {
   if (app.status !== StatusEnum.NOT_BOOTSTRAPPED) {
@@ -9,7 +10,7 @@ export async function toBootstrapPromise(app) {
   app.status = StatusEnum.BOOTSTRAPPING;
 
   try {
-    console.log(`Bootstrapping app '${app.name}'`);
+    mooaLog(`Bootstrapping app '${app.name}'`);
     await reasonableTime(app.bootstrap(), `Bootstrapping app '${app.name}'`, app.timeouts.bootstrap);
     app.status = StatusEnum.NOT_MOUNTED;
   } catch (err) {

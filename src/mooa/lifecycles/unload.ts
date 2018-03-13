@@ -1,5 +1,6 @@
 import {StatusEnum} from '../constants';
 import {reasonableTime} from '../helper/timeouts';
+import {mooaLog} from '../helper/app.helper';
 
 const appsToUnload = {};
 
@@ -26,6 +27,7 @@ export async function toUnloadPromise(app) {
 
   try {
     app.status = StatusEnum.UNLOADING;
+    mooaLog(`Unloading application '${app.name}'`);
     await reasonableTime(app.unload(), `Unloading application '${app.name}'`, app.timeouts.unload);
   } catch (err) {
     console.error('Unloading Error', err);
