@@ -1,4 +1,6 @@
-export function find(arr, func) {
+declare const window: any
+
+export function find(arr: any, func: any) {
   for (let i = 0; i < arr.length; i++) {
     if (func(arr[i])) {
       return arr[i]
@@ -8,7 +10,7 @@ export function find(arr, func) {
   return null
 }
 
-export function getContainerEl(opts) {
+export function getContainerEl(opts: any) {
   let el = document.querySelector(opts.selector)
   if (!el) {
     el = document.createElement(opts.selector)
@@ -23,14 +25,14 @@ export function getContainerEl(opts) {
   return el
 }
 
-export function removeContainerEl(opts) {
+export function removeContainerEl(opts: any) {
   let el = document.querySelector(opts.selector)
   if (el) {
     getContainerEl(opts).remove()
   }
 }
 
-export function mooaLog(...args) {
+export function mooaLog(...args: any) {
   if (window['mooa'] && window['mooa']['debug']) {
     console.log(args)
   }
