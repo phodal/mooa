@@ -9,6 +9,7 @@
 
 import LoaderHelper from '../helper/mooa-loader.helper'
 import { getContainerEl, removeContainerEl } from '../helper/app.helper'
+import { MooaApp } from '../model/IAppOption'
 
 declare const window: any
 
@@ -67,16 +68,14 @@ function unload(app: MooaApp) {
   return new Promise((resolve, reject) => {
     app.appConfig.scripts
       .concat(app.appConfig.styles)
-      .reduce(
-        (prev: Promise<undefined>, scriptName: string) =>
-          prev.then(LoaderHelper.unloadTag(app.appConfig, scriptName)),
-        Promise.resolve(undefined)
-      )
+      .reduce((prev: Promise<any>, scriptName: string) => {
+        return prev.then(LoaderHelper.unloadTag(app.appConfig, scriptName))
+      }, Promise.resolve({}))
     resolve()
   })
 }
 
-export default function mooaLoader(opts) {
+export default function mooaLoader(opts: any) {
   return {
     bootstrap: bootstrap.bind(null, opts),
     load: load.bind(null, opts),

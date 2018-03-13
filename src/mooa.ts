@@ -10,6 +10,7 @@ import { MooaOption } from './model/MooaOption'
 declare const window: any
 
 const apps: any[] = []
+let _instance: Mooa
 window.mooa = window.mooa || {}
 
 class Mooa {
@@ -19,6 +20,7 @@ class Mooa {
     if (window.mooa) {
       window.mooa.debug = option.debug
     }
+    _instance = this
   }
 
   registerApplication(
@@ -103,6 +105,10 @@ class Mooa {
   customEvent(eventName: any, eventArgs?: any) {
     window.dispatchEvent(new CustomEvent(eventName, eventArgs))
   }
+}
+
+export function mooaRouter() {
+  return _instance.reRouter()
 }
 
 export default Mooa

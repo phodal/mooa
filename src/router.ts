@@ -9,7 +9,7 @@
 
 declare const history: History
 
-export class Router {
+export class MooaRouter {
   routes: string[]
   defaultRoute: string = ''
 
@@ -49,5 +49,5 @@ export class Router {
   }
 }
 
-const router = new Router()
-export default router
+const mooaRouter = new MooaRouter()
+export default mooaRouter

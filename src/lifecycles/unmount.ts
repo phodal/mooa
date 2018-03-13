@@ -4,6 +4,7 @@ import StatusHelper from '../helper/status.helper'
 import { addAppToUnload, toUnloadPromise } from './unload'
 import { find, mooaLog } from '../helper/app.helper'
 import { MooaApp } from '../model/IAppOption'
+import { mooaRouter } from '../mooa'
 
 declare const window: any
 
@@ -18,7 +19,7 @@ function immediatelyUnloadApp(app: any, resolve: any, reject: any) {
       resolve()
       setTimeout(() => {
         // reroute, but the unload promise is done
-        this.reRouter()
+        return mooaRouter()
       })
     })
     .catch(reject)

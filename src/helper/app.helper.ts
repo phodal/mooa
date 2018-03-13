@@ -32,7 +32,7 @@ export function removeContainerEl(opts: any) {
   }
 }
 
-export function mooaLog(...args: any) {
+export function mooaLog(...args: any[]) {
   if (window['mooa'] && window['mooa']['debug']) {
     console.log(args)
   }
