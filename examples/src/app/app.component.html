@@ -1,3 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="dynamically_created_div" id="mooa" #child></div>
+<router-outlet></router-outlet>
+
+<div class="dynamically_created_div" id="mooa" #child>
+  <ul>
+    <li>
+      <a [routerLink]="['/app/app1/home']">Load App 1</a>
+    </li>
+    <li>
+      <a [routerLink]="['/app/app1/welcome']">APP1 Router</a>
+    </li>
+  </ul>
+</div>
+
