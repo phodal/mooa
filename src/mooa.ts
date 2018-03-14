@@ -66,7 +66,7 @@ class Mooa {
     }
 
     async function performAppChanges() {
-      customEvent('before-routing-event')
+      customEvent('mooa.routing.before')
       const unloadPromises = StatusHelper.getAppsToUnload().map(toUnloadPromise)
 
       const unmountUnloadPromises = StatusHelper.getAppsToUnmount(apps)
