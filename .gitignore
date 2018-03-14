@@ -43,5 +43,7 @@ testem.log
 Thumbs.db
 apps/
 examples/node_modules/
+deploy/node_modules/
 .rpt2_cache/
 docs/mooa
+examples/dist
