@@ -4,6 +4,10 @@
 
 based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-angular-cli](https://github.com/PlaceMe-SAS/single-spa-angular-cli)
 
+Examples: see in [examples/](./examples)
+
+Online Demo: [https://mooa.pho.im/](https://mooa.pho.im/)
+
 Usage
 ---
 
