@@ -42,17 +42,21 @@ export class MooaPlatform {
     }
   }
 
-  private isSingleSpaApp(): boolean {
-    return window.mooa.isSingleSpa
+  appBase(): string {
+    if (this.isSingleSpaApp()) {
+      const pathNames = window.location.pathname.split('/')
+      const parentRouter = pathNames[1]
+      const appName = pathNames[2]
+      const locationPath = '/' + parentRouter + '/' + appName
+      window.mooa.basePath = locationPath
+      return locationPath
+    } else {
+      return '/'
+    }
   }
 
-  get appBase() {
-    const pathNames = window.location.pathname.split('/')
-    const parentRouter = pathNames[1]
-    const appName = pathNames[2]
-    const locationPath = '/' + parentRouter + '/' + appName
-    window.mooa.basePath = locationPath
-    return locationPath
+  private isSingleSpaApp(): boolean {
+    return window.mooa.isSingleSpa
   }
 }
 
