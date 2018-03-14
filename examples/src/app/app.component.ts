@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
     this.option = {
-      debug: true
+      debug: false
     };
     this.mooa = new Mooa(this.option);
 

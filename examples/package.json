@@ -23,7 +23,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
     "mooa": "^0.0.14",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.20"
   },
   "devDependencies": {
     "@angular/cli": "1.6.6",
