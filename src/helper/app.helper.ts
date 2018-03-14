@@ -3,6 +3,7 @@ import { StatusEnum } from '../constants'
 declare const history: History
 declare const window: any
 declare const document: any
+declare const Element: any
 
 export function find(arr: any, func: any) {
   for (let i = 0; i < arr.length; i++) {
@@ -52,7 +53,7 @@ export function mooaLog(...args: any[]) {
 }
 
 // Fixed for IE Custom Event
-function CustomEvent(event: any, params: any): any {
+function MooaCustomEvent(event: any, params: any): any {
   params = params || { bubbles: false, cancelable: false, detail: undefined }
   let evt = document.createEvent('CustomEvent')
   evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail)
@@ -61,8 +62,8 @@ function CustomEvent(event: any, params: any): any {
 
 export function customEvent(eventName: any, eventArgs?: any) {
   if (typeof window.CustomEvent !== 'function') {
-    CustomEvent.prototype = window.Event.prototype
-    window.CustomEvent = CustomEvent
+    MooaCustomEvent.prototype = window.Event.prototype
+    window.CustomEvent = MooaCustomEvent
   }
 
   window.dispatchEvent(new CustomEvent(eventName, eventArgs))
