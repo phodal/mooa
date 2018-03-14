@@ -6,7 +6,10 @@ based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-an
 
 Examples: see in [examples/](./examples)
 
-Online Demo: [https://mooa.pho.im/](https://mooa.pho.im/)
+Online Demo: 
+
+1. [http://mooa.pho.im/](http://mooa.pho.im/) (host in AWS S3)
+2. [http://mooa.phodal.com/](http://mooa.phodal.com/) (host in GitHub Pages)
 
 Usage
 ---
