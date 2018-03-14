@@ -45,6 +45,9 @@ export class MooaPlatform {
   appBase(): string {
     if (this.isSingleSpaApp()) {
       const pathNames = window.location.pathname.split('/')
+      if (pathNames.length < 2) {
+        return '/'
+      }
       const parentRouter = pathNames[1]
       const appName = pathNames[2]
       const locationPath = '/' + parentRouter + '/' + appName
