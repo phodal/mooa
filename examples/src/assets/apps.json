@@ -12,7 +12,7 @@
       "polyfills.bundle.js",
       "main.bundle.js"
     ],
-    "parentElement": "app-root"
+    "parentElement": "app-home"
   },
   {
     "name": "help",
@@ -21,12 +21,12 @@
     "styles": [
       "styles.bundle.css"
     ],
-    "prefix": "/",
+    "prefix": "app/home",
     "scripts": [
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
     ],
-    "parentElement": "app-root"
+    "parentElement": "app-home"
   }
 ]

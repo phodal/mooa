@@ -10,8 +10,8 @@ import {HomeComponent} from './home/home.component';
   imports: [
     RouterModule.forRoot([
       {
-        path: '*',
-        component: AppComponent
+        path: '',
+        component: HomeComponent
       },
       {
         path: 'reader',
