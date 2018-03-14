@@ -8,7 +8,7 @@
  */
 
 import LoaderHelper from '../helper/mooa-loader.helper'
-import { getContainerEl, removeContainerEl } from '../helper/app.helper'
+import { getAppElement, removeAppElement } from '../helper/app.helper'
 import { MooaApp } from '../model/IAppOption'
 
 declare const window: any
@@ -31,7 +31,7 @@ function load(app: MooaApp) {
 
 function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    getContainerEl(app.appConfig)
+    getAppElement(app.appConfig)
     if (window.mooa[app.name]) {
       window.mooa[app.name].mount(props)
       resolve()
@@ -47,7 +47,7 @@ function unmount(app: MooaApp, props: any) {
   return new Promise((resolve, reject) => {
     if (window.mooa[app.name]) {
       window.mooa[app.name].unmount()
-      removeContainerEl(app.appConfig)
+      removeAppElement(app.appConfig)
       if (getAppNames().indexOf(app.name) !== -1) {
         unloadApplication(app.name, { waitForUnmount: true })
         resolve()

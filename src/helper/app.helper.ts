@@ -2,6 +2,7 @@ import { StatusEnum } from '../constants'
 
 declare const history: History
 declare const window: any
+declare const document: any
 
 export function find(arr: any, func: any) {
   for (let i = 0; i < arr.length; i++) {
@@ -13,7 +14,7 @@ export function find(arr: any, func: any) {
   return null
 }
 
-export function getContainerEl(opts: any) {
+export function getAppElement(opts: any) {
   let el = document.querySelector(opts.selector)
   if (!el) {
     el = document.createElement(opts.selector)
@@ -31,7 +32,7 @@ export function getContainerEl(opts: any) {
   return el
 }
 
-export function removeContainerEl(opts: any) {
+export function removeAppElement(opts: any) {
   let el = document.querySelector(opts.selector)
   if (el) {
     if (!('remove' in Element.prototype)) {
@@ -51,9 +52,9 @@ export function mooaLog(...args: any[]) {
 }
 
 // Fixed for IE Custom Event
-function CustomEvent(event, params) {
+function CustomEvent(event: any, params: any): any {
   params = params || { bubbles: false, cancelable: false, detail: undefined }
-  var evt = document.createEvent('CustomEvent')
+  let evt = document.createEvent('CustomEvent')
   evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail)
   return evt
 }
@@ -61,13 +62,13 @@ function CustomEvent(event, params) {
 export function customEvent(eventName: any, eventArgs?: any) {
   if (typeof window.CustomEvent !== 'function') {
     CustomEvent.prototype = window.Event.prototype
-
     window.CustomEvent = CustomEvent
   }
+
   window.dispatchEvent(new CustomEvent(eventName, eventArgs))
 }
 
-export function navigateAppByName(opts: any) {
+export function navigateAppByName(opts: any): void {
   let navigateToApp: any
   window.apps.map((app: any) => {
     app.status = StatusEnum.NOT_LOADED
@@ -77,6 +78,7 @@ export function navigateAppByName(opts: any) {
       return app
     }
   })
+
   if (navigateToApp) {
     history.pushState(
       null,
