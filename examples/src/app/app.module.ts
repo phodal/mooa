@@ -9,6 +9,7 @@ import { ReaderComponent } from './reader/reader.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { GamesComponent } from './games/games.component';
 import { HomeComponent } from './home/home.component';
+import {HomeModule} from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,13 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     ReaderComponent,
     ShoppingComponent,
-    GamesComponent,
-    HomeComponent
+    GamesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

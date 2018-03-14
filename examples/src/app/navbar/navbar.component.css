@@ -4,7 +4,6 @@
 
 a {
   padding: 1em;
-  line-height: 2em;
 }
 
 p {
@@ -15,6 +14,4 @@ span {
   color: #fff;
   padding-left: 1.5em;
   font-size: 0.66em;
-  padding-top: 3em;
-  padding-bottom: 3em;
 }
