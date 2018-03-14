@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {ReaderComponent} from './reader/reader.component';
 import {GamesComponent} from './games/games.component';
 import {ShoppingComponent} from './shopping/shopping.component';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import {ShoppingComponent} from './shopping/shopping.component';
       },
       {
         path: 'app/:appName/:route',
-        component: AppComponent
+        component: HomeComponent
       }
     ])
   ],
