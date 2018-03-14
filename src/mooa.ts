@@ -12,7 +12,6 @@ import { MooaPlatform } from './platform'
 declare const window: any
 
 const apps: any[] = []
-let _instance: Mooa
 window.mooa = window.mooa || {}
 
 class Mooa {
@@ -21,8 +20,8 @@ class Mooa {
   constructor(option: MooaOption) {
     if (window.mooa) {
       window.mooa.debug = option.debug
+      window.mooa.instance = this
     }
-    _instance = this
   }
 
   registerApplication(
@@ -107,10 +106,6 @@ class Mooa {
   customEvent(eventName: any, eventArgs?: any) {
     window.dispatchEvent(new CustomEvent(eventName, eventArgs))
   }
-}
-
-export function mooaReRouter() {
-  return _instance.reRouter()
 }
 
 export default Mooa
