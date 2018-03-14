@@ -60,7 +60,7 @@ export class MooaPlatform {
   }
 
   navigateTo(opts: any) {
-    customEvent('mooa.routing.navigate', opts)
+    customEvent('mooa.routing.navigate', { detail: opts })
   }
 
   private isSingleSpaApp(): boolean {

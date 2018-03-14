@@ -8,7 +8,7 @@ import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
 import { MooaPlatform } from './platform'
-import { customEvent } from './helper/app.helper'
+import { customEvent, navigateAppByName } from './helper/app.helper'
 
 declare const window: any
 
@@ -57,6 +57,12 @@ class Mooa {
 
   start() {
     this.started = true
+    window.addEventListener('mooa.routing.navigate', function(
+      event: CustomEvent
+    ) {
+      const opts = event.detail
+      navigateAppByName(opts)
+    })
     return this.reRouter()
   }
 

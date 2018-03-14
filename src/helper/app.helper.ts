@@ -1,3 +1,6 @@
+import { StatusEnum } from '../constants'
+
+declare const history: History
 declare const window: any
 
 export function find(arr: any, func: any) {
@@ -43,4 +46,24 @@ export function mooaLog(...args: any[]) {
 
 export function customEvent(eventName: any, eventArgs?: any) {
   window.dispatchEvent(new CustomEvent(eventName, eventArgs))
+}
+
+export function navigateAppByName(opts: any) {
+  let navigateToApp: any
+  window.apps.map((app: any) => {
+    app.status = StatusEnum.NOT_LOADED
+    if (app.name === opts.appName) {
+      app.status = StatusEnum.NOT_LOADED
+      navigateToApp = app
+      return app
+    }
+  })
+  if (navigateToApp) {
+    history.pushState(
+      null,
+      '',
+      navigateToApp.appConfig.prefix + '/' + opts.router
+    )
+    window.mooa.instance.reRouter()
+  }
 }
