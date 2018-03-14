@@ -135,6 +135,18 @@ Examples:
 ]
 ```
 
+API
+---
+
+### navigateTo Custom App
+
+```
+mooaPlatform.navigateTo({
+  appName: 'help',
+  router: 'home'
+});
+```
+
 License
 ---
 
