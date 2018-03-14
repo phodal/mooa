@@ -22,6 +22,10 @@ class Mooa {
       window.mooa.debug = option.debug
       window.mooa.instance = this
     }
+
+    if (localStorage.getItem('mooa.debug') === 'true') {
+      window.mooa.debug = true
+    }
   }
 
   registerApplication(
