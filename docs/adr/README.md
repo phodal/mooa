@@ -11,3 +11,4 @@
 * [9. 考虑-loading-动画](0009-考虑-loading-动画.md)
 * [10. 清空-parentelement-dom-下的所有-children](0010-清空-parentelement-dom-下的所有-children.md)
 * [11. 支持组件之间跳转](0011-支持组件之间跳转.md)
+* [12. assets-目录合并问题](0012-assets-目录合并问题.md)
