@@ -34,7 +34,13 @@ export function getContainerEl(opts: any) {
 export function removeContainerEl(opts: any) {
   let el = document.querySelector(opts.selector)
   if (el) {
-    getContainerEl(opts).remove()
+    if (!('remove' in Element.prototype)) {
+      Element.prototype.remove = function() {
+        if (el.parentNode) {
+          el.parentNode.removeChild(el)
+        }
+      }
+    }
   }
 }
 
