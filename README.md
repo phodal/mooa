@@ -56,6 +56,12 @@ mooaPlatform.mount('help').then(({ props, attachUnmount }) => {
 
 ```
 
+and comments ``src/polyfills.ts``
+
+```
+// import 'zone.js/dist/zone';
+```
+
 License
 ---
 
