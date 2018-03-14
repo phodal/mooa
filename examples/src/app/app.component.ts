@@ -1,7 +1,7 @@
-import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component, Renderer2} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
-import Mooa, {mooaRouter} from 'mooa';
+import {default as Mooa, mooaRouter} from '../../../src/mooa';
 
 @Component({
   selector: 'app-root',
