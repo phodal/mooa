@@ -1,5 +1,6 @@
 :host {
   padding: 0 0 !important;
+  height: 100% !important;
 }
 
 .nav-bar {
