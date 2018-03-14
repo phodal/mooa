@@ -5,11 +5,11 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from './navbar/navbar.component';
-import { ReaderComponent } from './reader/reader.component';
-import { ShoppingComponent } from './shopping/shopping.component';
-import { GamesComponent } from './games/games.component';
-import { HomeComponent } from './home/home.component';
+import {ReaderComponent} from './reader/reader.component';
+import {ShoppingComponent} from './shopping/shopping.component';
+import {GamesComponent} from './games/games.component';
 import {HomeModule} from './home/home.module';
+import {GraphModule} from './graph/graph.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import {HomeModule} from './home/home.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    GraphModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

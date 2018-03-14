@@ -5,13 +5,14 @@ import {ReaderComponent} from './reader/reader.component';
 import {GamesComponent} from './games/games.component';
 import {ShoppingComponent} from './shopping/shopping.component';
 import {HomeComponent} from './home/home.component';
+import {GraphComponent} from './graph/graph.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
       {
         path: '',
-        component: HomeComponent
+        component: GraphComponent
       },
       {
         path: 'reader',
