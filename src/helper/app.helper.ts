@@ -17,6 +17,9 @@ export function getContainerEl(opts: any) {
 
     if (opts.parentElement) {
       let parentEl = document.querySelector(opts.parentElement)
+      while (parentEl.hasChildNodes()) {
+        parentEl.removeChild(parentEl.lastChild)
+      }
       parentEl.appendChild(el)
     } else {
       document.body.appendChild(el)
