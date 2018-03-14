@@ -8,11 +8,11 @@ import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
 import { MooaPlatform } from './platform'
-import ReRouterServices from './services/rerouter.services'
 
 declare const window: any
 
 const apps: any[] = []
+let _instance: Mooa
 window.mooa = window.mooa || {}
 
 class Mooa {
@@ -22,7 +22,7 @@ class Mooa {
     if (window.mooa) {
       window.mooa.debug = option.debug
     }
-    ReRouterServices.getInstance().service = this
+    _instance = this
   }
 
   registerApplication(
@@ -107,6 +107,10 @@ class Mooa {
   customEvent(eventName: any, eventArgs?: any) {
     window.dispatchEvent(new CustomEvent(eventName, eventArgs))
   }
+}
+
+export function mooaReRouter() {
+  return _instance.reRouter()
 }
 
 export default Mooa
