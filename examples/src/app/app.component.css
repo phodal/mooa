@@ -1,3 +1,17 @@
 :host {
   padding: 0 0 !important;
 }
+
+.nav-bar {
+  width: 10%;
+  padding-top: 2em;
+  float: left;
+  height: 100%;
+  background-color: #333;
+}
+
+.app {
+  width: 90%;
+  float: right;
+  height: 100%;
+}
