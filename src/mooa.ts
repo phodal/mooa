@@ -8,6 +8,7 @@ import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
 import { MooaPlatform } from './platform'
+import { customEvent } from './helper/app.helper'
 
 declare const window: any
 
@@ -60,7 +61,6 @@ class Mooa {
   }
 
   reRouter(eventArguments?: any) {
-    const customEvent = this.customEvent
     if (eventArguments) {
       // TODO: log event
     }
@@ -105,10 +105,6 @@ class Mooa {
     }
 
     return performAppChanges()
-  }
-
-  customEvent(eventName: any, eventArgs?: any) {
-    window.dispatchEvent(new CustomEvent(eventName, eventArgs))
   }
 }
 

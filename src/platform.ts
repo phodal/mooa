@@ -6,6 +6,7 @@
  * modified by Phodal HUANG
  *
  */
+import { customEvent } from './helper/app.helper'
 
 declare const window: any
 window.mooa = window.mooa || {}
@@ -56,6 +57,10 @@ export class MooaPlatform {
     } else {
       return '/'
     }
+  }
+
+  navigateTo(opts: any) {
+    customEvent('mooa.routing.navigate', opts)
   }
 
   private isSingleSpaApp(): boolean {

@@ -40,3 +40,7 @@ export function mooaLog(...args: any[]) {
     console.log(args)
   }
 }
+
+export function customEvent(eventName: any, eventArgs?: any) {
+  window.dispatchEvent(new CustomEvent(eventName, eventArgs))
+}
