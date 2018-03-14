@@ -102,6 +102,12 @@ export class AppModule {
 // import 'zone.js/dist/zone';
 ```
 
+4. add copy zone.js to ``assets/``, modify ``index.html``
+
+```
+<script src="/assets/zone.js"></script>
+```
+
 ### 4. Setup apps.json
 
 Examples:
