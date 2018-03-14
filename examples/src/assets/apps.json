@@ -1,7 +1,7 @@
 [
   {
     "name": "app1",
-    "selector": "app1-root",
+    "selector": "app-app1",
     "baseScriptUrl": "/assets/app1",
     "styles": [
       "styles.bundle.css"
