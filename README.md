@@ -7,11 +7,17 @@ based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-an
 Usage
 ---
 
-Host <-> Apps
+### 1. Install mooa
 
-### Host
+in host and apps
 
-In AppComponent (``app.component.ts``)
+```
+yarn add mooa
+```
+
+### 2. Config Host
+
+1. add get Apps logic in AppComponent (``app.component.ts``)
 
 ```
 constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
@@ -39,7 +45,9 @@ private createApps(data: IAppOption[]) {
 }
 ```
 
-Child App ``main.ts``
+### 3. Config App
+
+1. config App ``main.ts`` for load
 
 ```
 import mooaPlatform from 'mooa';
@@ -48,18 +56,70 @@ if (environment.production) {
   enableProdMode();
 }
 
-mooaPlatform.mount('help').then(({ props, attachUnmount }) => {
+mooaPlatform.mount('help').then((opts) => {
   platformBrowserDynamic().bootstrapModule(AppModule).then((module) => {
-    attachUnmount(module);
+    opts['attachUnmount'](module);
   });
 });
 
 ```
 
-and comments ``src/polyfills.ts``
+2. setup app routing
+
+```
+const appRoutes: Routes = [
+  {path: '*', component: AppComponent}
+  ...
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ...
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
+  ],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: mooaPlatform.appBase()},
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+```
+
+3. comments ``src/polyfills.ts``
 
 ```
 // import 'zone.js/dist/zone';
+```
+
+### 4. Setup apps.json
+
+Examples:
+
+```
+[
+  {
+    "name": "app1",
+    "selector": "app-app1",
+    "baseScriptUrl": "/assets/app1",
+    "styles": [
+      "styles.bundle.css"
+    ],
+    "prefix": "app/app1",
+    "scripts": [
+      "inline.bundle.js",
+      "polyfills.bundle.js",
+      "main.bundle.js"
+    ],
+    "parentElement": "app-home"
+  }
+]
 ```
 
 License
