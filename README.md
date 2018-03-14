@@ -11,7 +11,7 @@ Usage
 
 in host and apps
 
-```
+```sh
 yarn add mooa
 ```
 
@@ -19,7 +19,7 @@ yarn add mooa
 
 1. add get Apps logic in AppComponent (``app.component.ts``)
 
-```
+```typescript
 constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
   http.get<IAppOption[]>('/assets/apps.json')
     .subscribe(
@@ -49,7 +49,7 @@ private createApps(data: IAppOption[]) {
 
 1. config App ``main.ts`` for load
 
-```
+```typescript
 import mooaPlatform from 'mooa';
 
 if (environment.production) {
@@ -66,7 +66,7 @@ mooaPlatform.mount('help').then((opts) => {
 
 2. setup app routing
 
-```
+```typescript
 const appRoutes: Routes = [
   {path: '*', component: AppComponent}
   ...
@@ -94,7 +94,7 @@ export class AppModule {
 
 3. comments ``src/polyfills.ts``
 
-```
+```typescript
 // import 'zone.js/dist/zone';
 ```
 
@@ -102,7 +102,7 @@ export class AppModule {
 
 Examples:
 
-```
+```typescript
 [
   {
     "name": "app1",
