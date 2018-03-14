@@ -1,6 +1,6 @@
 {
   "name": "mooa",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "",
   "keywords": [],
   "main": "dist/mooa.umd.js",
