@@ -44,7 +44,20 @@ export function mooaLog(...args: any[]) {
   }
 }
 
+// Fixed for IE Custom Event
+function CustomEvent(event, params) {
+  params = params || { bubbles: false, cancelable: false, detail: undefined }
+  var evt = document.createEvent('CustomEvent')
+  evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail)
+  return evt
+}
+
 export function customEvent(eventName: any, eventArgs?: any) {
+  if (typeof window.CustomEvent !== 'function') {
+    CustomEvent.prototype = window.Event.prototype
+
+    window.CustomEvent = CustomEvent
+  }
   window.dispatchEvent(new CustomEvent(eventName, eventArgs))
 }
 
