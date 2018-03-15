@@ -13,27 +13,21 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
     this.mooa = new Mooa({debug: false});
+    const that = this;
 
     http.get<any[]>('/assets/apps.json')
       .subscribe(data => {
-          this.createApps(data);
+          data.map((config) => {
+            that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
+          });
         },
         err => console.log(err)
       );
-  }
-
-  private createApps(data: any[]) {
-    const that = this;
-    data.map((config) => {
-      that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
-    });
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         that.mooa.reRouter();
       }
     });
-
-    return that.mooa.start();
   }
 }
