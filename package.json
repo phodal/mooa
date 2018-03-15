@@ -1,6 +1,6 @@
 {
   "name": "mooa",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "",
   "keywords": [],
   "bin": "dist/mooa.cli.js",
@@ -74,6 +74,9 @@
     },
     "collectCoverage": true,
     "mapCoverage": true
+  },
+  "dependencies": {
+    "commander": "^2.15.0"
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
