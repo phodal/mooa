@@ -6,6 +6,8 @@ based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-an
 
 difference: Host <-> Apps Design
 
+![Mooa Architecture](./docs/mooa.png)
+
 Examples: see in [examples/](./examples)
 
 Online Demo: 
