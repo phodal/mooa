@@ -6,6 +6,10 @@ a {
   margin: 1em;
 }
 
+a.active {
+  color: #fff;
+}
+
 p {
   margin-bottom: 0;
 }
