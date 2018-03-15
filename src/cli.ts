@@ -2,8 +2,10 @@
 
 const program = require('commander')
 
+let version = require('../../package.json').version
+
 program
-  .version('0.1.0')
+  .version(version)
   .option('-c, --create [type]', 'Create [type] host || app')
   .option('-u, --update [host]', 'Update [type] host || app')
   .option('-g, --generate', 'Generate Mooa App Config')
