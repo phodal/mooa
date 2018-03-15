@@ -3,6 +3,7 @@
   "version": "0.0.21",
   "description": "",
   "keywords": [],
+  "bin": "dist/mooa.cli.js",
   "main": "dist/mooa.umd.js",
   "module": "dist/mooa.es5.js",
   "typings": "dist/types/mooa.d.ts",
@@ -21,8 +22,9 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs/mooa --target es6 --theme minimal --mode file ./src",
+    "build": "tsc --module commonjs && rollup -c rollup.config-cli.ts && rollup -c rollup.config.ts && typedoc --out docs/mooa --target es6 --theme minimal --mode file ./src",
     "start": "rollup -c rollup.config.ts -w",
+    "start:cli": "rollup -c rollup.config-cli.ts -w",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
