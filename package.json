@@ -1,9 +1,9 @@
 {
   "name": "mooa",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "keywords": [],
-  "bin": "dist/mooa.cli.js",
+  "bin": "dist/lib/cli.js",
   "main": "dist/mooa.umd.js",
   "module": "dist/mooa.es5.js",
   "typings": "dist/types/mooa.d.ts",
