@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {AppComponent} from './app.component';
 import {ReaderComponent} from './reader/reader.component';
 import {GamesComponent} from './games/games.component';
 import {ShoppingComponent} from './shopping/shopping.component';
