@@ -4,12 +4,26 @@
 
 based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-angular-cli](https://github.com/PlaceMe-SAS/single-spa-angular-cli)
 
+difference: Host <-> Apps Design
+
 Examples: see in [examples/](./examples)
 
 Online Demo: 
 
 1. [http://mooa.pho.im/](http://mooa.pho.im/) (host in AWS S3)
 2. [http://mooa.phodal.com/](http://mooa.phodal.com/) (host in GitHub Pages)
+
+Features:
+
+1. SPA by Configurable file, ex: ``apps.json``
+2. Pluggable APP
+3. CLI for Update (TODO)
+
+Goal:
+
+1. 构建插件化的 Web 开发平台，满足业务快速变化及分布式多团队并行开发的需求
+2. 构建服务化的中间件，搭建高可用及高复用的前端微服务平台
+3. 支持前端的独立交付及部署
 
 Usage
 ---
