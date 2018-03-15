@@ -71,7 +71,7 @@ mooaPlatform.mount('help').then((opts) => {
 
 ```
 
-2. setup app routing
+2. setup app routing in ``app.module.ts``
 
 ```typescript
 const appRoutes: Routes = [
