@@ -10,17 +10,12 @@ import {default as Mooa, mooaRouter} from '../../../src/mooa';
 })
 export class AppComponent {
   private mooa: Mooa;
-  private option: any;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
-    this.option = {
-      debug: false
-    };
-    this.mooa = new Mooa(this.option);
+    this.mooa = new Mooa({debug: false});
 
     http.get<any[]>('/assets/apps.json')
-      .subscribe(
-        data => {
+      .subscribe(data => {
           this.createApps(data);
         },
         err => console.log(err)
