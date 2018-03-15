@@ -133,7 +133,7 @@ export class AppModule {
 
 Examples:
 
-```json
+```javascript
 [
   {
     "name": "app1",
@@ -158,7 +158,7 @@ API
 
 ### navigateTo Custom App
 
-```
+```typescript
 mooaPlatform.navigateTo({
   appName: 'help',
   router: 'home'
