@@ -17,7 +17,8 @@ Features:
 
 1. SPA by Configurable file, ex: ``apps.json``
 2. Pluggable APP
-3. CLI for Update (TODO)
+3. support Child APP navigate
+4. CLI for Update (TODO)
 
 Goal:
 
@@ -30,7 +31,7 @@ Usage
 
 ### 1. Install mooa
 
-in host and apps
+in Host and Child App
 
 ```sh
 yarn add mooa
@@ -110,18 +111,19 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
 ```
 
 3. comments ``src/polyfills.ts``
 
-```typescript
+```javascript
 // import 'zone.js/dist/zone';
 ```
 
 4. add copy zone.js to ``assets/``, modify ``index.html``
 
-```
+```html
 <script src="/assets/zone.js"></script>
 ```
 
@@ -129,7 +131,7 @@ export class AppModule {
 
 Examples:
 
-```typescript
+```json
 [
   {
     "name": "app1",
