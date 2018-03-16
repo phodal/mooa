@@ -1,3 +1,2 @@
-http://mooa.phodal.com/
-http://mooa.phodal.com/assets/app1/index.html
-http://mooa.phodal.com/assets/help/index.html
+http://mooa.phodal.com/assets/app1
+http://mooa.phodal.com/assets/help

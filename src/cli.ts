@@ -36,10 +36,20 @@ if (program.generate) {
       return console.log('request app url', appUrl)
     }
     const $ = cheerio.load(body)
+    let app = {
+      name: '',
+      selector: '',
+      baseScriptUrl: '',
+      styles: [''],
+      prefix: '',
+      scripts: ['']
+    }
     let $scripts = $('script')
     let $link = $('link')
+    let $body = $('body')
     let scripts: string[] = []
     let styles: string[] = []
+    let selector: string = ''
 
     if ($scripts.length > 0) {
       $scripts.map((index: any) => {
@@ -53,9 +63,14 @@ if (program.generate) {
         }
       })
     }
+    if ($body.length > 0) {
+      selector = $body.children()['0'].name
+    }
 
-    console.log(scripts)
-    console.log(styles)
+    app.scripts = scripts
+    app.styles = styles
+    app.selector = selector
+    console.log(app)
   })
 }
 
