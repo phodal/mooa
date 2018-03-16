@@ -2,6 +2,7 @@
 
 const request = require('request')
 const program = require('commander')
+const cheerio = require('cheerio')
 
 let version = require('../../package.json').version
 
@@ -34,7 +35,17 @@ if (program.generate) {
     if (error) {
       return console.log('request app url', appUrl)
     }
-    console.log(body)
+    const $ = cheerio.load(body)
+    let $scripts = $('script')
+    let scripts: string[] = []
+
+    if ($scripts.length > 0) {
+      $scripts.map((index: any) => {
+        scripts.push($scripts[index].attribs.src)
+      })
+    }
+    console.log(scripts)
+    $.html()
   })
 }
 
