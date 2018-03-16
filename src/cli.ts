@@ -37,15 +37,25 @@ if (program.generate) {
     }
     const $ = cheerio.load(body)
     let $scripts = $('script')
+    let $link = $('link')
     let scripts: string[] = []
+    let styles: string[] = []
 
     if ($scripts.length > 0) {
       $scripts.map((index: any) => {
         scripts.push($scripts[index].attribs.src)
       })
     }
+    if ($link.length > 0) {
+      $link.map((index: any) => {
+        if ($link[index].attribs.rel === 'stylesheet') {
+          styles.push($link[index].attribs.href)
+        }
+      })
+    }
+
     console.log(scripts)
-    $.html()
+    console.log(styles)
   })
 }
 
