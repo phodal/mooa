@@ -1,6 +1,6 @@
 {
   "name": "mooa",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "",
   "keywords": [],
   "bin": "dist/lib/cli.js",
