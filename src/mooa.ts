@@ -71,7 +71,9 @@ class Mooa {
       event: CustomEvent
     ) {
       const opts = event.detail
-      navigateAppByName(opts)
+      if (opts) {
+        navigateAppByName(opts)
+      }
     })
     return this.reRouter()
   }
