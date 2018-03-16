@@ -23,10 +23,12 @@
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs/mooa --target es6 --theme minimal --mode file ./src",
+    "build:main": "tsc --module commonjs",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
     "cli": "node dist/lib/cli.js",
     "test:watch": "jest --watch",
+    "watch": "yarn build && concurrently -r --kill-others 'npm run --silent build:main -- -w'",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
@@ -76,13 +78,15 @@
     "mapCoverage": true
   },
   "dependencies": {
-    "commander": "^2.15.0"
+    "commander": "^2.15.0",
+    "request": "^2.85.0"
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
     "@types/node": "^9.3.0",
     "colors": "^1.1.2",
     "commitizen": "^2.9.6",
+    "concurrently": "^3.5.1",
     "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
     "cz-conventional-changelog": "^2.0.0",
