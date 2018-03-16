@@ -29,7 +29,10 @@ export async function generateAppConfigByUrl(appUrl: string) {
 
       if ($scripts.length > 0) {
         $scripts.map((index: any) => {
-          scripts.push($scripts[index].attribs.src)
+          let scriptSrc = $scripts[index].attribs.src
+          if (!scriptSrc.endsWith('zone.js')) {
+            scripts.push(scriptSrc)
+          }
         })
       }
       if ($link.length > 0) {
