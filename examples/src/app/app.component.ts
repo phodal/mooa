@@ -32,7 +32,7 @@ export class AppComponent {
 
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        that.mooa.reRouter();
+        that.mooa.reRouter(event);
       }
     });
   }

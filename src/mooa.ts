@@ -79,10 +79,6 @@ class Mooa {
   }
 
   reRouter(eventArguments?: any) {
-    if (eventArguments) {
-      // TODO: log event
-    }
-
     async function performAppChanges() {
       customEvent('mooa.routing.before')
       const unloadPromises = StatusHelper.getAppsToUnload().map(toUnloadPromise)
@@ -113,6 +109,13 @@ class Mooa {
           return toMountPromise(appToMount)
         })
 
+      if (eventArguments) {
+        customEvent('mooa.routing.change', {
+          url: eventArguments.url,
+          appName: StatusHelper.getAppsToMount(apps)[0]
+        })
+      }
+
       try {
         await unmountAllPromise
       } catch (err) {
@@ -120,6 +123,7 @@ class Mooa {
       }
 
       await Promise.all(loadThenMountPromises.concat(mountPromises))
+      customEvent('mooa.routing.load')
     }
 
     return performAppChanges()
