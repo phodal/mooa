@@ -20,7 +20,9 @@ Features:
 1. SPA by Configurable file, ex: ``apps.json``
 2. Pluggable APP
 3. support Child APP navigate
-4. CLI for Create Config
+4. CLI for Generate Config
+5. CLI for Create APP Module (TODO)
+6. CLI for Update APP Module (TODO)
 
 Goal:
 
