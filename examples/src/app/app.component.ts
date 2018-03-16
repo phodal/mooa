@@ -25,6 +25,7 @@ export class AppComponent {
           data.map((config) => {
             that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
           });
+          this.mooa.start();
         },
         err => console.log(err)
       );
