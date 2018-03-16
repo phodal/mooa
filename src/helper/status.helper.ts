@@ -74,6 +74,9 @@ const StatusHelper = {
       .filter(InActive)
       .filter(isLoaded)
       .filter(shouldBeActive)
+  },
+  getActiveApps: (apps: any) => {
+    return apps.filter(notSkipped).filter(InActive)
   }
 }
 
