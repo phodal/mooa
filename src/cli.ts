@@ -3,6 +3,7 @@
 const request = require('request')
 const program = require('commander')
 const cheerio = require('cheerio')
+const { URL } = require('url')
 
 let version = require('../../package.json').version
 
@@ -30,7 +31,7 @@ if (program.update) {
 }
 
 if (program.generate) {
-  let appUrl = 'http://mooa.phodal.com/index.html'
+  let appUrl = 'http://mooa.phodal.com/assets/help'
   request(appUrl, (error: any, response: any, body: any) => {
     if (error) {
       return console.log('request app url', appUrl)
@@ -66,11 +67,17 @@ if (program.generate) {
     if ($body.length > 0) {
       selector = $body.children()['0'].name
     }
+    const myURL = new URL(appUrl)
+    let pathName = myURL.pathname
+    let urlResources = pathName.split('/')
+    let lastPath = urlResources[urlResources.length - 1]
 
     app.scripts = scripts
     app.styles = styles
     app.selector = selector
-    console.log(app)
+    app.name = lastPath
+    app.prefix = lastPath
+    app.baseScriptUrl = pathName
   })
 }
 
