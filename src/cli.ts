@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const request = require('request')
 const program = require('commander')
 
 let version = require('../../package.json').version
@@ -28,7 +29,13 @@ if (program.update) {
 }
 
 if (program.generate) {
-  console.log('generate')
+  let appUrl = 'http://mooa.phodal.com/index.html'
+  request(appUrl, (error: any, response: any, body: any) => {
+    if (error) {
+      return console.log('request app url', appUrl)
+    }
+    console.log(body)
+  })
 }
 
 if (!process.argv.slice(2).length || !process.argv.length) {
