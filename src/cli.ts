@@ -4,7 +4,7 @@ const request = require('request')
 const program = require('commander')
 const cheerio = require('cheerio')
 const fs = require('fs')
-const { URL } = require('url')
+const NODEURL = require('url')
 
 let version = require('../../package.json').version
 let apps: {}[] = []
@@ -70,7 +70,7 @@ async function generateAppConfigByUrl(appUrl: string) {
       if ($body.length > 0) {
         selector = $body.children()['0'].name
       }
-      const myURL = new URL(appUrl)
+      const myURL = new NODEURL.URL(appUrl)
       let pathName = myURL.pathname
       let urlResources = pathName.split('/')
       let lastPath = urlResources[urlResources.length - 1]
@@ -108,7 +108,7 @@ if (program.generate) {
     let urlFile = fs.readFileSync(filePath, 'utf8')
     let urls = urlFile.split(/\r?\n/)
     getAppsConfig(urls).then(() => {
-      fs.writeFileSync(process.cwd() + '/apps.json', apps)
+      fs.writeFileSync(process.cwd() + '/apps.json', JSON.stringify(apps))
     })
   }
 }
