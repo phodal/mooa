@@ -6,13 +6,12 @@
     "styles": [
       "styles.bundle.css"
     ],
-    "prefix": "app/app1",
+    "prefix": "app1",
     "scripts": [
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ],
-    "parentElement": "app-home"
+    ]
   },
   {
     "name": "help",
@@ -21,12 +20,11 @@
     "styles": [
       "styles.bundle.css"
     ],
-    "prefix": "app/home",
+    "prefix": "help",
     "scripts": [
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ],
-    "parentElement": "app-home"
+    ]
   }
 ]
