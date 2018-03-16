@@ -38,7 +38,10 @@ if (program.generate) {
     let urlFile = fs.readFileSync(filePath, 'utf8')
     let urls = urlFile.split(/\r?\n/)
     getAppsConfig(urls).then(apps => {
-      fs.writeFileSync(process.cwd() + '/apps.json', JSON.stringify(apps))
+      fs.writeFileSync(
+        process.cwd() + '/apps.json',
+        JSON.stringify(apps, null, 2)
+      )
     })
   }
 }
