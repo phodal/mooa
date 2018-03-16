@@ -47,3 +47,4 @@ deploy/node_modules/
 .rpt2_cache/
 docs/mooa
 examples/dist
+apps.json

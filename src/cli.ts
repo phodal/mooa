@@ -108,7 +108,7 @@ if (program.generate) {
     let urlFile = fs.readFileSync(filePath, 'utf8')
     let urls = urlFile.split(/\r?\n/)
     getAppsConfig(urls).then(() => {
-      console.log(apps)
+      fs.writeFileSync(process.cwd() + '/apps.json', apps)
     })
   }
 }
