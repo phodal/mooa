@@ -2,6 +2,7 @@ import {Component, Renderer2} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
 import {default as Mooa, mooaRouter} from '../../../src/mooa';
+import {RouterEvent} from '@angular/router/src/events';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import {default as Mooa, mooaRouter} from '../../../src/mooa';
 export class AppComponent {
   private mooa: Mooa;
 
-  constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
+  constructor(http: HttpClient, private router: Router) {
     this.mooa = new Mooa({
       debug: false,
       parentElement: 'app-home',
@@ -28,7 +29,7 @@ export class AppComponent {
         err => console.log(err)
       );
 
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         that.mooa.reRouter();
       }
