@@ -12,7 +12,10 @@ export class AppComponent {
   private mooa: Mooa;
 
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
-    this.mooa = new Mooa({debug: false});
+    this.mooa = new Mooa({
+      debug: false,
+      parentElement: 'app-home'
+    });
     const that = this;
 
     http.get<any[]>('/assets/apps.json')

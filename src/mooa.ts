@@ -17,6 +17,7 @@ window.mooa = window.mooa || {}
 
 class Mooa {
   started = false
+  private option: MooaOption
 
   constructor(option: MooaOption) {
     if (window.mooa) {
@@ -27,6 +28,7 @@ class Mooa {
     if (localStorage.getItem('mooa.debug') === 'true') {
       window.mooa.debug = true
     }
+    this.option = option
   }
 
   registerApplication(
@@ -43,6 +45,9 @@ class Mooa {
       throw new Error(`The activeWhen argument must be a function`)
     }
 
+    if (this.option.parentElement) {
+      appConfig.parentElement = this.option.parentElement
+    }
     const appOpt = {
       name: appName,
       appConfig,
