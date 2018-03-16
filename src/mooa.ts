@@ -101,20 +101,6 @@ class Mooa {
           })
       })
 
-      if (eventArguments) {
-        if (
-          StatusHelper.getActiveApps(apps)[0] &&
-          StatusHelper.getActiveApps(apps)[0]['appConfig']
-        ) {
-          customEvent('mooa.routing.change', {
-            detail: {
-              url: eventArguments.url,
-              app: StatusHelper.getActiveApps(apps)[0]['appConfig']
-            }
-          })
-        }
-      }
-
       const mountPromises = StatusHelper.getAppsToMount(apps)
         .filter((appToMount: any) => appsToLoad.indexOf(appToMount) < 0)
         .map(async function(appToMount: any) {
@@ -130,7 +116,17 @@ class Mooa {
       }
 
       await Promise.all(loadThenMountPromises.concat(mountPromises))
-      customEvent('mooa.routing.load')
+      if (eventArguments) {
+        let activeApp = StatusHelper.getActiveApps(apps)[0]
+        if (activeApp && activeApp['appConfig']) {
+          customEvent('mooa.routing.change', {
+            detail: {
+              url: eventArguments.url,
+              app: activeApp['appConfig']
+            }
+          })
+        }
+      }
     }
 
     return performAppChanges()
