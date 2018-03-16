@@ -1,4 +1,5 @@
 export interface MooaOption {
-  debug: boolean
-  parentElement: string
+  debug?: boolean
+  parentElement?: string
+  urlPrefix?: string
 }

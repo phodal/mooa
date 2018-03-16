@@ -48,6 +48,11 @@ class Mooa {
     if (this.option.parentElement) {
       appConfig.parentElement = this.option.parentElement
     }
+
+    if (this.option.urlPrefix) {
+      appConfig.prefix = this.option.urlPrefix + '/' + appConfig.prefix
+    }
+
     const appOpt = {
       name: appName,
       appConfig,

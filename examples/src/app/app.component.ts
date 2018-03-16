@@ -14,7 +14,8 @@ export class AppComponent {
   constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
     this.mooa = new Mooa({
       debug: false,
-      parentElement: 'app-home'
+      parentElement: 'app-home',
+      urlPrefix: 'app'
     });
     const that = this;
 
