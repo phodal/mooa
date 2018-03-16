@@ -6,9 +6,9 @@ based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-an
 
 difference: Host <-> Apps Design
 
-![Mooa Architecture](./docs/mooa.png)
+![Mooa Architecture](docs/mooa.png)
 
-Examples: see in [examples/](./examples)
+Examples: see in [examples/](examples)
 
 Online Demo: 
 
@@ -20,7 +20,7 @@ Features:
 1. SPA by Configurable file, ex: ``apps.json``
 2. Pluggable APP
 3. support Child APP navigate
-4. CLI for Update (TODO)
+4. CLI for Create Config
 
 Goal:
 
@@ -129,11 +129,32 @@ export class AppModule {
 <script src="/assets/zone.js"></script>
 ```
 
-### 4. Setup apps.json
+### 4. Setup apps.json with Mooa CLI
+
+1. install global cli
+
+```
+npm install -g mooa
+```
+
+2. create URL list files
+
+Examples: ``apps.txt``
+ 
+```
+http://mooa.phodal.com/assets/app1
+http://mooa.phodal.com/assets/help
+```
+
+3. Generate Config File
+
+```
+mooa -g apps.txt
+```
 
 Examples:
 
-```javascript
+```json
 [
   {
     "name": "app1",
@@ -147,8 +168,7 @@ Examples:
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ],
-    "parentElement": "app-home"
+    ]
   }
 ]
 ```
