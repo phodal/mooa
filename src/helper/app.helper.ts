@@ -42,6 +42,8 @@ export function removeAppElement(opts: any) {
           el.parentNode.removeChild(el)
         }
       }
+    } else {
+      el.remove()
     }
   }
 }
