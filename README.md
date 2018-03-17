@@ -131,6 +131,18 @@ export class AppModule {
 <script src="/assets/zone.js"></script>
 ```
 
+5. Add for handle URL Change in ``app.componenet.ts`` 
+
+```
+constructor(private router: Router) {
+  window.addEventListener('mooa.routing.change', (event: CustomEvent) => {
+    if (event.detail.app.name === 'app1') {
+      this.router.navigate([event.detail.url.replace('/app/app1/', '')]);
+    }
+  });
+}
+```
+
 ### 4. Setup apps.json with Mooa CLI
 
 1. install global cli
