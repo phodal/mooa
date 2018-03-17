@@ -84,6 +84,5 @@ export async function getAppsConfig(urls: string[]) {
       appPromises.push(generateAppConfigByUrl(url))
     }
   })
-  let apps = await Promise.all(appPromises)
-  return apps
+  return Promise.all(appPromises)
 }
