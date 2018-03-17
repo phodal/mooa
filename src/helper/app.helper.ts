@@ -15,7 +15,7 @@ export function find(arr: any, func: any) {
   return null
 }
 
-export function getAppElement(opts: any) {
+export function createAppNode(opts: any) {
   let el = document.querySelector(opts.selector)
   if (!el) {
     el = document.createElement(opts.selector)
@@ -33,7 +33,7 @@ export function getAppElement(opts: any) {
   return el
 }
 
-export function removeAppElement(opts: any) {
+export function removeAppNode(opts: any) {
   let el = document.querySelector(opts.selector)
   if (el) {
     if (!('remove' in Element.prototype)) {
