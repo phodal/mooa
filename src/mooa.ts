@@ -20,14 +20,17 @@ class Mooa {
   private option: MooaOption
 
   constructor(option: MooaOption) {
-    if (window.mooa) {
+    window.mooa.instance = this
+
+    if (window.mooa.option) {
+      window.mooa.option = option
       window.mooa.debug = option.debug
-      window.mooa.instance = this
     }
 
     if (localStorage.getItem('mooa.debug') === 'true') {
       window.mooa.debug = true
     }
+
     this.option = option
   }
 
