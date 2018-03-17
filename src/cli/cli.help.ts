@@ -31,43 +31,44 @@ function buildLink($link: any) {
   return styles
 }
 
+function getAppName(appUrl: string) {
+  const myURL = new NODEURL.URL(appUrl)
+  let pathName = myURL.pathname
+  let urlResources = pathName.split('/')
+  let lastPath = urlResources[urlResources.length - 1]
+  return { pathName, lastPath }
+}
+
+function getSelector($body: any) {
+  let selector: string = ''
+  if ($body.length > 0) {
+    selector = $body.children()['0'].name
+  }
+  return selector
+}
+
 export async function generateAppConfigByUrl(appUrl: string) {
   return new Promise(function(resolve, reject) {
     request(appUrl, (error: any, response: any, body: any) => {
       if (error) {
         reject(appUrl)
-        return console.log('request app url', appUrl)
+        return console.log('URL Error', appUrl)
       }
       const $ = cheerio.load(body)
+
+      let scripts: string[] = buildScripts($('script'))
+      let styles: string[] = buildLink($('link'))
+      let selector: string = getSelector($('body'))
+      let { pathName, lastPath } = getAppName(appUrl)
+
       let app = {
-        name: '',
-        selector: '',
-        baseScriptUrl: '',
-        styles: [''],
-        prefix: '',
-        scripts: ['']
+        name: lastPath,
+        selector: selector,
+        baseScriptUrl: pathName,
+        styles: styles,
+        prefix: lastPath,
+        scripts: scripts
       }
-      let $link = $('link')
-      let $body = $('body')
-      let selector: string = ''
-
-      let $scripts = $('script')
-      let scripts = buildScripts($scripts)
-      let styles = buildLink($link)
-      if ($body.length > 0) {
-        selector = $body.children()['0'].name
-      }
-      const myURL = new NODEURL.URL(appUrl)
-      let pathName = myURL.pathname
-      let urlResources = pathName.split('/')
-      let lastPath = urlResources[urlResources.length - 1]
-
-      app.scripts = scripts
-      app.styles = styles
-      app.selector = selector
-      app.name = lastPath
-      app.prefix = lastPath
-      app.baseScriptUrl = pathName
 
       apps.push(app)
       resolve(app)
