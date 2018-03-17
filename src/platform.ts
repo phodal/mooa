@@ -63,6 +63,18 @@ export class MooaPlatform {
     customEvent('mooa.routing.navigate', { detail: opts })
   }
 
+  handleRouterUpdate(router: any, appName: string) {
+    window.addEventListener('mooa.routing.change', (event: CustomEvent) => {
+      if (event.detail.app.name === appName) {
+        let urlPrefix = 'app'
+        if (urlPrefix) {
+          urlPrefix = `/${window.mooa.option.urlPrefix}/`
+        }
+        router.navigate([event.detail.url.replace(urlPrefix + appName, '')])
+      }
+    })
+  }
+
   private isSingleSpaApp(): boolean {
     return window.mooa.isSingleSpa
   }
