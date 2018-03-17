@@ -7,7 +7,11 @@ import {RouterEvent} from '@angular/router/src/events';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  host: {
+    '(window:mooa.bootstrapping)': 'loadingStart($event)',
+    '(window:mooa.mounting)': 'loadingEnd($event)'
+  }
 })
 export class AppComponent {
   private mooa: Mooa;
@@ -35,5 +39,13 @@ export class AppComponent {
         that.mooa.reRouter(event);
       }
     });
+  }
+
+  loadingStart() {
+    console.log('loadingStart');
+  }
+
+  loadingEnd() {
+    console.log('loadingEnd');
   }
 }

@@ -4434,9 +4434,9 @@ module-deps@^4.0.8:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
-mooa@^0.0.37:
-  version "0.0.37"
-  resolved "https://registry.yarnpkg.com/mooa/-/mooa-0.0.37.tgz#4fcc1b0abdc0cf1593a5733ce120f45ab65e4576"
+mooa@^0.0.38:
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/mooa/-/mooa-0.0.38.tgz#e0d8b6ff7dae32ad92cf70480409f42b276a33dd"
   dependencies:
     cheerio "^1.0.0-rc.2"
     commander "^2.15.0"
