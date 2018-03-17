@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { getAppsConfig } from './cli/cli.help'
+import generate from './cli/generate'
+import create from './cli/create'
+import update from './cli/update'
 
 const program = require('commander')
-const fs = require('fs')
 
 let version = require('../../package.json').version
 
@@ -15,35 +16,15 @@ program
   .parse(process.argv)
 
 if (program.create) {
-  if (program.create === 'host') {
-    console.log('create host')
-  } else if (program.create === 'app') {
-    console.log('create app')
-  }
+  create(program)
 }
 
 if (program.update) {
-  if (program.update === 'host') {
-    console.log('update host')
-  } else if (program.update === 'app') {
-    console.log('update app')
-  }
+  update(program)
 }
 
 if (program.generate) {
-  let urlListFilePath = program.args[0]
-
-  let filePath = process.cwd() + '/' + urlListFilePath
-  if (fs.existsSync(filePath)) {
-    let urlFile = fs.readFileSync(filePath, 'utf8')
-    let urls = urlFile.split(/\r?\n/)
-    getAppsConfig(urls).then(apps => {
-      fs.writeFileSync(
-        process.cwd() + '/apps.json',
-        JSON.stringify(apps, null, 2)
-      )
-    })
-  }
+  generate(program)
 }
 
 if (!process.argv.slice(2).length || !process.argv.length) {
