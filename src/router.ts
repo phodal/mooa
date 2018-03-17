@@ -33,13 +33,6 @@ export class MooaRouter {
       }
       const route = this.routes.find(r => this.pathMatch(location, r))
       if (route) {
-        // let isSamePath = this.lastPathName === location.pathname && location.pathname !== prefix
-        // let isSameApp = this.sameApp(this.lastPathName, location.pathname, route);
-        // if (!isSamePath && isSameApp) {
-        //   this.lastPathName = location.pathname
-        //   return true;
-        // }
-        // this.lastPathName = location.pathname
         return this.pathMatch(location, prefix)
       } else {
         this.lastPathName = location.pathname
@@ -56,16 +49,6 @@ export class MooaRouter {
   private pathMatch(location: Location, path: string): boolean {
     const loc = location.pathname + location.search
     return loc.indexOf(path) !== -1
-  }
-
-  private sameApp(
-    newLocation: string,
-    oldLocation: string,
-    route: string
-  ): boolean {
-    return (
-      newLocation.indexOf(route) !== -1 && oldLocation.indexOf(route) !== -1
-    )
   }
 }
 
