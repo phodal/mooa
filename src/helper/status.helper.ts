@@ -1,4 +1,4 @@
-import { StatusEnum } from '../constants'
+import { StatusEnum } from '../model/constants'
 import { getUnloadApps } from '../lifecycles/unload'
 
 function isActive(app: any) {

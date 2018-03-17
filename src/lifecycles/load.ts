@@ -1,4 +1,4 @@
-import { StatusEnum } from '../constants'
+import { StatusEnum } from '../model/constants'
 import loader from '../loader/mooa.loader'
 import { ensureValidAppTimeouts } from '../helper/timeouts'
 import { mooaLog } from '../helper/app.helper'

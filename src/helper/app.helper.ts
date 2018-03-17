@@ -1,4 +1,4 @@
-import { StatusEnum } from '../constants'
+import { StatusEnum } from '../model/constants'
 
 declare const history: History
 declare const window: any

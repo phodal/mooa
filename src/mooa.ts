@@ -1,4 +1,4 @@
-import { StatusEnum } from './constants'
+import { StatusEnum } from './model/constants'
 import { toLoadPromise } from './lifecycles/load'
 import { toBootstrapPromise } from './lifecycles/bootstrap'
 import { toMountPromise } from './lifecycles/mount'

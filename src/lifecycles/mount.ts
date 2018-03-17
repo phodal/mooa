@@ -1,4 +1,4 @@
-import { StatusEnum } from '../constants'
+import { StatusEnum } from '../model/constants'
 import { reasonableTime } from '../helper/timeouts'
 import { mooaLog } from '../helper/app.helper'
 

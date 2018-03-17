@@ -1,5 +1,5 @@
 import { reasonableTime } from '../helper/timeouts'
-import { StatusEnum } from '../constants'
+import { StatusEnum } from '../model/constants'
 import { mooaLog } from '../helper/app.helper'
 
 export async function toBootstrapPromise(app: any) {
