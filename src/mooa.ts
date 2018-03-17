@@ -22,7 +22,7 @@ class Mooa {
   constructor(option: MooaOption) {
     window.mooa.instance = this
 
-    if (window.mooa.option) {
+    if (option) {
       window.mooa.option = option
       window.mooa.debug = option.debug
     }
