@@ -1,11 +1,3 @@
-/**
- * Robin Coma Delperier
- * Licensed under the Apache-2.0 License
- * https://github.com/PlaceMe-SAS/single-spa-angular-cli/blob/master/LICENSE
- *
- * modified by Phodal HUANG
- *
- */
 import { customEvent } from './helper/app.helper'
 
 declare const window: any
