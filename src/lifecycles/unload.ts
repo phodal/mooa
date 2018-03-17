@@ -1,6 +1,6 @@
 import { StatusEnum } from '../model/constants'
 import { reasonableTime } from '../helper/timeouts'
-import { mooaLog } from '../helper/app.helper'
+import { customEvent, mooaLog } from '../helper/app.helper'
 
 const appsToUnload: any = {}
 
@@ -27,6 +27,7 @@ export async function toUnloadPromise(app: any, mooaInstance?: any) {
 
   try {
     app.status = StatusEnum.UNLOADING
+    customEvent('mooa.unloading', { detail: { app: app } })
     mooaLog('Unloading application', app.name, app.status)
     await reasonableTime(
       app.unload(),

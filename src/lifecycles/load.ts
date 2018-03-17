@@ -1,7 +1,7 @@
 import { StatusEnum } from '../model/constants'
 import loader from '../loader/mooa.loader'
 import { ensureValidAppTimeouts } from '../helper/timeouts'
-import { mooaLog } from '../helper/app.helper'
+import { customEvent, mooaLog } from '../helper/app.helper'
 import { MooaApp } from '../model/IAppOption'
 
 export async function toLoadPromise(app: any) {
@@ -11,6 +11,7 @@ export async function toLoadPromise(app: any) {
 
   createApp(app)
 
+  customEvent('mooa.loading', { detail: { app: app } })
   mooaLog('Loading application', app.name, app.status)
   app.status = StatusEnum.NOT_BOOTSTRAPPED
   return app

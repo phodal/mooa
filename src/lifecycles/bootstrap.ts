@@ -1,6 +1,6 @@
 import { reasonableTime } from '../helper/timeouts'
 import { StatusEnum } from '../model/constants'
-import { mooaLog } from '../helper/app.helper'
+import { customEvent, mooaLog } from '../helper/app.helper'
 
 export async function toBootstrapPromise(app: any) {
   if (app.status !== StatusEnum.NOT_BOOTSTRAPPED) {
@@ -11,6 +11,7 @@ export async function toBootstrapPromise(app: any) {
 
   try {
     mooaLog('Bootstrapping application', app.name, app.status)
+    customEvent('mooa.bootstrapping', { detail: { app: app } })
     await reasonableTime(
       app.bootstrap(),
       `Bootstrapping app '${app.name}'`,

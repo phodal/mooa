@@ -2,7 +2,7 @@ import { StatusEnum } from '../model/constants'
 import { reasonableTime } from '../helper/timeouts'
 import StatusHelper from '../helper/status.helper'
 import { addAppToUnload, toUnloadPromise } from './unload'
-import { find, mooaLog } from '../helper/app.helper'
+import { customEvent, find, mooaLog } from '../helper/app.helper'
 import { MooaApp } from '../model/IAppOption'
 
 declare const window: any
@@ -78,6 +78,7 @@ export async function toUnmountPromise(app: any) {
 
   try {
     mooaLog('Unmounting application', app.name, app.status)
+    customEvent('mooa.unmounting', { detail: { app: app } })
     await reasonableTime(
       app.unmount(appendFunc(app)),
       `Unmounting application ${app.name}'`,
