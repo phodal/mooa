@@ -8,6 +8,8 @@
 
 2018-03-14 提议
 
+2018-03-17 完成
+
 ## 背景
 
 在这里补充上下文...
@@ -18,4 +20,11 @@
 
 ## 后果
 
-在这里记录结果...
+在主工程中使用事件来自定义动画：
+
+```typescript
+host: {
+  '(window:mooa.bootstrapping)': 'loadingStart($event)',
+  '(window:mooa.mounting)': 'loadingEnd($event)'
+}
+```
