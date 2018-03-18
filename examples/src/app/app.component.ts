@@ -1,7 +1,9 @@
-import {Component, ElementRef, Renderer2} from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
 import {default as Mooa, mooaRouter} from '../../../src/mooa';
+
+declare const window: any
 
 @Component({
   selector: 'app-root',
@@ -43,8 +45,10 @@ export class AppComponent {
     });
   }
 
-  loadingStart() {
-    console.log('loadingStart');
+  loadingStart(event) {
+    // if (event.detail.app.name === window.mooa.name) {
+    //   return;
+    // }
     const parentElement = this.myElement.nativeElement.querySelector('app-home');
     parentElement.innerHTML = `
 <div class="loading">
