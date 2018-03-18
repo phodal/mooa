@@ -15,6 +15,7 @@ import {default as Mooa, mooaRouter} from '../../../src/mooa';
 export class AppComponent {
   private mooa: Mooa;
   private myElement: ElementRef;
+  private iFrameUrl: any;
 
   constructor(http: HttpClient, private router: Router, myElement: ElementRef) {
     this.myElement = myElement;
@@ -54,6 +55,12 @@ export class AppComponent {
     <div class="bounce3"></div>
   </div>
 </div>`;
+  }
+
+  loadIframe(url: any) {
+    this.iFrameUrl = url;
+    const parentElement = this.myElement.nativeElement.querySelector('app-home');
+    parentElement.innerHTML = `<iframe width="100%" height="300" [src]="url | safe"></iframe>`;
   }
 
   loadingEnd() {

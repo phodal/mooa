@@ -10,6 +10,7 @@ import {ShoppingComponent} from './shopping/shopping.component';
 import {GamesComponent} from './games/games.component';
 import {HomeModule} from './home/home.module';
 import {GraphModule} from './graph/graph.module';
+import {SafePipe} from './pipes/SafePipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {GraphModule} from './graph/graph.module';
     NavbarComponent,
     ReaderComponent,
     ShoppingComponent,
-    GamesComponent
+    GamesComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
