@@ -4,7 +4,11 @@
 
 based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-angular-cli](https://github.com/PlaceMe-SAS/single-spa-angular-cli)
 
-difference: Host <-> Apps Design
+difference: 
+
+ - Host <-> Apps Architecture
+ - Configurable App (no loader require)
+ - Independent App in Different Repo and runnable
 
 ![Mooa Architecture](docs/mooa.png)
 
