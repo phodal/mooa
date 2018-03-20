@@ -74,8 +74,7 @@
         "statements": 95
       }
     },
-    "collectCoverage": true,
-    "mapCoverage": true
+    "collectCoverage": true
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
