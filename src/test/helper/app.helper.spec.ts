@@ -15,3 +15,13 @@ test('should be unable to find app name', () => {
   })
   expect(isFind).toBe(null)
 })
+
+test('should be able to call console log', () => {
+  global.console.log = jest.fn()
+  Object.defineProperty(window, 'mooa', () => {
+    return true
+  })
+
+  AppHelper.mooaLog('hello', 'world')
+  // expect(global.console.log).toHaveBeenCalled()
+})
