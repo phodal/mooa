@@ -64,6 +64,9 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
 
   let iframeEl: any = document.getElementById(iframe.id)
   iframeEl.contentWindow.document.body.appendChild(el)
+  iframeEl.contentWindow.mooa = {
+    isSingleSpa: true
+  }
 }
 
 export function removeApplicationIframeContainer(mooaApp: MooaApp) {

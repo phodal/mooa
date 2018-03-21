@@ -12,11 +12,14 @@ import { MooaApp } from '../model/IAppOption'
 import {
   createApplicationContainer,
   createApplicationIframeContainer,
+  generateIFrameID,
   removeApplicationContainer,
   removeApplicationIframeContainer
 } from '../helper/dom.utils'
+import { hashCode } from '../helper/app.helper'
 
 declare const window: any
+declare const document: any
 
 function bootstrap(app: MooaApp) {
   if (!window['mooa']) {
@@ -46,8 +49,16 @@ function load(app: MooaApp) {
 
 function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    if (window.mooa[app.name]) {
-      window.mooa[app.name].mount(props)
+    let aliasWindow = window
+    if (app.mode === 'iframe') {
+      let iframe = document.getElementById(generateIFrameID(app.name))
+      if (iframe.contentWindow) {
+        aliasWindow = iframe.contentWindow
+      }
+    }
+
+    if (aliasWindow.mooa[app.name]) {
+      aliasWindow.mooa[app.name].mount(props)
       resolve()
     } else {
       console.error(`Cannot mount ${app.name} because that is not bootstraped`)
