@@ -12,6 +12,7 @@ export class MooaPlatform {
     this.router = router
     return new Promise((resolve, reject) => {
       if (this.isSingleSpaApp()) {
+        customEvent('mooa.child.mount', { name: this.name })
         window.mooa[this.name] = window.mooa[this.name] || {}
         window.mooa[this.name].mount = (props: any) => {
           resolve({ props, attachUnmount: this.unmount.bind(this) })
@@ -24,6 +25,7 @@ export class MooaPlatform {
 
   unmount(module: any) {
     if (this.isSingleSpaApp()) {
+      customEvent('mooa.child.unmount', { name: this.name })
       window.mooa[this.name].unmount = () => {
         if (module) {
           module.destroy()
