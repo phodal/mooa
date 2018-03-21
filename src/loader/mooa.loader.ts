@@ -25,7 +25,7 @@ function bootstrap(app: MooaApp) {
   window.mooa.isSingleSpa = true
   window.mooa.name = app.name
 
-  if (app.model === 'iframe') {
+  if (app.mode === 'iframe') {
     createApplicationIframeContainer(app)
 
     return new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@ function unmount(app: MooaApp, props: any) {
   return new Promise((resolve, reject) => {
     if (window.mooa[app.name]) {
       window.mooa[app.name].unmount()
-      if (app.model === 'iframe') {
+      if (app.mode === 'iframe') {
         removeApplicationIframeContainer(app)
       } else {
         removeApplicationContainer(app)
