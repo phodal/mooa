@@ -14,7 +14,7 @@ export async function toLoadPromise(app: any) {
   customEvent('mooa.loading', { detail: { app: app } })
   mooaLog('Loading application', app.name, app.status)
   app.status = StatusEnum.NOT_BOOTSTRAPPED
-  app.model = 'iframe'
+  // app.mode = 'iframe'
   return app
 }
 
