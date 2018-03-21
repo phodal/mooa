@@ -27,13 +27,17 @@ function bootstrap(app: MooaApp) {
 
   if (app.model === 'iframe') {
     createApplicationIframeContainer(app)
+
+    return new Promise((resolve, reject) => {
+      LoaderHelper.loadAllAssetsForIframe(app.appConfig).then(resolve, reject)
+    })
   } else {
     createApplicationContainer(app)
-  }
 
-  return new Promise((resolve, reject) => {
-    LoaderHelper.loadAllAssets(app.appConfig).then(resolve, reject)
-  })
+    return new Promise((resolve, reject) => {
+      LoaderHelper.loadAllAssets(app.appConfig).then(resolve, reject)
+    })
+  }
 }
 
 function load(app: MooaApp) {

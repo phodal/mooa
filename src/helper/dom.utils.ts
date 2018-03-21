@@ -45,14 +45,13 @@ export function removeApplicationContainer(mooaApp: MooaApp) {
 
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
-  const iframe = document.createElement('iframe')
+  const iframe: any = document.createElement('iframe')
   iframe.frameBorder = ''
   iframe.width = '100%'
   iframe.height = '100%'
   iframe.id = generateIFrameID(mooaApp.appConfig.name)
 
   const el = document.createElement(opts.selector)
-  iframe.appendChild(el)
 
   if (opts.parentElement) {
     let parentEl = document.querySelector(opts.parentElement)
@@ -62,6 +61,9 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   } else {
     document.body.appendChild(iframe)
   }
+
+  let iframeEl: any = document.getElementById(iframe.id)
+  iframeEl.contentWindow.document.body.appendChild(el)
 }
 
 export function removeApplicationIframeContainer(mooaApp: MooaApp) {
@@ -80,6 +82,6 @@ export function removeApplicationIframeContainer(mooaApp: MooaApp) {
   }
 }
 
-function generateIFrameID(name: string) {
+export function generateIFrameID(name: string) {
   return name + '_' + hashCode(name)
 }

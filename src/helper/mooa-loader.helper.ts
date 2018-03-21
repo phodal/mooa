@@ -1,6 +1,7 @@
 import assetsLoaderHelper from './assets-loader.helper'
 import { IAppOption } from '../model/IAppOption'
 import { hashCode } from './app.helper'
+import { generateIFrameID } from './dom.utils'
 
 /**
  * Robin Coma Delperier
@@ -57,6 +58,64 @@ function loadAllAssets(opts: any) {
   })
 }
 
+function loadAllAssetsForIframe(opts: any) {
+  const iframeId = generateIFrameID(opts.name)
+  let iframeEl: any = document.getElementById(iframeId)
+  if (!iframeEl) {
+    return new Promise((resolve, reject) => {
+      reject()
+    })
+  }
+
+  return new Promise((resolve, reject) => {
+    const scriptsPromise = opts.scripts.reduce(
+      (prev: Promise<undefined>, fileName: string) =>
+        prev.then(
+          ((src: string) => {
+            return () => {
+              return new Promise((resolve, reject) => {
+                const script = assetsLoaderHelper.createScriptTag(src)
+                script.onload = function() {
+                  resolve()
+                }
+                script.onerror = err => {
+                  reject(err)
+                }
+                if (iframeEl && iframeEl.contentWindow) {
+                  iframeEl.contentWindow.document.head.appendChild(script)
+                }
+              })
+            }
+          })(`${opts.baseScriptUrl}/${fileName}`)
+        ),
+      Promise.resolve(undefined)
+    )
+    const stylesPromise = opts.styles.reduce(
+      (prev: Promise<undefined>, fileName: string) =>
+        prev.then(
+          ((url: string) => {
+            return () => {
+              return new Promise((resolve, reject) => {
+                const link = assetsLoaderHelper.createLinkTag(url)
+                link.onload = function() {
+                  resolve()
+                }
+                link.onerror = err => {
+                  reject(err)
+                }
+                if (iframeEl && iframeEl.contentWindow) {
+                  iframeEl.contentWindow.document.head.appendChild(link)
+                }
+              })
+            }
+          })(`${opts.baseScriptUrl}/${fileName}`)
+        ),
+      Promise.resolve(undefined)
+    )
+    Promise.all([scriptsPromise, stylesPromise]).then(resolve, reject)
+  })
+}
+
 function unloadTag(opts: IAppOption, scriptName: string) {
   return () => {
     return new Promise((resolve, reject) => {
@@ -73,6 +132,7 @@ function unloadTag(opts: IAppOption, scriptName: string) {
 
 const MooaLoaderHelper = {
   loadAllAssets: loadAllAssets,
+  loadAllAssetsForIframe: loadAllAssetsForIframe,
   unloadTag: unloadTag
 }
 
