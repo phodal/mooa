@@ -1,5 +1,6 @@
 import assetsLoaderHelper from './assets-loader.helper'
 import { IAppOption } from '../model/IAppOption'
+import { hashCode } from './app.helper'
 
 /**
  * Robin Coma Delperier
@@ -60,7 +61,7 @@ function unloadTag(opts: IAppOption, scriptName: string) {
   return () => {
     return new Promise((resolve, reject) => {
       const tag = document.getElementById(
-        assetsLoaderHelper.hashCode(`${opts.baseScriptUrl}/${scriptName}`)
+        hashCode(`${opts.baseScriptUrl}/${scriptName}`)
       )
       if (tag) {
         document.head.removeChild(tag)

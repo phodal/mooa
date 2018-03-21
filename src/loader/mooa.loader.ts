@@ -12,20 +12,27 @@ import { MooaApp } from '../model/IAppOption'
 import {
   createApplicationContainer,
   createApplicationIframeContainer,
-  removeApplicationContainer
+  removeApplicationContainer,
+  removeApplicationIframeContainer
 } from '../helper/dom.utils'
 
 declare const window: any
 
-function bootstrap(opts: MooaApp) {
+function bootstrap(app: MooaApp) {
   if (!window['mooa']) {
     window.mooa = {}
   }
   window.mooa.isSingleSpa = true
-  window.mooa.name = opts.name
+  window.mooa.name = app.name
+
+  if (app.model === 'iframe') {
+    createApplicationIframeContainer(app)
+  } else {
+    createApplicationContainer(app)
+  }
 
   return new Promise((resolve, reject) => {
-    LoaderHelper.loadAllAssets(opts.appConfig).then(resolve, reject)
+    LoaderHelper.loadAllAssets(app.appConfig).then(resolve, reject)
   })
 }
 
@@ -35,11 +42,6 @@ function load(app: MooaApp) {
 
 function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    if (app.model === 'iframe') {
-      createApplicationIframeContainer(app)
-    } else {
-      createApplicationContainer(app)
-    }
     if (window.mooa[app.name]) {
       window.mooa[app.name].mount(props)
       resolve()
@@ -55,7 +57,11 @@ function unmount(app: MooaApp, props: any) {
   return new Promise((resolve, reject) => {
     if (window.mooa[app.name]) {
       window.mooa[app.name].unmount()
-      removeApplicationContainer(app)
+      if (app.model === 'iframe') {
+        removeApplicationIframeContainer(app)
+      } else {
+        removeApplicationContainer(app)
+      }
       if (getAppNames().indexOf(app.name) !== -1) {
         unloadApplication(app.name, { waitForUnmount: true })
         resolve()

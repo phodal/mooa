@@ -64,6 +64,22 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   }
 }
 
+export function removeApplicationIframeContainer(mooaApp: MooaApp) {
+  const iframeId = generateIFrameID(mooaApp.appConfig.name)
+  let iframeEl = document.getElementById(iframeId)
+  if (iframeEl) {
+    if (!('remove' in Element.prototype)) {
+      Element.prototype.remove = function() {
+        if (iframeEl && iframeEl.parentNode) {
+          iframeEl.parentNode.removeChild(iframeEl)
+        }
+      }
+    } else {
+      iframeEl.remove()
+    }
+  }
+}
+
 function generateIFrameID(name: string) {
   return name + '_' + hashCode(name)
 }
