@@ -70,8 +70,16 @@ function mount(app: MooaApp, props?: any) {
 function unmount(app: MooaApp, props: any) {
   const { unloadApplication, getAppNames } = props
   return new Promise((resolve, reject) => {
-    if (window.mooa[app.name]) {
-      window.mooa[app.name].unmount()
+    let aliasWindow = window
+    if (app.mode === 'iframe') {
+      let iframe = document.getElementById(generateIFrameID(app.name))
+      if (iframe.contentWindow) {
+        aliasWindow = iframe.contentWindow
+      }
+    }
+
+    if (aliasWindow.mooa[app.name]) {
+      aliasWindow.mooa[app.name].unmount()
       if (app.mode === 'iframe') {
         removeApplicationIframeContainer(app)
       } else {
