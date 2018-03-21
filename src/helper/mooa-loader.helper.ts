@@ -3,31 +3,32 @@ import { IAppOption } from '../model/IAppOption'
 import { hashCode } from './app.helper'
 import { generateIFrameID } from './dom.utils'
 
-/**
- * Robin Coma Delperier
- * Licensed under the Apache-2.0 License
- * https://github.com/PlaceMe-SAS/single-spa-angular-cli/blob/master/LICENSE
- *
- * modified by Phodal HUANG
- *
- */
-
-const loadScriptTag = (src: string) => {
-  return () => {
-    return new Promise((resolve, reject) => {
-      const script = assetsLoaderHelper.createScriptTag(src)
-      script.onload = function() {
-        resolve()
+function loadScriptPromise(src: string, iframeEl: any) {
+  return new Promise((resolve, reject) => {
+    const script = assetsLoaderHelper.createScriptTag(src)
+    script.onload = function() {
+      resolve()
+    }
+    script.onerror = err => {
+      reject(err)
+    }
+    if (iframeEl) {
+      if (iframeEl && iframeEl.contentWindow) {
+        iframeEl.contentWindow.document.head.appendChild(script)
       }
-      script.onerror = err => {
-        reject(err)
-      }
+    } else {
       document.head.appendChild(script)
-    })
+    }
+  })
+}
+
+const loadScriptTag = (src: string, iframeEl?: any) => {
+  return () => {
+    return loadScriptPromise(src, iframeEl)
   }
 }
 
-const loadLinkTag = (url: string) => {
+const loadLinkTag = (url: string, iframeEl?: any) => {
   return () => {
     return new Promise((resolve, reject) => {
       const link = assetsLoaderHelper.createLinkTag(url)
@@ -37,7 +38,14 @@ const loadLinkTag = (url: string) => {
       link.onerror = err => {
         reject(err)
       }
-      document.head.appendChild(link)
+
+      if (iframeEl) {
+        if (iframeEl && iframeEl.contentWindow) {
+          iframeEl.contentWindow.document.head.appendChild(link)
+        }
+      } else {
+        document.head.appendChild(link)
+      }
     })
   }
 }
@@ -68,52 +76,24 @@ function loadAllAssetsForIframe(opts: any) {
   }
 
   return new Promise((resolve, reject) => {
-    opts.scripts.push('zone.min.js')
     const scriptsPromise = opts.scripts.reduce(
       (prev: Promise<undefined>, fileName: string) =>
-        prev.then(
-          ((src: string) => {
-            return () => {
-              return new Promise((resolve, reject) => {
-                const script = assetsLoaderHelper.createScriptTag(src)
-                script.onload = function() {
-                  resolve()
-                }
-                script.onerror = err => {
-                  reject(err)
-                }
-                if (iframeEl && iframeEl.contentWindow) {
-                  iframeEl.contentWindow.document.head.appendChild(script)
-                }
-              })
-            }
-          })(`${opts.baseScriptUrl}/${fileName}`)
-        ),
+        prev.then(loadScriptTag(`${opts.baseScriptUrl}/${fileName}`, iframeEl)),
       Promise.resolve(undefined)
     )
+
+    const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
+
     const stylesPromise = opts.styles.reduce(
       (prev: Promise<undefined>, fileName: string) =>
-        prev.then(
-          ((url: string) => {
-            return () => {
-              return new Promise((resolve, reject) => {
-                const link = assetsLoaderHelper.createLinkTag(url)
-                link.onload = function() {
-                  resolve()
-                }
-                link.onerror = err => {
-                  reject(err)
-                }
-                if (iframeEl && iframeEl.contentWindow) {
-                  iframeEl.contentWindow.document.head.appendChild(link)
-                }
-              })
-            }
-          })(`${opts.baseScriptUrl}/${fileName}`)
-        ),
+        prev.then(loadLinkTag(`${opts.baseScriptUrl}/${fileName}`)),
       Promise.resolve(undefined)
     )
-    Promise.all([scriptsPromise, stylesPromise]).then(resolve, reject)
+
+    Promise.all([scriptsPromise, zonejsPromise, stylesPromise]).then(
+      resolve,
+      reject
+    )
   })
 }
 
