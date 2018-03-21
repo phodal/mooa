@@ -2,8 +2,6 @@ import { StatusEnum } from '../model/constants'
 
 declare const history: History
 declare const window: any
-declare const document: any
-declare const Element: any
 
 export function find(arr: any, func: any) {
   for (let i = 0; i < arr.length; i++) {
@@ -13,39 +11,6 @@ export function find(arr: any, func: any) {
   }
 
   return null
-}
-
-export function createAppNode(opts: any) {
-  let el = document.querySelector(opts.selector)
-  if (!el) {
-    el = document.createElement(opts.selector)
-
-    if (opts.parentElement) {
-      let parentEl = document.querySelector(opts.parentElement)
-      while (parentEl.hasChildNodes()) {
-        parentEl.removeChild(parentEl.lastChild)
-      }
-      parentEl.appendChild(el)
-    } else {
-      document.body.appendChild(el)
-    }
-  }
-  return el
-}
-
-export function removeAppNode(opts: any) {
-  let el = document.querySelector(opts.selector)
-  if (el) {
-    if (!('remove' in Element.prototype)) {
-      Element.prototype.remove = function() {
-        if (el.parentNode) {
-          el.parentNode.removeChild(el)
-        }
-      }
-    } else {
-      el.remove()
-    }
-  }
 }
 
 export function mooaLog(...args: any[]) {
