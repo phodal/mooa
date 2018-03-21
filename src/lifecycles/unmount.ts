@@ -78,7 +78,7 @@ export async function toUnmountPromise(app: any) {
 
   try {
     mooaLog('Unmounting application', app.name, app.status)
-    customEvent('mooa.unmounting', { detail: { app: app } })
+    customEvent('mooa.unmounting', { app: app })
     await reasonableTime(
       app.unmount(appendFunc(app)),
       `Unmounting application ${app.name}'`,

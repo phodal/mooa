@@ -9,7 +9,7 @@ export async function toMountPromise(app: any) {
 
   try {
     mooaLog('Mounting application', app.name, app.status)
-    customEvent('mooa.mounting', { detail: { app: app } })
+    customEvent('mooa.mounting', { app: app })
     await reasonableTime(
       app.mount(),
       `Mounting application '${app.name}'`,

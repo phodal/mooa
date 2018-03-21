@@ -33,7 +33,7 @@ export function customEvent(eventName: any, eventArgs?: any) {
     window.CustomEvent = MooaCustomEvent
   }
 
-  window.dispatchEvent(new CustomEvent(eventName, eventArgs))
+  window.dispatchEvent(new CustomEvent(eventName, { detail: eventArgs }))
 }
 
 export function navigateAppByName(opts: any): void {

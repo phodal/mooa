@@ -52,7 +52,7 @@ export class MooaPlatform {
   }
 
   navigateTo(opts: any) {
-    customEvent('mooa.routing.navigate', { detail: opts })
+    customEvent('mooa.routing.navigate', opts)
   }
 
   handleRouterUpdate(router: any, appName: string) {

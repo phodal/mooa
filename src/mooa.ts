@@ -123,10 +123,8 @@ class Mooa {
         let activeApp = StatusHelper.getActiveApps(apps)[0]
         if (activeApp && activeApp['appConfig']) {
           customEvent('mooa.routing.change', {
-            detail: {
-              url: eventArguments.url,
-              app: activeApp['appConfig']
-            }
+            url: eventArguments.url,
+            app: activeApp['appConfig']
           })
         }
       }

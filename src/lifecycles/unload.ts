@@ -27,7 +27,7 @@ export async function toUnloadPromise(app: any, mooaInstance?: any) {
 
   try {
     app.status = StatusEnum.UNLOADING
-    customEvent('mooa.unloading', { detail: { app: app } })
+    customEvent('mooa.unloading', { app: app })
     mooaLog('Unloading application', app.name, app.status)
     await reasonableTime(
       app.unload(),

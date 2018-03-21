@@ -11,7 +11,7 @@ export async function toBootstrapPromise(app: any) {
 
   try {
     mooaLog('Bootstrapping application', app.name, app.status)
-    customEvent('mooa.bootstrapping', { detail: { app: app } })
+    customEvent('mooa.bootstrapping', { app: app })
     await reasonableTime(
       app.bootstrap(),
       `Bootstrapping app '${app.name}'`,
