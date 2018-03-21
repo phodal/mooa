@@ -7,7 +7,7 @@ import { toUnloadPromise } from './lifecycles/unload'
 import { toUnmountPromise } from './lifecycles/unmount'
 import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
-import { MooaPlatform } from './platform'
+import { MooaPlatform } from './platform/platform'
 import { customEvent, navigateAppByName } from './helper/app.helper'
 
 declare const window: any

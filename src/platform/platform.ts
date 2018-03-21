@@ -1,4 +1,4 @@
-import { customEvent } from './helper/app.helper'
+import { customEvent } from '../helper/app.helper'
 
 declare const window: any
 window.mooa = window.mooa || {}
