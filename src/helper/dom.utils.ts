@@ -49,9 +49,11 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   iframe.frameBorder = ''
   iframe.width = '100%'
   iframe.height = '100%'
+  // iframe.src = window.location + '/app/app1'
   iframe.id = generateIFrameID(mooaApp.appConfig.name)
 
   const el = document.createElement(opts.selector)
+  const base = document.createElement('base')
 
   if (opts.parentElement) {
     let parentEl = document.querySelector(opts.parentElement)
@@ -64,6 +66,8 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
 
   let iframeEl: any = document.getElementById(iframe.id)
   iframeEl.contentWindow.document.body.appendChild(el)
+  iframeEl.contentWindow.document.head.innerHTML =
+    iframeEl.contentWindow.document.innerHTML + "<base href='/' />"
   iframeEl.contentWindow.mooa = {
     isSingleSpa: true
   }
