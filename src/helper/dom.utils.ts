@@ -1,7 +1,9 @@
+import { IAppOption } from '../model/IAppOption'
+
 declare const Element: any
 declare const document: Document
 
-export function createApplicationContainer(opts: any) {
+export function createApplicationContainer(opts: IAppOption) {
   let el = document.querySelector(opts.selector)
   if (!el) {
     el = document.createElement(opts.selector)
@@ -19,7 +21,7 @@ export function createApplicationContainer(opts: any) {
   return el
 }
 
-export function removeApplicationContainer(opts: any) {
+export function removeApplicationContainer(opts: IAppOption) {
   let el = document.querySelector(opts.selector)
   if (el) {
     if (!('remove' in Element.prototype)) {
