@@ -68,6 +68,7 @@ function loadAllAssetsForIframe(opts: any) {
   }
 
   return new Promise((resolve, reject) => {
+    // opts.scripts.push('zone.min.js');
     const scriptsPromise = opts.scripts.reduce(
       (prev: Promise<undefined>, fileName: string) =>
         prev.then(
