@@ -1,9 +1,10 @@
-import { IAppOption } from '../model/IAppOption'
+import { MooaApp } from '../../dist/types/model/IAppOption'
 
 declare const Element: any
 declare const document: Document
 
-export function createApplicationContainer(opts: IAppOption) {
+export function createApplicationContainer(mooaApp: MooaApp) {
+  const opts = mooaApp.appConfig
   let el = document.querySelector(opts.selector)
   if (el) {
     return el
@@ -25,7 +26,8 @@ export function createApplicationContainer(opts: IAppOption) {
   return el
 }
 
-export function removeApplicationContainer(opts: IAppOption) {
+export function removeApplicationContainer(mooaApp: MooaApp) {
+  const opts = mooaApp.appConfig
   let el = document.querySelector(opts.selector)
   if (el && el !== null) {
     if (!('remove' in Element.prototype)) {

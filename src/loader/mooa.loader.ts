@@ -34,7 +34,7 @@ function load(app: MooaApp) {
 
 function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    createApplicationContainer(app.appConfig)
+    createApplicationContainer(app)
     if (window.mooa[app.name]) {
       window.mooa[app.name].mount(props)
       resolve()
@@ -50,7 +50,7 @@ function unmount(app: MooaApp, props: any) {
   return new Promise((resolve, reject) => {
     if (window.mooa[app.name]) {
       window.mooa[app.name].unmount()
-      removeApplicationContainer(app.appConfig)
+      removeApplicationContainer(app)
       if (getAppNames().indexOf(app.name) !== -1) {
         unloadApplication(app.name, { waitForUnmount: true })
         resolve()
