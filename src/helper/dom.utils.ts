@@ -5,28 +5,32 @@ declare const document: Document
 
 export function createApplicationContainer(opts: IAppOption) {
   let el = document.querySelector(opts.selector)
-  if (!el) {
-    el = document.createElement(opts.selector)
+  if (el) {
+    return el
+  }
 
-    if (opts.parentElement) {
-      let parentEl = document.querySelector(opts.parentElement)
-      while (parentEl.hasChildNodes()) {
-        parentEl.removeChild(parentEl.lastChild)
-      }
+  el = document.createElement(opts.selector)
+
+  if (opts.parentElement) {
+    let parentEl = document.querySelector(opts.parentElement)
+    if (parentEl) {
       parentEl.appendChild(el)
     } else {
       document.body.appendChild(el)
     }
+  } else {
+    document.body.appendChild(el)
   }
+
   return el
 }
 
 export function removeApplicationContainer(opts: IAppOption) {
   let el = document.querySelector(opts.selector)
-  if (el) {
+  if (el && el !== null) {
     if (!('remove' in Element.prototype)) {
       Element.prototype.remove = function() {
-        if (el.parentNode) {
+        if (el && el.parentNode) {
           el.parentNode.removeChild(el)
         }
       }
