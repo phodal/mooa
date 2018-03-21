@@ -68,6 +68,7 @@ export class AppComponent {
   }
 
   loadingEnd() {
-    console.log('loadingEnd');
+    const loadingSelector = this.myElement.nativeElement.querySelector('.loading');
+    loadingSelector.remove();
   }
 }
