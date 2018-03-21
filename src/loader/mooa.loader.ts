@@ -11,6 +11,7 @@ import LoaderHelper from '../helper/mooa-loader.helper'
 import { MooaApp } from '../model/IAppOption'
 import {
   createApplicationContainer,
+  createApplicationIframeContainer,
   removeApplicationContainer
 } from '../helper/dom.utils'
 
@@ -34,7 +35,11 @@ function load(app: MooaApp) {
 
 function mount(app: MooaApp, props?: any) {
   return new Promise((resolve, reject) => {
-    createApplicationContainer(app)
+    if (app.model === 'iframe') {
+      createApplicationIframeContainer(app)
+    } else {
+      createApplicationContainer(app)
+    }
     if (window.mooa[app.name]) {
       window.mooa[app.name].mount(props)
       resolve()

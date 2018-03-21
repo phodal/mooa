@@ -56,3 +56,17 @@ export function navigateAppByName(opts: any): void {
     window.mooa.instance.reRouter()
   }
 }
+
+export function hashCode(str: string) {
+  let hash = 0
+  if (str.length === 0) {
+    return hash.toString()
+  }
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i)
+    hash = hash & hash
+    hash = hash >>> 1
+  }
+
+  return hash.toString()
+}

@@ -6,20 +6,7 @@
  * modified by Phodal HUANG
  *
  */
-
-const hashCode = function(str: string) {
-  let hash = 0
-  if (str.length === 0) {
-    return hash.toString()
-  }
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash << 5) - hash + str.charCodeAt(i)
-    hash = hash & hash
-    hash = hash >>> 1
-  }
-
-  return hash.toString()
-}
+import { hashCode } from './app.helper'
 
 const createScriptTag = function(src: string) {
   const script = document.createElement('script')
@@ -41,7 +28,6 @@ const createLinkTag = function(src: string) {
 }
 
 const assetsLoaderHelper = {
-  hashCode: hashCode,
   createScriptTag: createScriptTag,
   createLinkTag: createLinkTag
 }
