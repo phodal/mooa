@@ -1,4 +1,4 @@
-const assetsLoaderHelper = require('../../helper/assets-loader.helper').default
+const assetsLoaderHelper = require('../../helper/assets.helper').default
 
 test('should get hash code', () => {
   let hash = assetsLoaderHelper.hashCode('hello, world')

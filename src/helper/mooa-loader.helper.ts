@@ -1,4 +1,4 @@
-import assetsLoaderHelper from './assets-loader.helper'
+import assetsLoaderHelper from './assets.helper'
 import { IAppOption } from '../model/IAppOption'
 import { hashCode } from './app.helper'
 import { generateIFrameID } from './dom.utils'

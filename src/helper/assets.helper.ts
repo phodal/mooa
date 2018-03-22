@@ -27,9 +27,9 @@ const createLinkTag = function(src: string) {
   return link
 }
 
-const assetsLoaderHelper = {
+const AssetsHelper = {
   createScriptTag: createScriptTag,
   createLinkTag: createLinkTag
 }
 
-export default assetsLoaderHelper
+export default AssetsHelper
