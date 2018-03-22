@@ -52,7 +52,7 @@ function mount(app: MooaApp, props?: any) {
     let aliasWindow = window
     if (app.mode === 'iframe') {
       let iframe = document.getElementById(generateIFrameID(app.name))
-      if (iframe.contentWindow) {
+      if (iframe && iframe.contentWindow) {
         aliasWindow = iframe.contentWindow
       }
     }
@@ -73,7 +73,7 @@ function unmount(app: MooaApp, props: any) {
     let aliasWindow = window
     if (app.mode === 'iframe') {
       let iframe = document.getElementById(generateIFrameID(app.name))
-      if (iframe.contentWindow) {
+      if (iframe && iframe.contentWindow) {
         aliasWindow = iframe.contentWindow
       }
     }
