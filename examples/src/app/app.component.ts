@@ -62,12 +62,6 @@ export class AppComponent implements OnInit {
 </div>`;
   }
 
-  loadIframe(url: any) {
-    this.iFrameUrl = url;
-    const parentElement = this.myElement.nativeElement.querySelector('app-home');
-    parentElement.innerHTML = `<iframe width="100%" height="300" [src]="url | safe"></iframe>`;
-  }
-
   loadingEnd() {
     const loadingSelector = this.myElement.nativeElement.querySelector('.loading');
     if (loadingSelector) {
