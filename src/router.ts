@@ -6,6 +6,7 @@
  * modified by Phodal HUANG
  *
  */
+import { find } from './helper/app.helper'
 
 declare const history: History
 
@@ -31,7 +32,7 @@ export class MooaRouter {
       if (prefix === '/') {
         return location.pathname === '/'
       }
-      const route = this.routes.find(r => this.pathMatch(location, r))
+      const route = find(this.routes, (r: any) => this.pathMatch(location, r))
       if (route) {
         return this.pathMatch(location, prefix)
       } else {
