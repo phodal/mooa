@@ -70,7 +70,9 @@ export class AppComponent implements OnInit {
 
   loadingEnd() {
     const loadingSelector = this.myElement.nativeElement.querySelector('.loading');
-    loadingSelector.remove();
+    if (loadingSelector) {
+      loadingSelector.remove();
+    }
   }
 
   private mooaWithConfig () {

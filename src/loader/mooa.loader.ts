@@ -76,30 +76,21 @@ function mount(app: MooaApp, props?: any) {
 function unmount(app: MooaApp, props: any) {
   const { unloadApplication, getAppNames } = props
   return new Promise((resolve, reject) => {
-    let aliasWindow = window
     if (app.mode === 'iframe') {
-      let iframe = document.getElementById(generateIFrameID(app.name))
-      if (iframe && iframe.contentWindow) {
-        aliasWindow = iframe.contentWindow
-      }
+      unloadApplication(app.name, { waitForUnmount: true })
+      removeApplicationIframeContainer(app)
+      resolve()
     }
 
-    if (aliasWindow.mooa[app.name]) {
-      aliasWindow.mooa[app.name].unmount()
-      if (app.mode === 'iframe') {
-        removeApplicationIframeContainer(app)
-      } else {
-        removeApplicationContainer(app)
-      }
+    if (window.mooa[app.name]) {
+      window.mooa[app.name].unmount()
+      removeApplicationContainer(app)
       if (getAppNames().indexOf(app.name) !== -1) {
         unloadApplication(app.name, { waitForUnmount: true })
         resolve()
       } else {
-        reject(
-          `Cannot unmount ${app.name} because that ${
-            app.name
-          } is not part of the decalred applications : ${getAppNames()}`
-        )
+        reject(`Cannot unmount ${app.name} because that ${app.name}
+          is not part of the decalred applications : ${getAppNames()}`)
       }
     } else {
       reject(`Cannot unmount ${app.name} because that is not bootstraped`)
