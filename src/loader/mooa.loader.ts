@@ -28,11 +28,17 @@ function bootstrap(app: MooaApp) {
   window.mooa.isSingleSpa = true
   window.mooa.name = app.name
 
-  if (app.mode === 'iframe') {
+  if (app.mode && app.mode === 'iframe') {
     createApplicationIframeContainer(app)
 
     return new Promise((resolve, reject) => {
       LoaderHelper.loadAllAssetsForIframe(app.appConfig).then(resolve, reject)
+    })
+  } else if (app.mode && app.mode === 'link') {
+    createApplicationContainer(app)
+
+    return new Promise((resolve, reject) => {
+      LoaderHelper.loadAllAssetsByUrl(app.appConfig).then(resolve, reject)
     })
   } else {
     createApplicationContainer(app)

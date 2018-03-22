@@ -97,6 +97,66 @@ function loadAllAssetsForIframe(opts: any) {
   })
 }
 
+const xmlToAssets = (
+  xml: string
+): { styles: (string | null)[]; scripts: (string | null)[] } => {
+  let dom = document.createElement('html')
+  dom.innerHTML = xml
+  const linksEls = dom.querySelectorAll('link[rel="stylesheet"]')
+  const scriptsEls = dom.querySelectorAll('script[type="text/javascript"]')
+  return {
+    styles: Array.from(linksEls).map(el => el.getAttribute('href')),
+    scripts: Array.from(scriptsEls)
+      .map(el => el.getAttribute('src'))
+      .filter(src => {
+        if (src) {
+          return !src.match(/zone\.js/)
+        }
+      })
+  }
+}
+
+const transformOptsWithAssets = (opts: any): Promise<null> => {
+  const url = `${opts.baseScriptUrl}/index.html`
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest()
+    req.onreadystatechange = event => {
+      if (req.readyState === XMLHttpRequest.DONE) {
+        if (req.status >= 200 && req.status < 400) {
+          const res = xmlToAssets(req.responseText)
+          opts.styles = res.styles
+          opts.scripts = res.scripts
+          resolve(null)
+        } else {
+          reject(
+            `Try to load ${url}, status : ${req.status} => ${req.statusText}`
+          )
+        }
+      }
+    }
+    req.open('GET', url, true)
+    req.send(null)
+  })
+}
+
+const loadAllAssetsByUrl = (opts: any) => {
+  return new Promise((resolve, reject) => {
+    transformOptsWithAssets(opts).then(() => {
+      const scriptsPromise = opts.scripts.reduce(
+        (prev: Promise<undefined>, fileName: string) =>
+          prev.then(loadScriptTag(`${opts.baseScriptUrl}/${fileName}`)),
+        Promise.resolve(undefined)
+      )
+      const stylesPromise = opts.styles.reduce(
+        (prev: Promise<undefined>, fileName: string) =>
+          prev.then(loadLinkTag(`${opts.baseScriptUrl}/${fileName}`)),
+        Promise.resolve(undefined)
+      )
+      Promise.all([scriptsPromise, stylesPromise]).then(resolve, reject)
+    }, reject)
+  })
+}
+
 function unloadTag(opts: IAppOption, scriptName: string) {
   return () => {
     return new Promise((resolve, reject) => {
@@ -113,6 +173,7 @@ function unloadTag(opts: IAppOption, scriptName: string) {
 
 const MooaLoaderHelper = {
   loadAllAssets: loadAllAssets,
+  loadAllAssetsByUrl: loadAllAssetsByUrl,
   loadAllAssetsForIframe: loadAllAssetsForIframe,
   unloadTag: unloadTag
 }

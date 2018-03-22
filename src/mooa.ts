@@ -35,6 +35,8 @@ class Mooa {
     this.option = option
   }
 
+  loadAppliation(url: string) {}
+
   registerApplication(
     appName: string,
     appConfig?: any,
@@ -61,6 +63,39 @@ class Mooa {
       name: appName,
       appConfig,
       activeWhen,
+      status: StatusEnum.NOT_LOADED,
+      customProps: customProps
+    }
+
+    apps.push(appOpt)
+    window.apps = apps
+  }
+
+  registerApplicationByLink(
+    appName: string,
+    link?: string,
+    activeWhen?: {},
+    customProps: object = {}
+  ) {
+    if (!activeWhen) {
+      throw new Error(`Lost Loader`)
+    }
+
+    if (typeof activeWhen !== 'function') {
+      throw new Error(`The activeWhen argument must be a function`)
+    }
+
+    const appOpt = {
+      name: appName,
+      appConfig: {
+        name: appName,
+        scripts: [],
+        selector: `app-${appName}`,
+        baseScriptUrl: link,
+        styles: []
+      },
+      activeWhen,
+      mode: 'link',
       status: StatusEnum.NOT_LOADED,
       customProps: customProps
     }
