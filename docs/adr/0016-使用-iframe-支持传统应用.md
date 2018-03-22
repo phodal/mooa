@@ -19,6 +19,10 @@
 1. https://gist.github.com/pbojinov/8965299
 2. http://www.alloyteam.com/2012/08/lightweight-solution-for-an-iframe-cross-domain-communication/
 
+3. https://github.com/ternarylabs/porthole
+
+2018-03-20 基本的 iFrame 已完成，需要进一下更新事件逻辑。
+
 ## 后果
 
 在这里记录结果...
