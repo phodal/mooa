@@ -9,6 +9,7 @@ import { MooaOption } from './model/MooaOption'
 import MooaRouter from './router'
 import { MooaPlatform } from './platform/platform'
 import { customEvent, navigateAppByName } from './helper/app.helper'
+import { generateIFrameID } from './helper/dom.utils'
 
 declare const window: any
 
@@ -122,10 +123,23 @@ class Mooa {
       if (eventArguments) {
         let activeApp = StatusHelper.getActiveApps(apps)[0]
         if (activeApp && activeApp['appConfig']) {
-          customEvent('mooa.routing.change', {
+          let eventArgs = {
             url: eventArguments.url,
             app: activeApp['appConfig']
-          })
+          }
+
+          if (activeApp.mode === 'iframe') {
+            const iframeId = generateIFrameID(activeApp.name)
+            let iframeEl: any = document.getElementById(iframeId)
+            if (iframeEl && iframeEl.contentWindow) {
+              iframeEl.contentWindow.mooa.option = window.mooa.option
+              iframeEl.contentWindow.dispatchEvent(
+                new CustomEvent('mooa.routing.change', { detail: eventArgs })
+              )
+            }
+          } else {
+            customEvent('mooa.routing.change', eventArgs)
+          }
         }
       }
     }
