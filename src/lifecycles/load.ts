@@ -1,4 +1,4 @@
-import { StatusEnum } from '../model/constants'
+import { MOOA_EVENT, StatusEnum } from '../model/constants'
 import loader from '../loader/mooa.loader'
 import { ensureValidAppTimeouts } from '../helper/timeouts'
 import { customEvent, mooaLog } from '../helper/app.helper'
@@ -11,7 +11,7 @@ export async function toLoadPromise(app: any) {
 
   createApp(app)
 
-  customEvent('mooa.loading', { app: app })
+  customEvent(MOOA_EVENT.LOADING, { app: app })
   mooaLog('Loading application', app.name, app.status)
   app.status = StatusEnum.NOT_BOOTSTRAPPED
   // app.mode = 'iframe'

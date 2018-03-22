@@ -1,4 +1,4 @@
-import { StatusEnum } from './model/constants'
+import { MOOA_EVENT, StatusEnum } from './model/constants'
 import { toLoadPromise } from './lifecycles/load'
 import { toBootstrapPromise } from './lifecycles/bootstrap'
 import { toMountPromise } from './lifecycles/mount'
@@ -116,18 +116,18 @@ class Mooa {
 
   start() {
     this.started = true
-    window.addEventListener('mooa.routing.navigate', function(
+    window.addEventListener(MOOA_EVENT.ROUTING_NAVIGATE, function(
       event: CustomEvent
     ) {
-      const opts = event.detail
-      if (opts) {
-        navigateAppByName(opts)
+      if (event.detail) {
+        navigateAppByName(event.detail)
       }
     })
     return this.reRouter()
   }
 
   reRouter(eventArguments?: any) {
+    const that = this
     async function performAppChanges() {
       customEvent('mooa.routing.before')
       const unloadPromises = StatusHelper.getAppsToUnload().map(toUnloadPromise)
@@ -168,28 +168,32 @@ class Mooa {
       if (eventArguments) {
         let activeApp = StatusHelper.getActiveApps(apps)[0]
         if (activeApp && activeApp['appConfig']) {
-          let eventArgs = {
-            url: eventArguments.url,
-            app: activeApp['appConfig']
-          }
-
-          if (activeApp.mode === 'iframe') {
-            const iframeId = generateIFrameID(activeApp.name)
-            let iframeEl: any = document.getElementById(iframeId)
-            if (iframeEl && iframeEl.contentWindow) {
-              iframeEl.contentWindow.mooa.option = window.mooa.option
-              iframeEl.contentWindow.dispatchEvent(
-                new CustomEvent('mooa.routing.change', { detail: eventArgs })
-              )
-            }
-          } else {
-            customEvent('mooa.routing.change', eventArgs)
-          }
+          that.createRoutingChangeEvent(eventArguments, activeApp)
         }
       }
     }
 
     return performAppChanges()
+  }
+
+  createRoutingChangeEvent(eventArguments: any, activeApp: any) {
+    let eventArgs = {
+      url: eventArguments.url,
+      app: activeApp['appConfig']
+    }
+
+    if (activeApp.mode === 'iframe') {
+      const iframeId = generateIFrameID(activeApp.name)
+      let iframeEl: any = document.getElementById(iframeId)
+      if (iframeEl && iframeEl.contentWindow) {
+        iframeEl.contentWindow.mooa.option = window.mooa.option
+        iframeEl.contentWindow.dispatchEvent(
+          new CustomEvent('mooa.routing.change', { detail: eventArgs })
+        )
+      }
+    } else {
+      customEvent('mooa.routing.change', eventArgs)
+    }
   }
 }
 

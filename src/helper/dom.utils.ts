@@ -1,5 +1,6 @@
 import { hashCode, navigateAppByName } from './app.helper'
 import { MooaApp } from '../model/IAppOption'
+import { MOOA_EVENT } from '../model/constants'
 
 declare const Element: any
 declare const document: Document
@@ -71,12 +72,11 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   iframeEl.contentWindow.mooa = {
     isSingleSpa: true
   }
-  iframeEl.contentWindow.addEventListener('mooa.routing.navigate', function(
+  iframeEl.contentWindow.addEventListener(MOOA_EVENT.ROUTING_NAVIGATE, function(
     event: CustomEvent
   ) {
-    const opts = event.detail
-    if (opts) {
-      navigateAppByName(opts)
+    if (event.detail) {
+      navigateAppByName(event.detail)
     }
   })
 }

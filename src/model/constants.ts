@@ -10,3 +10,8 @@ export enum StatusEnum {
   UNLOADING = 'UNLOADING',
   SKIP_BECAUSE_BROKEN = 'SKIP_BECAUSE_BROKEN'
 }
+
+export enum MOOA_EVENT {
+  LOADING = 'mooa.loading',
+  ROUTING_NAVIGATE = 'mooa.routing.navigate'
+}
