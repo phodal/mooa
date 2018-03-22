@@ -1,4 +1,4 @@
-import { hashCode } from './app.helper'
+import { hashCode, navigateAppByName } from './app.helper'
 import { MooaApp } from '../model/IAppOption'
 
 declare const Element: any
@@ -71,6 +71,14 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   iframeEl.contentWindow.mooa = {
     isSingleSpa: true
   }
+  iframeEl.contentWindow.addEventListener('mooa.routing.navigate', function(
+    event: CustomEvent
+  ) {
+    const opts = event.detail
+    if (opts) {
+      navigateAppByName(opts)
+    }
+  })
 }
 
 export function removeApplicationIframeContainer(mooaApp: MooaApp) {
