@@ -111,8 +111,13 @@ class Mooa {
       appConfig: appConfig,
       activeWhen,
       sourceType: 'link',
+      mode: '',
       status: StatusEnum.NOT_LOADED,
       customProps: customProps
+    }
+
+    if (this.option.mode) {
+      appOpt.mode = this.option.mode
     }
 
     apps.push(appOpt)
