@@ -7,7 +7,7 @@
  *
  */
 
-import LoaderHelper from '../helper/mooa-loader.helper'
+import LoaderHelper from '../helper/loader.helper'
 import { MooaApp } from '../model/IAppOption'
 import {
   createApplicationContainer,

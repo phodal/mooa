@@ -178,11 +178,11 @@ function unloadTag(opts: IAppOption, scriptName: string) {
   }
 }
 
-const MooaLoaderHelper = {
+const LoaderHelper = {
   loadAllAssets: loadAllAssets,
   loadAllAssetsByUrl: loadAllAssetsByUrl,
   loadAllAssetsForIframe: loadAllAssetsForIframe,
   unloadTag: unloadTag
 }
 
-export default MooaLoaderHelper
+export default LoaderHelper
