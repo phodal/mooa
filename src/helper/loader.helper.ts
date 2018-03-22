@@ -97,6 +97,41 @@ function loadAllAssetsForIframe(opts: any) {
   })
 }
 
+function loadAllAssetsForIframeAndUrl(opts: any) {
+  const iframeId = generateIFrameID(opts.name)
+  let iframeEl: any = document.getElementById(iframeId)
+  if (!iframeEl) {
+    return new Promise((resolve, reject) => {
+      reject()
+    })
+  }
+
+  return new Promise((resolve, reject) => {
+    transformOptsWithAssets(opts).then(() => {
+      const scriptsPromise = opts.scripts.reduce(
+        (prev: Promise<undefined>, fileName: string) =>
+          prev.then(
+            loadScriptTag(`${opts.baseScriptUrl}/${fileName}`, iframeEl)
+          ),
+        Promise.resolve(undefined)
+      )
+
+      const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
+
+      const stylesPromise = opts.styles.reduce(
+        (prev: Promise<undefined>, fileName: string) =>
+          prev.then(loadLinkTag(`${opts.baseScriptUrl}/${fileName}`)),
+        Promise.resolve(undefined)
+      )
+
+      Promise.all([scriptsPromise, zonejsPromise, stylesPromise]).then(
+        resolve,
+        reject
+      )
+    })
+  })
+}
+
 const xmlToAssets = (
   xml: string
 ): { styles: (string | null)[]; scripts: (string | null)[] } => {
@@ -182,6 +217,7 @@ const LoaderHelper = {
   loadAllAssets: loadAllAssets,
   loadAllAssetsByUrl: loadAllAssetsByUrl,
   loadAllAssetsForIframe: loadAllAssetsForIframe,
+  loadAllAssetsForIframeAndUrl: loadAllAssetsForIframeAndUrl,
   unloadTag: unloadTag
 }
 
