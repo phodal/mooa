@@ -83,15 +83,27 @@ class Mooa {
       throw new Error(`The activeWhen argument must be a function`)
     }
 
+    let appConfig = {
+      name: appName,
+      scripts: [],
+      selector: `app-${appName}`,
+      baseScriptUrl: link,
+      styles: [],
+      parentElement: '',
+      prefix: ''
+    }
+
+    if (this.option.parentElement) {
+      appConfig.parentElement = this.option.parentElement
+    }
+
+    if (this.option.urlPrefix) {
+      appConfig.prefix = this.option.urlPrefix + '/' + appConfig.prefix
+    }
+
     const appOpt = {
       name: appName,
-      appConfig: {
-        name: appName,
-        scripts: [],
-        selector: `app-${appName}`,
-        baseScriptUrl: link,
-        styles: []
-      },
+      appConfig: appConfig,
       activeWhen,
       mode: 'link',
       status: StatusEnum.NOT_LOADED,
