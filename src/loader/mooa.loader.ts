@@ -57,7 +57,7 @@ function bootstrap(app: MooaApp) {
   }
 }
 
-function load(app: MooaApp) {
+function load() {
   return Promise.resolve()
 }
 
@@ -107,7 +107,7 @@ function unmount(app: MooaApp, props: any) {
 }
 
 function unload(app: MooaApp) {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     app.appConfig.scripts
       .concat(app.appConfig.styles)
       .reduce((prev: Promise<any>, scriptName: string) => {

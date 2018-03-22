@@ -50,7 +50,7 @@ export function navigateAppByName(opts: any): void {
   if (navigateToApp) {
     let prefix = navigateToApp.appConfig.prefix
     history.pushState(null, '', prefix + '/' + opts.router)
-    window.mooa.instance.reRouter()
+    return window.mooa.instance.reRouter()
   }
 }
 
