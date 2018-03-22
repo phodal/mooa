@@ -35,8 +35,6 @@ class Mooa {
     this.option = option
   }
 
-  loadAppliation(url: string) {}
-
   registerApplication(
     appName: string,
     appConfig?: any,
