@@ -2,7 +2,6 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NavigationEnd, Router} from '@angular/router';
 import {default as Mooa, mooaRouter} from '../../../src/mooa';
-import * as http from "http";
 
 declare const window: any;
 

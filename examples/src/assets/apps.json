@@ -15,7 +15,7 @@
   },
   {
     "name": "help",
-    "selector": "help-root",
+    "selector": "app-help",
     "baseScriptUrl": "/assets/help",
     "styles": [
       "styles.bundle.css"
