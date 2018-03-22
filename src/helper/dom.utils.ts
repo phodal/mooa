@@ -1,5 +1,5 @@
-import { MooaApp } from '../../dist/types/model/IAppOption'
 import { hashCode } from './app.helper'
+import { MooaApp } from '../model/IAppOption'
 
 declare const Element: any
 declare const document: Document
