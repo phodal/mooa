@@ -51,6 +51,9 @@ export class AppComponent implements OnInit {
 
   loadingStart(event) {
     const parentElement = this.myElement.nativeElement.querySelector('app-home');
+    if (!parentElement) {
+      return;
+    }
     parentElement.innerHTML = `
 <div class="loading">
   <p>loading</p>
