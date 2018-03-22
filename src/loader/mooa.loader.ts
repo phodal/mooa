@@ -16,7 +16,6 @@ import {
   removeApplicationContainer,
   removeApplicationIframeContainer
 } from '../helper/dom.utils'
-import { hashCode } from '../helper/app.helper'
 
 declare const window: any
 declare const document: any

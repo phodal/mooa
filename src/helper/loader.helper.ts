@@ -6,7 +6,7 @@ import { generateIFrameID } from './dom.utils'
 function loadScriptPromise(src: string, iframeEl: any) {
   return new Promise((resolve, reject) => {
     const script = assetsLoaderHelper.createScriptTag(src)
-    script.onload = function() {
+    script.onload = () => {
       resolve()
     }
     script.onerror = err => {
@@ -32,7 +32,7 @@ const loadLinkTag = (url: string, iframeEl?: any) => {
   return () => {
     return new Promise((resolve, reject) => {
       const link = assetsLoaderHelper.createLinkTag(url)
-      link.onload = function() {
+      link.onload = () => {
         resolve()
       }
       link.onerror = err => {
@@ -162,7 +162,7 @@ const transformOptsWithAssets = (opts: any): Promise<null> => {
   const url = `${opts.baseScriptUrl}/index.html`
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest()
-    req.onreadystatechange = event => {
+    req.onreadystatechange = () => {
       if (req.readyState === XMLHttpRequest.DONE) {
         if (req.status >= 200 && req.status < 400) {
           const res = xmlToAssets(req.responseText)
