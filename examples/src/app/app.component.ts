@@ -17,7 +17,6 @@ declare const window: any;
 export class AppComponent implements OnInit {
   private mooa: Mooa;
   private myElement: ElementRef;
-  private iFrameUrl: any;
   private http: HttpClient;
 
   constructor(private httpClient: HttpClient, private router: Router, myElement: ElementRef) {
