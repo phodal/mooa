@@ -1,3 +1,5 @@
+import { hashCode } from '../../helper/app.helper'
+
 const AppHelper = require('../../helper/app.helper')
 
 test('should be able to find app name', () => {
@@ -24,4 +26,14 @@ test('should be able to call console log', () => {
 
   AppHelper.mooaLog('hello', 'world')
   // expect(global.console.log).toHaveBeenCalled()
+})
+
+test('should get hash code', () => {
+  let hash = hashCode('hello, world')
+  expect(hash).toBe('543394210')
+})
+
+test('should not get hash code', () => {
+  let hash = hashCode('')
+  expect(hash).toBe('0')
 })

@@ -1,10 +1,5 @@
 const assetsLoaderHelper = require('../../helper/assets.helper').default
 
-test('should get hash code', () => {
-  let hash = assetsLoaderHelper.hashCode('hello, world')
-  expect(hash).toBe('543394210')
-})
-
 test('should be able create script tag', () => {
   let scriptTag = assetsLoaderHelper.createScriptTag('/test.js')
   let tmp = document.createElement('div')
