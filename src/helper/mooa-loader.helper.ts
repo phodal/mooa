@@ -101,16 +101,23 @@ const xmlToAssets = (
   xml: string
 ): { styles: (string | null)[]; scripts: (string | null)[] } => {
   let dom = document.createElement('html')
+  let urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
   dom.innerHTML = xml
   const linksEls = dom.querySelectorAll('link[rel="stylesheet"]')
   const scriptsEls = dom.querySelectorAll('script[type="text/javascript"]')
   return {
-    styles: Array.from(linksEls).map(el => el.getAttribute('href')),
+    styles: Array.from(linksEls)
+      .map(el => el.getAttribute('href'))
+      .filter(src => {
+        if (src) {
+          return !urlRegex.test(src)
+        }
+      }),
     scripts: Array.from(scriptsEls)
       .map(el => el.getAttribute('src'))
       .filter(src => {
         if (src) {
-          return !src.match(/zone\.js/)
+          return !(/zone\.js/.test(src) && urlRegex.test(src))
         }
       })
   }
