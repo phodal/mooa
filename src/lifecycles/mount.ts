@@ -1,4 +1,4 @@
-import { StatusEnum } from '../model/constants'
+import { MOOA_EVENT, StatusEnum } from '../model/constants'
 import { reasonableTime } from '../helper/timeouts'
 import { customEvent, mooaLog } from '../helper/app.helper'
 
@@ -9,7 +9,7 @@ export async function toMountPromise(app: any) {
 
   try {
     mooaLog('Mounting application', app.name, app.status)
-    customEvent('mooa.mounting', { app: app })
+    customEvent(MOOA_EVENT.MOUNTING, { app: app })
     await reasonableTime(
       app.mount(),
       `Mounting application '${app.name}'`,

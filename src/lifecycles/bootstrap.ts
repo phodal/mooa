@@ -1,5 +1,5 @@
 import { reasonableTime } from '../helper/timeouts'
-import { StatusEnum } from '../model/constants'
+import { MOOA_EVENT, StatusEnum } from '../model/constants'
 import { customEvent, mooaLog } from '../helper/app.helper'
 
 export async function toBootstrapPromise(app: any) {
@@ -11,7 +11,7 @@ export async function toBootstrapPromise(app: any) {
 
   try {
     mooaLog('Bootstrapping application', app.name, app.status)
-    customEvent('mooa.bootstrapping', { app: app })
+    customEvent(MOOA_EVENT.BOOTSTRAPPING, { app: app })
     await reasonableTime(
       app.bootstrap(),
       `Bootstrapping app '${app.name}'`,

@@ -13,5 +13,12 @@ export enum StatusEnum {
 
 export enum MOOA_EVENT {
   LOADING = 'mooa.loading',
-  ROUTING_NAVIGATE = 'mooa.routing.navigate'
+  BOOTSTRAPPING = 'mooa.bootstrapping',
+  MOUNTING = 'mooa.mounting',
+  UNLOADING = 'mooa.unloading',
+  UNMOUNTING = 'mooa.unmounting',
+  ROUTING_NAVIGATE = 'mooa.routing.navigate',
+  ROUTING_BEFORE = 'mooa.routing.before',
+  CHILD_MOUNT = 'mooa.child.mount',
+  CHILD_UNMOUNT = 'mooa.child.unmount'
 }

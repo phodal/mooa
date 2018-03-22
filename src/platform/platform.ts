@@ -1,4 +1,5 @@
 import { customEvent } from '../helper/app.helper'
+import { MOOA_EVENT } from '../model/constants'
 
 declare const window: any
 window.mooa = window.mooa || {}
@@ -12,7 +13,7 @@ export class MooaPlatform {
     this.router = router
     return new Promise((resolve, reject) => {
       if (this.isSingleSpaApp()) {
-        customEvent('mooa.child.mount', { name: this.name })
+        customEvent(MOOA_EVENT.CHILD_MOUNT, { name: this.name })
         window.mooa[this.name] = window.mooa[this.name] || {}
         window.mooa[this.name].mount = (props: any) => {
           resolve({ props, attachUnmount: this.unmount.bind(this) })
@@ -25,7 +26,7 @@ export class MooaPlatform {
 
   unmount(module: any) {
     if (this.isSingleSpaApp()) {
-      customEvent('mooa.child.unmount', { name: this.name })
+      customEvent(MOOA_EVENT.CHILD_UNMOUNT, { name: this.name })
       window.mooa[this.name].unmount = () => {
         if (module) {
           module.destroy()
@@ -54,7 +55,7 @@ export class MooaPlatform {
   }
 
   navigateTo(opts: any) {
-    customEvent('mooa.routing.navigate', opts)
+    customEvent(MOOA_EVENT.ROUTING_NAVIGATE, opts)
   }
 
   handleRouterUpdate(router: any, appName: string) {
