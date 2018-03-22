@@ -110,7 +110,7 @@ class Mooa {
       name: appName,
       appConfig: appConfig,
       activeWhen,
-      mode: 'link',
+      sourceType: 'link',
       status: StatusEnum.NOT_LOADED,
       customProps: customProps
     }

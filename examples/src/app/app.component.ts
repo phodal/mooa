@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  loadingStart(event) {
+  loadingStart() {
     const parentElement = this.myElement.nativeElement.querySelector('app-home');
     if (!parentElement) {
       return;

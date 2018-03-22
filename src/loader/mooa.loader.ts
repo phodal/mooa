@@ -34,7 +34,7 @@ function bootstrap(app: MooaApp) {
     return new Promise((resolve, reject) => {
       LoaderHelper.loadAllAssetsForIframe(app.appConfig).then(resolve, reject)
     })
-  } else if (app.mode && app.mode === 'link') {
+  } else if (app.sourceType && app.sourceType === 'link') {
     createApplicationContainer(app)
 
     return new Promise((resolve, reject) => {
