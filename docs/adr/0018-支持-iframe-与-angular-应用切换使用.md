@@ -1,4 +1,4 @@
-# 18. 支持 iframe 与 Angular 应用切换使用
+# 18. 支持 iframe 与 Angular 应用同时使用
 
 日期: 2018-03-23
 
