@@ -2,3 +2,14 @@ examples/
 apps/
 docs/
 e2e/
+test/
+coverage/
+deploy/
+tools/
+rollup.config.ts
+tsconfig.json
+tslint.json
+yarn.lock
+.travis.yml
+.editorconfig
+.adr.json
