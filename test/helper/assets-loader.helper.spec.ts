@@ -1,4 +1,4 @@
-const assetsLoaderHelper = require('../../helper/assets.helper').default
+const assetsLoaderHelper = require('../../src/helper/assets.helper').default
 
 test('should be able create script tag', () => {
   let scriptTag = assetsLoaderHelper.createScriptTag('/test.js')

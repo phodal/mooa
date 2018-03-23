@@ -1,5 +1,5 @@
-import StatusHelper from '../../helper/status.helper'
-import { StatusEnum } from '../../model/constants'
+import StatusHelper from '../../src/helper/status.helper'
+import { StatusEnum } from '../../src/model/constants'
 
 test('should be able to find app name', () => {
   let activeApps = StatusHelper.getActiveApps([

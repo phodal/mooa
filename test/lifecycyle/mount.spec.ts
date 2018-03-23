@@ -1,6 +1,6 @@
-import { StatusEnum } from '../../model/constants'
-import { ensureValidAppTimeouts } from '../../helper/timeouts'
-import { toMountPromise } from '../../lifecycles/mount'
+import { StatusEnum } from '../../src/model/constants'
+import { ensureValidAppTimeouts } from '../../src/helper/timeouts'
+import { toMountPromise } from '../../src/lifecycles/mount'
 
 test('load mooa success', () => {
   let mountFlag = false

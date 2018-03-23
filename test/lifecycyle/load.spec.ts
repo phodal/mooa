@@ -1,7 +1,7 @@
-import { StatusEnum } from '../../model/constants'
-import { toBootstrapPromise } from '../../lifecycles/bootstrap'
-import { ensureValidAppTimeouts } from '../../helper/timeouts'
-import { toLoadPromise } from '../../lifecycles/load'
+import { StatusEnum } from '../../src/model/constants'
+import { toBootstrapPromise } from '../../src/lifecycles/bootstrap'
+import { ensureValidAppTimeouts } from '../../src/helper/timeouts'
+import { toLoadPromise } from '../../src/lifecycles/load'
 
 test('load mooa success', () => {
   toLoadPromise({

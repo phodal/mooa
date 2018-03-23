@@ -1,6 +1,6 @@
-import { hashCode } from '../../helper/app.helper'
+import { hashCode } from '../../src/helper/app.helper'
 
-const AppHelper = require('../../helper/app.helper')
+const AppHelper = require('../../src/helper/app.helper')
 
 test('should be able to find app name', () => {
   let apps = [{ name: 'app1' }, { name: 'help' }]

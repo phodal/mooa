@@ -1,7 +1,7 @@
-import { StatusEnum } from '../../model/constants'
-import { ensureValidAppTimeouts } from '../../helper/timeouts'
-import { toMountPromise } from '../../lifecycles/mount'
-import { addAppToUnload, toUnloadPromise } from '../../lifecycles/unload'
+import { StatusEnum } from '../../src/model/constants'
+import { ensureValidAppTimeouts } from '../../src/helper/timeouts'
+import { toMountPromise } from '../../src/lifecycles/mount'
+import { addAppToUnload, toUnloadPromise } from '../../src/lifecycles/unload'
 
 test('unload mooa success', () => {
   // let unloadFlag = false

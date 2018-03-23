@@ -1,4 +1,4 @@
-import { generateIFrameID } from '../../helper/dom.utils'
+import { generateIFrameID } from '../../src/helper/dom.utils'
 
 test('should be able generate iframe id', () => {
   let iframeID = generateIFrameID('app')
