@@ -7,7 +7,7 @@ declare const document: Document
 
 export function createApplicationContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
-  let el = document.querySelector(opts.selector)
+  let el: any = document.querySelector(opts.selector)
   if (el) {
     return el
   }
@@ -31,6 +31,7 @@ export function createApplicationContainer(mooaApp: MooaApp) {
 export function removeApplicationContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
   let el = document.querySelector(opts.selector)
+
   if (el && el !== null) {
     if (!('remove' in Element.prototype)) {
       Element.prototype.remove = function() {
@@ -38,15 +39,15 @@ export function removeApplicationContainer(mooaApp: MooaApp) {
           el.parentNode.removeChild(el)
         }
       }
-    } else {
-      el.remove()
     }
+
+    return el.remove()
   }
 }
 
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
-  let iframeElement = document.querySelector(opts.selector)
+  let iframeElement: any = document.querySelector(opts.selector)
   if (iframeElement) {
     return iframeElement
   }
@@ -96,9 +97,9 @@ export function removeApplicationIframeContainer(mooaApp: MooaApp) {
           iframeEl.parentNode.removeChild(iframeEl)
         }
       }
-    } else {
-      iframeEl.remove()
     }
+
+    return iframeEl.remove()
   }
 }
 
