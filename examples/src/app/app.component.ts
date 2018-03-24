@@ -79,7 +79,11 @@ export class AppComponent implements OnInit {
     this.http.get<any[]>('/assets/apps.json')
       .subscribe(data => {
           data.map((config) => {
-            that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
+            if (config.sourceType) {
+              that.mooa.registerApplicationByLink(config.name, config.link, mooaRouter.matchRoute(config.name));
+            } else {
+              that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
+            }
           });
           this.mooa.start();
         },

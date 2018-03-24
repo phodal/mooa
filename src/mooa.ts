@@ -71,6 +71,10 @@ class Mooa {
       appOpt.mode = this.option.mode
     }
 
+    if (appConfig && appConfig.mode) {
+      appOpt.mode = appConfig.mode
+    }
+
     if (this.option.switchMode) {
       appOpt.switchMode = this.option.switchMode
     }

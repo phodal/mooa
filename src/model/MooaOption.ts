@@ -1,5 +1,5 @@
 export interface MooaOption {
-  mode?: 'link' | 'iframe'
+  mode?: string
   debug?: boolean
   switchMode?: string
   parentElement?: string

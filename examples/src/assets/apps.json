@@ -1,17 +1,8 @@
 [
   {
     "name": "app1",
-    "selector": "app-app1",
-    "baseScriptUrl": "/assets/app1",
-    "styles": [
-      "styles.bundle.css"
-    ],
-    "prefix": "app1",
-    "scripts": [
-      "inline.bundle.js",
-      "polyfills.bundle.js",
-      "main.bundle.js"
-    ]
+    "link": "/assets/app1",
+    "sourceType": "link"
   },
   {
     "name": "help",
