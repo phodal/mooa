@@ -1,4 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Element} from "../../../../src/helper/dom.utils";
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomeComponent {
   loadingEnd() {
     const loadingSelector = this.childElement.nativeElement.querySelector('.loading');
     if (loadingSelector) {
-      loadingSelector.remove();
+      loadingSelector.style.display = 'none';
     }
   }
 
