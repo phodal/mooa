@@ -12,6 +12,7 @@ export interface MooaApp extends IAppOption {
   appConfig: IAppOption
   sourceType?: string
   mode: string
+  switchMode: string
   status: string
   bootstrap: any
   load: any

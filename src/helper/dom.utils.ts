@@ -9,6 +9,7 @@ export function createApplicationContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
   let el: any = document.querySelector(opts.selector)
   if (el) {
+    el.style.display = 'block'
     return el
   }
 
@@ -28,27 +29,38 @@ export function createApplicationContainer(mooaApp: MooaApp) {
   return el
 }
 
-export function removeApplicationContainer(mooaApp: MooaApp) {
-  const opts = mooaApp.appConfig
-  let el = document.querySelector(opts.selector)
+export function removeApplicationContainer(app: MooaApp) {
+  const opts = app.appConfig
+  let el: any = document.querySelector(opts.selector)
+  if (!el) {
+    return
+  }
 
-  if (el && el !== null) {
-    if (!('remove' in Element.prototype)) {
-      Element.prototype.remove = function() {
-        if (el && el.parentNode) {
-          el.parentNode.removeChild(el)
-        }
+  if (app.switchMode === 'coexist') {
+    el.style.display = 'none'
+    return
+  }
+
+  if (!('remove' in Element.prototype)) {
+    Element.prototype.remove = function() {
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el)
       }
     }
-
-    return el.remove()
   }
+
+  return el.remove()
+}
+
+export function isIframeElementExist(mooaApp: MooaApp) {
+  return document.getElementById(generateIFrameID(mooaApp.appConfig.name))
 }
 
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
-  let iframeElement: any = document.querySelector(opts.selector)
+  let iframeElement: any = isIframeElementExist(mooaApp)
   if (iframeElement) {
+    iframeElement.style.display = 'block'
     return iframeElement
   }
 
@@ -87,20 +99,27 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   })
 }
 
-export function removeApplicationIframeContainer(mooaApp: MooaApp) {
-  const iframeId = generateIFrameID(mooaApp.appConfig.name)
+export function removeApplicationIframeContainer(app: MooaApp) {
+  const iframeId = generateIFrameID(app.appConfig.name)
   let iframeEl = document.getElementById(iframeId)
-  if (iframeEl) {
-    if (!('remove' in Element.prototype)) {
-      Element.prototype.remove = function() {
-        if (iframeEl && iframeEl.parentNode) {
-          iframeEl.parentNode.removeChild(iframeEl)
-        }
+  if (!iframeEl) {
+    return
+  }
+
+  if (app.switchMode === 'coexist') {
+    iframeEl.style.display = 'none'
+    return
+  }
+
+  if (!('remove' in Element.prototype)) {
+    Element.prototype.remove = function() {
+      if (iframeEl && iframeEl.parentNode) {
+        iframeEl.parentNode.removeChild(iframeEl)
       }
     }
-
-    return iframeEl.remove()
   }
+
+  return iframeEl.remove()
 }
 
 export function generateIFrameID(name: string) {

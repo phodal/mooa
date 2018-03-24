@@ -10,8 +10,8 @@ declare const window: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   host: {
-    '(window:mooa.bootstrapping)': 'loadingStart($event)',
-    '(window:mooa.mounting)': 'loadingEnd($event)'
+    // '(window:mooa.bootstrapping)': 'loadingStart($event)',
+    // '(window:mooa.mounting)': 'loadingEnd($event)'
   }
 })
 export class AppComponent implements OnInit {
@@ -23,9 +23,11 @@ export class AppComponent implements OnInit {
     this.http = httpClient;
     this.myElement = myElement;
     this.mooa = new Mooa({
+      mode: 'iframe',
       debug: false,
       parentElement: 'app-home',
-      urlPrefix: 'app'
+      urlPrefix: 'app',
+      switchMode: 'coexist'
     });
   }
 

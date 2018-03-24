@@ -13,6 +13,7 @@ import {
   createApplicationContainer,
   createApplicationIframeContainer,
   generateIFrameID,
+  isIframeElementExist,
   removeApplicationContainer,
   removeApplicationIframeContainer
 } from '../helper/dom.utils'
@@ -28,6 +29,14 @@ function bootstrap(app: MooaApp) {
   window.mooa.name = app.name
 
   if (app.mode && app.mode === 'iframe') {
+    let iframeElementExist = isIframeElementExist(app)
+    if (app.switchMode === 'coexist' && iframeElementExist) {
+      iframeElementExist.style.display = 'block'
+      return new Promise((resolve, reject) => {
+        resolve()
+      })
+    }
+
     createApplicationIframeContainer(app)
 
     if (app.sourceType === 'link') {

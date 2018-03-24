@@ -62,12 +62,17 @@ class Mooa {
       appConfig,
       activeWhen,
       mode: '',
+      switchMode: '',
       status: StatusEnum.NOT_LOADED,
       customProps: customProps
     }
 
     if (this.option.mode) {
       appOpt.mode = this.option.mode
+    }
+
+    if (this.option.switchMode) {
+      appOpt.switchMode = this.option.switchMode
     }
 
     apps.push(appOpt)
@@ -112,12 +117,17 @@ class Mooa {
       activeWhen,
       sourceType: 'link',
       mode: '',
+      switchMode: '',
       status: StatusEnum.NOT_LOADED,
       customProps: customProps
     }
 
     if (this.option.mode) {
       appOpt.mode = this.option.mode
+    }
+
+    if (this.option.switchMode) {
+      appOpt.switchMode = this.option.switchMode
     }
 
     apps.push(appOpt)
