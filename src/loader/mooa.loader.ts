@@ -100,7 +100,9 @@ function unmount(app: MooaApp, props: any) {
     }
 
     if (window.mooa[app.name]) {
-      window.mooa[app.name].unmount()
+      if (app.switchMode !== 'coexist') {
+        window.mooa[app.name].unmount()
+      }
       removeApplicationContainer(app)
       if (getAppNames().indexOf(app.name) !== -1) {
         unloadApplication(app.name, { waitForUnmount: true })
