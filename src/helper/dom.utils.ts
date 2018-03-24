@@ -8,9 +8,11 @@ declare const document: Document
 export function createApplicationContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
   let el: any = document.querySelector(opts.selector)
-  if (el) {
-    el.style.display = 'block'
-    return el
+  if (mooaApp.switchMode === 'coexist') {
+    if (el) {
+      el.style.display = 'block'
+      return el
+    }
   }
 
   el = document.createElement(opts.selector)
@@ -58,10 +60,12 @@ export function isIframeElementExist(mooaApp: MooaApp) {
 
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
-  let iframeElement: any = isIframeElementExist(mooaApp)
-  if (iframeElement) {
-    iframeElement.style.display = 'block'
-    return iframeElement
+  if (mooaApp.switchMode === 'coexist') {
+    let iframeElement: any = isIframeElementExist(mooaApp)
+    if (iframeElement) {
+      iframeElement.style.display = 'block'
+      return iframeElement
+    }
   }
 
   const iframe: any = document.createElement('iframe')
