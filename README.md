@@ -191,8 +191,67 @@ Examples:
 ]
 ```
 
+Mooa Config
+---
+
+```typescript
+this.mooa = new Mooa({
+  mode: 'iframe',
+  debug: false,
+  parentElement: 'app-home',
+  urlPrefix: 'app',
+  switchMode: 'coexist'
+}) 
+```
+
+### mode: 'iframe'
+
+use iframe as basic
+
+```html
+<app-home _nghost-c2="">
+	<app-app1 _nghost-c0="" ng-version="5.2.8" style="display: none;"><nav _ngcontent-c0="" class="navbar"></app-app1>
+	<iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
+</app-home>
+```
+
+### switchMode: 'coexist'
+
+hidden application when inactive
+
+```html
+<app-home _nghost-c2="">
+	<app-app1 _nghost-c0="" ng-version="5.2.8" style="display: none;"><nav _ngcontent-c0="" class="navbar"></app-app1>
+	<iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
+</app-home>
+```
+
 API
 ---
+
+### registerApplicationByLink
+
+exmples:
+
+```typescript
+mooa.registerApplicationByLink('help', '/assets/help', mooaRouter.matchRoute('help'));
+```
+
+### registerApplication
+
+```typescript
+mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
+```
+
+hybrid
+
+```typescript
+if (config.sourceType) {
+  that.mooa.registerApplicationByLink(config.name, config.link, mooaRouter.matchRoute(config.name));
+} else {
+  that.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
+}
+```
 
 ### navigateTo Custom App
 
