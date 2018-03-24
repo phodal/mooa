@@ -142,7 +142,7 @@ export class AppModule {
 
 5. Add for handle URL Change in ``app.component.ts`` 
 
-```
+```typescript
 constructor(private router: Router) {
   mooaPlatform.handleRouterUpdate(this.router, 'app1');
 }
@@ -152,7 +152,7 @@ constructor(private router: Router) {
 
 1. install global cli
 
-```
+```bash
 npm install -g mooa
 ```
 
@@ -167,7 +167,7 @@ http://mooa.phodal.com/assets/help
 
 3. Generate Config File
 
-```
+```bash
 mooa -g apps.txt
 ```
 
@@ -207,23 +207,22 @@ this.mooa = new Mooa({
 
 ### mode: 'iframe'
 
-use iframe as basic
+use iframe as application container:
 
 ```html
 <app-home _nghost-c2="">
-	<app-app1 _nghost-c0="" ng-version="5.2.8" style="display: none;"><nav _ngcontent-c0="" class="navbar"></app-app1>
-	<iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
+  <iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
 </app-home>
 ```
 
 ### switchMode: 'coexist'
 
-hidden application when inactive
+hidden application when inactive:
 
 ```html
 <app-home _nghost-c2="">
-	<app-app1 _nghost-c0="" ng-version="5.2.8" style="display: none;"><nav _ngcontent-c0="" class="navbar"></app-app1>
-	<iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
+  <app-app1 _nghost-c0="" ng-version="5.2.8" style="display: none;"><nav _ngcontent-c0="" class="navbar"></app-app1>
+  <iframe frameborder="" width="100%" height="100%" src="http://localhost:4200/app/help/homeassets/iframe.html" id="help_206547"></iframe>
 </app-home>
 ```
 
