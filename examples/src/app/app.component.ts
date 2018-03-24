@@ -8,11 +8,7 @@ declare const window: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  host: {
-    // '(window:mooa.bootstrapping)': 'loadingStart($event)',
-    // '(window:mooa.mounting)': 'loadingEnd($event)'
-  }
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   private mooa: Mooa;
@@ -48,29 +44,6 @@ export class AppComponent implements OnInit {
         that.mooa.reRouter(event);
       }
     });
-  }
-
-  loadingStart() {
-    const parentElement = this.myElement.nativeElement.querySelector('app-home');
-    if (!parentElement) {
-      return;
-    }
-    parentElement.innerHTML = `
-<div class="loading">
-  <p>loading</p>
-  <div class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
-</div>`;
-  }
-
-  loadingEnd() {
-    const loadingSelector = this.myElement.nativeElement.querySelector('.loading');
-    if (loadingSelector) {
-      loadingSelector.remove();
-    }
   }
 
   private mooaWithConfig () {
