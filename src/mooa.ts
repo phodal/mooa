@@ -212,11 +212,11 @@ class Mooa {
       if (iframeEl && iframeEl.contentWindow) {
         iframeEl.contentWindow.mooa.option = window.mooa.option
         iframeEl.contentWindow.dispatchEvent(
-          new CustomEvent('mooa.routing.change', { detail: eventArgs })
+          new CustomEvent(MOOA_EVENT.ROUTING_CHANGE, { detail: eventArgs })
         )
       }
     } else {
-      customEvent('mooa.routing.change', eventArgs)
+      customEvent(MOOA_EVENT.ROUTING_CHANGE, eventArgs)
     }
   }
 }

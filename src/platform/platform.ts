@@ -59,7 +59,7 @@ export class MooaPlatform {
   }
 
   handleRouterUpdate(router: any, appName: string) {
-    window.addEventListener('mooa.routing.change', (event: CustomEvent) => {
+    window.addEventListener(MOOA_EVENT.ROUTING_CHANGE, (event: CustomEvent) => {
       if (event.detail.app.name === appName) {
         let urlPrefix = 'app'
         if (urlPrefix) {
