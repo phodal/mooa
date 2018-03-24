@@ -39,7 +39,7 @@ export function customEvent(eventName: any, eventArgs?: any) {
 export function navigateAppByName(opts: any): void {
   let navigateToApp: any
   window.apps.map((app: any) => {
-    app.status = StatusEnum.NOT_LOADED
+    app.status = StatusEnum.MOUNTED
     if (app.name === opts.appName) {
       app.status = StatusEnum.NOT_LOADED
       navigateToApp = app
