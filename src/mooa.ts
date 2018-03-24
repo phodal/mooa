@@ -112,7 +112,7 @@ class Mooa {
     }
 
     if (this.option.urlPrefix) {
-      appConfig.prefix = this.option.urlPrefix + '/' + appConfig.prefix
+      appConfig.prefix = this.option.urlPrefix + '/' + appConfig.name
     }
 
     const appOpt = {
