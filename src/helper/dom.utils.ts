@@ -58,6 +58,10 @@ export function isIframeElementExist(mooaApp: MooaApp) {
   return document.getElementById(generateIFrameID(mooaApp.appConfig.name))
 }
 
+export function isElementExist(appName: string): HTMLElement | null {
+  return document.querySelector(`app-${appName}`)
+}
+
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
   if (mooaApp.switchMode === 'coexist') {

@@ -13,6 +13,7 @@ import {
   createApplicationContainer,
   createApplicationIframeContainer,
   generateIFrameID,
+  isElementExist,
   isIframeElementExist,
   removeApplicationContainer,
   removeApplicationIframeContainer
@@ -52,12 +53,28 @@ function bootstrap(app: MooaApp) {
       })
     }
   } else if (app.sourceType && app.sourceType === 'link') {
+    let hasElement = isElementExist(app.appConfig.name)
+    if (app.switchMode === 'coexist' && hasElement) {
+      hasElement.style.display = 'block'
+      return new Promise((resolve, reject) => {
+        resolve()
+      })
+    }
+
     createApplicationContainer(app)
 
     return new Promise((resolve, reject) => {
       LoaderHelper.loadAllAssetsByUrl(app.appConfig).then(resolve, reject)
     })
   } else {
+    let hasElement = isElementExist(app.appConfig.name)
+    if (app.switchMode === 'coexist' && hasElement) {
+      hasElement.style.display = 'block'
+      return new Promise((resolve, reject) => {
+        resolve()
+      })
+    }
+
     createApplicationContainer(app)
 
     return new Promise((resolve, reject) => {
