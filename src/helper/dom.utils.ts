@@ -58,7 +58,7 @@ export function isIframeElementExist(mooaApp: MooaApp) {
   return document.getElementById(generateIFrameID(mooaApp.appConfig.name))
 }
 
-export function isElementExist(appName: string): HTMLElement | null {
+export function isElementExist(appName: string): any {
   return document.querySelector(`app-${appName}`)
 }
 
