@@ -28,6 +28,10 @@ import {GraphComponent} from './graph/graph.component';
       {
         path: 'app/:appName/:route',
         component: HomeComponent
+      },
+      {
+        path: 'app/:appName',
+        component: HomeComponent
       }
     ])
   ],
