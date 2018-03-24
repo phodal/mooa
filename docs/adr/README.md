@@ -20,3 +20,4 @@
 * [18. 支持-iframe-与-angular-应用切换使用](0018-支持-iframe-与-angular-应用切换使用.md)
 * [19. 支持在配置文件中使用-link-和配置根据链接来区别](0019-支持在配置文件中使用-link-和配置根据链接来区别.md)
 * [20. 使用-cli-来将应用设置成-mooa-应用](0020-使用-cli-来将应用设置成-mooa-应用.md)
+* [21. 编写-mooa-client-来支持其它非-angular-应用](0021-编写-mooa-client-来支持其它非-angular-应用.md)
