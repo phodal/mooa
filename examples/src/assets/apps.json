@@ -16,6 +16,7 @@
       "inline.bundle.js",
       "polyfills.bundle.js",
       "main.bundle.js"
-    ]
+    ],
+    "mode": "iframe"
   }
 ]
