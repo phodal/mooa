@@ -46,6 +46,11 @@ export function removeApplicationContainer(mooaApp: MooaApp) {
 
 export function createApplicationIframeContainer(mooaApp: MooaApp) {
   const opts = mooaApp.appConfig
+  let iframeElement = document.querySelector(opts.selector)
+  if (iframeElement) {
+    return iframeElement
+  }
+
   const iframe: any = document.createElement('iframe')
   iframe.frameBorder = ''
   iframe.width = '100%'
