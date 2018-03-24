@@ -116,6 +116,12 @@ function unmount(app: MooaApp, props: any) {
 }
 
 function unload(app: MooaApp) {
+  if (app.switchMode === 'coexist') {
+    return new Promise(resolve => {
+      resolve()
+    })
+  }
+
   return new Promise(resolve => {
     app.appConfig.scripts
       .concat(app.appConfig.styles)
