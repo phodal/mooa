@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GraphComponent implements OnInit {
   radarData = {
     title: {
-      text: '基础雷达图'
+      text: 'Radar Chart'
     },
     tooltip: {},
     legend: {
