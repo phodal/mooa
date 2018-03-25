@@ -57,6 +57,10 @@ class Mooa {
       appConfig.prefix = this.option.urlPrefix + '/' + appConfig.prefix
     }
 
+    if (this.option.preload) {
+      appConfig.preload = true
+    }
+
     const appOpt = {
       name: appName,
       appConfig,
@@ -104,7 +108,12 @@ class Mooa {
       baseScriptUrl: link,
       styles: [],
       parentElement: '',
-      prefix: ''
+      prefix: '',
+      preload: false
+    }
+
+    if (this.option.preload) {
+      appConfig.preload = true
     }
 
     if (this.option.parentElement) {
