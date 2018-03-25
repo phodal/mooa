@@ -22,3 +22,4 @@
 * [20. 使用-cli-来将应用设置成-mooa-应用](0020-使用-cli-来将应用设置成-mooa-应用.md)
 * [21. 编写-mooa-client-来支持其它非-angular-应用](0021-编写-mooa-client-来支持其它非-angular-应用.md)
 * [22. 提供一个预加载的-api来加载对应的-dom](0022-提供一个预加载的-api来加载对应的-dom.md)
+* [23. 支持-zone.min.js-可配置来兼容应用](0023-支持-zone.min.js-可配置来兼容应用.md)
