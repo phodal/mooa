@@ -23,3 +23,4 @@
 * [21. 编写-mooa-client-来支持其它非-angular-应用](0021-编写-mooa-client-来支持其它非-angular-应用.md)
 * [22. 提供一个预加载的-api来加载对应的-dom](0022-提供一个预加载的-api来加载对应的-dom.md)
 * [23. 支持-zone.min.js-可配置来兼容应用](0023-支持-zone.min.js-可配置来兼容应用.md)
+* [24. 通过-index.html-中的标签来匹配根节点元素](0024-通过-index.html-中的标签来匹配根节点元素.md)
