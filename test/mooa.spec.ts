@@ -80,7 +80,6 @@ test('new mooa by with options', () => {
 
   let currentApp = (global as any).apps[(global as any).apps.length - 1]
 
-  console.log(currentApp)
   expect(currentApp.name).toEqual('help')
   expect(currentApp.mode).toEqual('iframe')
   expect(currentApp.switchMode).toEqual('coexist')
