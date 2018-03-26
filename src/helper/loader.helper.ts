@@ -129,7 +129,6 @@ function loadAllAssetsForIframeAndUrl(opts: any) {
         const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
         promiseArray.push(zonejsPromise)
       }
-      console.log(promiseArray)
 
       Promise.all(promiseArray).then(resolve, reject)
     })

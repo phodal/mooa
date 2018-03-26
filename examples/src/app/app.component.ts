@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       urlPrefix: 'app',
       switchMode: 'coexist',
       preload: true,
-      includeZone: false
+      includeZone: true
     });
   }
 
