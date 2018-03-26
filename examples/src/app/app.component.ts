@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.mooaWithLink();
-    this.mooaWithConfig();
+    this.mooaWithLink();
+    // this.mooaWithConfig();
   }
 
   private mooaWithLink () {

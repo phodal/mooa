@@ -46,8 +46,10 @@ class Mooa {
       appConfig.preload = true
     }
 
-    if (this.option.includeZone) {
-      appConfig.includeZone = true
+    appConfig.includeZone = true
+
+    if (this.option.includeZone === false) {
+      appConfig.includeZone = false
     }
 
     const appOpt = {
@@ -114,15 +116,15 @@ class Mooa {
       parentElement: '',
       prefix: '',
       preload: false,
-      includeZone: false
+      includeZone: true
     }
 
     if (this.option.preload) {
       appConfig.preload = true
     }
 
-    if (this.option.includeZone) {
-      appConfig.includeZone = true
+    if (this.option.includeZone === false) {
+      appConfig.includeZone = false
     }
 
     if (this.option.parentElement) {
