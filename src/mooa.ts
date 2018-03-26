@@ -20,6 +20,21 @@ class Mooa {
   started = false
   private option: MooaOption
 
+  constructor(option: MooaOption) {
+    window.mooa.instance = this
+
+    if (option) {
+      window.mooa.option = option
+      window.mooa.debug = option.debug
+    }
+
+    if (localStorage.getItem('mooa.debug') === 'true') {
+      window.mooa.debug = true
+    }
+
+    this.option = option
+  }
+
   registerApplication(
     appName: string,
     appConfig?: any,
@@ -76,21 +91,6 @@ class Mooa {
 
     apps.push(appOpt)
     window.apps = apps
-  }
-
-  constructor(option: MooaOption) {
-    window.mooa.instance = this
-
-    if (option) {
-      window.mooa.option = option
-      window.mooa.debug = option.debug
-    }
-
-    if (localStorage.getItem('mooa.debug') === 'true') {
-      window.mooa.debug = true
-    }
-
-    this.option = option
   }
 
   registerApplicationByLink(
