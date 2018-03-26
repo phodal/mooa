@@ -82,18 +82,19 @@ function loadAllAssetsForIframe(opts: any) {
       Promise.resolve(undefined)
     )
 
-    const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
-
     const stylesPromise = opts.styles.reduce(
       (prev: Promise<undefined>, fileName: string) =>
         prev.then(loadLinkTag(`${opts.baseScriptUrl}/${fileName}`)),
       Promise.resolve(undefined)
     )
 
-    Promise.all([scriptsPromise, zonejsPromise, stylesPromise]).then(
-      resolve,
-      reject
-    )
+    let promiseArray = [scriptsPromise, stylesPromise]
+    if (opts.includeZone) {
+      const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
+      promiseArray.push(zonejsPromise)
+    }
+
+    Promise.all(promiseArray).then(resolve, reject)
   })
 }
 
@@ -116,18 +117,21 @@ function loadAllAssetsForIframeAndUrl(opts: any) {
         Promise.resolve(undefined)
       )
 
-      const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
-
       const stylesPromise = opts.styles.reduce(
         (prev: Promise<undefined>, fileName: string) =>
           prev.then(loadLinkTag(`${opts.baseScriptUrl}/${fileName}`)),
         Promise.resolve(undefined)
       )
 
-      Promise.all([scriptsPromise, zonejsPromise, stylesPromise]).then(
-        resolve,
-        reject
-      )
+      let promiseArray = [scriptsPromise, stylesPromise]
+
+      if (opts.includeZone) {
+        const zonejsPromise = loadScriptPromise(`/assets/zone.min.js`, iframeEl)
+        promiseArray.push(zonejsPromise)
+      }
+      console.log(promiseArray)
+
+      Promise.all(promiseArray).then(resolve, reject)
     })
   })
 }

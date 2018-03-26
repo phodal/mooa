@@ -20,21 +20,6 @@ class Mooa {
   started = false
   private option: MooaOption
 
-  constructor(option: MooaOption) {
-    window.mooa.instance = this
-
-    if (option) {
-      window.mooa.option = option
-      window.mooa.debug = option.debug
-    }
-
-    if (localStorage.getItem('mooa.debug') === 'true') {
-      window.mooa.debug = true
-    }
-
-    this.option = option
-  }
-
   registerApplication(
     appName: string,
     appConfig?: any,
@@ -59,6 +44,10 @@ class Mooa {
 
     if (this.option.preload) {
       appConfig.preload = true
+    }
+
+    if (this.option.includeZone) {
+      appConfig.includeZone = true
     }
 
     const appOpt = {
@@ -87,6 +76,21 @@ class Mooa {
     window.apps = apps
   }
 
+  constructor(option: MooaOption) {
+    window.mooa.instance = this
+
+    if (option) {
+      window.mooa.option = option
+      window.mooa.debug = option.debug
+    }
+
+    if (localStorage.getItem('mooa.debug') === 'true') {
+      window.mooa.debug = true
+    }
+
+    this.option = option
+  }
+
   registerApplicationByLink(
     appName: string,
     link?: string,
@@ -109,11 +113,16 @@ class Mooa {
       styles: [],
       parentElement: '',
       prefix: '',
-      preload: false
+      preload: false,
+      includeZone: false
     }
 
     if (this.option.preload) {
       appConfig.preload = true
+    }
+
+    if (this.option.includeZone) {
+      appConfig.includeZone = true
     }
 
     if (this.option.parentElement) {

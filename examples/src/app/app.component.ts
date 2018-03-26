@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
       parentElement: 'app-home',
       urlPrefix: 'app',
       switchMode: 'coexist',
-      preload: true
+      preload: true,
+      includeZone: false
     });
   }
 
