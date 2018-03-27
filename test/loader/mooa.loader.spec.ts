@@ -43,13 +43,16 @@ test('load test', () => {
 test('mount test', () => {
   Object.defineProperty(window, 'mooa', () => {
     return {
+      name: 'help',
       help: {
-        mount: () => {}
+        mount: () => {
+          return
+        }
       }
     }
   })
 
-  const loader = mooaLoader({
+  let opts = {
     name: 'help',
     appConfig: {
       name: 'help',
@@ -60,12 +63,29 @@ test('mount test', () => {
       scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
       mode: 'iframe'
     },
-    status: StatusEnum.NOT_BOOTSTRAPPED
-  })
+    bootstrap: () => {
+      return
+    },
+    load: () => {
+      return
+    },
+    mount: () => {
+      return
+    },
+    unload: () => {
+      return
+    },
+    unmount: () => {
+      return
+    },
+    status: StatusEnum.MOUNTED
+  }
 
-  loader.bootstrap()
-  loader.load()
-  expect(loader.mount()).toEqual(
+  const loader = mooaLoader(opts)
+
+  loader.load(opts)
+  loader.bootstrap(opts)
+  expect(loader.mount(opts)).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })
