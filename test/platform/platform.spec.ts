@@ -59,3 +59,18 @@ test('platform base mount', () => {
   }
   mooaPlatform.unmount(func)
 })
+
+test('platform navigateTo', () => {
+  let mooaPlatform = new MooaPlatform()
+  mooaPlatform.navigateTo({
+    name: 'helo',
+    route: ''
+  })
+
+  window.dispatchEvent = jest.fn()
+})
+
+test('platform handleRouterUpdate', () => {
+  let mooaPlatform = new MooaPlatform()
+  mooaPlatform.handleRouterUpdate('helo', '')
+})
