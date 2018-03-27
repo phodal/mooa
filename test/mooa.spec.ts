@@ -15,7 +15,10 @@ test('new mooa test', () => {
     mode: 'iframe',
     debug: false,
     parentElement: 'app-home',
-    urlPrefix: 'app'
+    urlPrefix: 'app',
+    switchMode: 'coexist',
+    preload: true,
+    includeZone: false
   })
 
   mooa.registerApplicationByLink(
@@ -31,7 +34,10 @@ test('new mooa by register', () => {
     mode: 'iframe',
     debug: false,
     parentElement: 'app-home',
-    urlPrefix: 'app'
+    urlPrefix: 'app',
+    switchMode: 'coexist',
+    preload: true,
+    includeZone: true
   })
 
   mooa.registerApplication(
@@ -49,7 +55,20 @@ test('new mooa by register', () => {
   )
   mooa.start()
 
-  expect((global as any).apps[0].name).toEqual('help')
+  let currentApp = (global as any).apps[(global as any).apps.length - 1]
+  expect(currentApp.name).toEqual('help')
+  expect(currentApp.appConfig).toEqual({
+    baseScriptUrl: '/assets/help',
+    includeZone: true,
+    mode: 'iframe',
+    name: 'help',
+    parentElement: 'app-home',
+    prefix: 'app/help',
+    preload: true,
+    scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
+    selector: 'app-help',
+    styles: ['styles.bundle.css']
+  })
   expect(typeof (global as any).mooa.instance).toEqual('object')
 })
 
@@ -62,7 +81,7 @@ test('new mooa by with options', () => {
     urlPrefix: 'app',
     switchMode: 'coexist',
     preload: true,
-    includeZone: true
+    includeZone: false
   })
 
   let appConfig = {
@@ -83,5 +102,17 @@ test('new mooa by with options', () => {
   expect(currentApp.name).toEqual('help')
   expect(currentApp.mode).toEqual('iframe')
   expect(currentApp.switchMode).toEqual('coexist')
+  expect(currentApp.appConfig).toEqual({
+    baseScriptUrl: '/assets/help',
+    includeZone: false,
+    mode: 'iframe',
+    name: 'help',
+    parentElement: 'app-home',
+    prefix: 'app/help',
+    preload: true,
+    scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
+    selector: 'app-help',
+    styles: ['styles.bundle.css']
+  })
   expect(typeof (global as any).mooa.instance).toEqual('object')
 })
