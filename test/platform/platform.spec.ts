@@ -1,4 +1,11 @@
 import MooaPlatform from '../../src/platform/platform'
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
+const { window, document } = new JSDOM()
+
+const globalAny: any = global
+globalAny.window = window
+globalAny.document = document
 
 let mooaPlatform = new MooaPlatform()
 
@@ -8,7 +15,7 @@ test('platform base path 1', () => {
 })
 
 test('platform base path 2', () => {
-  ;(global as any).mooa = {
+  globalAny.window.mooa = {
     isSingleSpa: true
   }
   let mooaPlatform = new MooaPlatform()
@@ -24,4 +31,31 @@ test('platform base mount', () => {
       resolve()
     })
   )
+})
+
+test('platform base mount', () => {
+  let mooaPlatform = new MooaPlatform()
+  mooaPlatform.mount('app1', '/assets/app1')
+  globalAny.window['app1'] = {
+    unmount: () => {
+      return
+    }
+  }
+  let func = {
+    destroy: () => {
+      return
+    },
+    injector: () => {
+      return {
+        get: (params: any) => {
+          return {
+            dispose: () => {
+              return
+            }
+          }
+        }
+      }
+    }
+  }
+  mooaPlatform.unmount(func)
 })
