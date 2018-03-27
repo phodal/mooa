@@ -61,11 +61,7 @@ class Mooa {
       appConfig.preload = true
     }
 
-    appConfig.includeZone = true
-
-    if (this.option.includeZone === false) {
-      appConfig.includeZone = false
-    }
+    appConfig.includeZone = this.option.includeZone !== false
 
     const appOpt = {
       name: appName,
