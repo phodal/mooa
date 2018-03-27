@@ -1,5 +1,7 @@
 # Mooa
 
+[![Build Status](https://travis-ci.org/phodal/mooa.svg?branch=master)](https://travis-ci.org/phodal/mooa)
+
 > A single SPA Utils for Angular 2+
 
 based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-angular-cli](https://github.com/PlaceMe-SAS/single-spa-angular-cli)
