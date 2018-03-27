@@ -41,13 +41,7 @@ class Mooa {
     activeWhen?: {},
     customProps: object = {}
   ) {
-    if (!activeWhen) {
-      throw new Error(`Lost Loader`)
-    }
-
-    if (typeof activeWhen !== 'function') {
-      throw new Error(`The activeWhen argument must be a function`)
-    }
+    this.checkActiveWhen(activeWhen)
 
     if (this.option.parentElement) {
       appConfig.parentElement = this.option.parentElement
@@ -89,12 +83,7 @@ class Mooa {
     window.apps = apps
   }
 
-  registerApplicationByLink(
-    appName: string,
-    link?: string,
-    activeWhen?: {},
-    customProps: object = {}
-  ) {
+  checkActiveWhen(activeWhen: any) {
     if (!activeWhen) {
       throw new Error(`Lost Loader`)
     }
@@ -102,6 +91,15 @@ class Mooa {
     if (typeof activeWhen !== 'function') {
       throw new Error(`The activeWhen argument must be a function`)
     }
+  }
+
+  registerApplicationByLink(
+    appName: string,
+    link?: string,
+    activeWhen?: {},
+    customProps: object = {}
+  ) {
+    this.checkActiveWhen(activeWhen)
 
     let appConfig = {
       name: appName,
