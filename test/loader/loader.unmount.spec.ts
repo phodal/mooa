@@ -9,31 +9,15 @@ globalAny.document = document
 import mooaLoader from '../../src/loader/mooa.loader'
 import { StatusEnum } from '../../src/model/constants'
 
-test('load test', () => {
-  const loader = mooaLoader({
-    name: '',
-    appConfig: {
-      name: 'help',
-      selector: 'app-help',
-      baseScriptUrl: '/assets/help',
-      styles: ['styles.bundle.css'],
-      prefix: 'help',
-      scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
-      mode: 'iframe'
-    }
-  })
-
-  expect(loader.load()).toEqual(
-    new Promise((resolve, reject) => {
-      resolve()
-    })
-  )
-})
-
-test('mount test', () => {
+test('unmount test', () => {
   globalAny.window.mooa = {
     help: {
-      mount: jest.fn()
+      mount: () => {
+        return
+      },
+      unmount: () => {
+        return
+      }
     }
   }
 
@@ -52,7 +36,9 @@ test('mount test', () => {
     load: jest.fn(),
     mount: jest.fn(),
     unload: jest.fn(),
-    unmount: jest.fn(),
+    unmount: () => {
+      return
+    },
     status: StatusEnum.MOUNTED
   }
 
@@ -60,7 +46,17 @@ test('mount test', () => {
 
   loader.load()
   loader.bootstrap()
-  expect(loader.mount()).toEqual(
+  loader.mount()
+  expect(
+    loader.unmount({
+      unloadApplication: () => {
+        return
+      },
+      getAppNames: () => {
+        return ['help']
+      }
+    })
+  ).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })

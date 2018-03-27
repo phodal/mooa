@@ -9,9 +9,20 @@ globalAny.document = document
 import mooaLoader from '../../src/loader/mooa.loader'
 import { StatusEnum } from '../../src/model/constants'
 
-test('load test', () => {
-  const loader = mooaLoader({
-    name: '',
+test('loader unload test', () => {
+  globalAny.window.mooa = {
+    help: {
+      mount: () => {
+        return
+      },
+      unmount: () => {
+        return
+      }
+    }
+  }
+
+  let opts = {
+    name: 'help',
     appConfig: {
       name: 'help',
       selector: 'app-help',
@@ -20,20 +31,47 @@ test('load test', () => {
       prefix: 'help',
       scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
       mode: 'iframe'
+    },
+    switchMode: 'coexist',
+    bootstrap: jest.fn(),
+    load: jest.fn(),
+    mount: jest.fn(),
+    unload: jest.fn(),
+    unmount: () => {
+      return
+    },
+    status: StatusEnum.MOUNTED
+  }
+
+  const loader = mooaLoader(opts)
+
+  loader.load()
+  loader.bootstrap()
+  loader.mount()
+  loader.unmount({
+    unloadApplication: () => {
+      return
+    },
+    getAppNames: () => {
+      return ['help']
     }
   })
-
-  expect(loader.load()).toEqual(
+  expect(loader.unload()).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })
   )
 })
 
-test('mount test', () => {
+test('loader unload coexist test', () => {
   globalAny.window.mooa = {
     help: {
-      mount: jest.fn()
+      mount: () => {
+        return
+      },
+      unmount: () => {
+        return
+      }
     }
   }
 
@@ -52,7 +90,9 @@ test('mount test', () => {
     load: jest.fn(),
     mount: jest.fn(),
     unload: jest.fn(),
-    unmount: jest.fn(),
+    unmount: () => {
+      return
+    },
     status: StatusEnum.MOUNTED
   }
 
@@ -60,9 +100,20 @@ test('mount test', () => {
 
   loader.load()
   loader.bootstrap()
-  expect(loader.mount()).toEqual(
-    new Promise((resolve, reject) => {
-      resolve()
-    })
-  )
+  loader.mount()
+  loader.unmount({
+    unloadApplication: () => {
+      return
+    },
+    getAppNames: () => {
+      return ['help']
+    }
+  })
+  loader.unload().then(() => {
+    expect(opts.appConfig.scripts).toEqual([
+      'inline.bundle.js',
+      'polyfills.bundle.js',
+      'main.bundle.js'
+    ])
+  })
 })

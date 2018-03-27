@@ -14,7 +14,7 @@ test('unmount mooa success', () => {
   let mockApp = {
     name: 'help',
     status: StatusEnum.MOUNTED,
-    unmount: jest.fn()
+    unmount: () => null
   }
   globalAny.window.apps = [mockApp]
   let unmountPromise = false
