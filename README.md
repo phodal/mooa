@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/phodal/mooa.svg?branch=master)](https://travis-ci.org/phodal/mooa)
 [![Coverage Status](https://coveralls.io/repos/github/phodal/mooa/badge.svg?branch=master)](https://coveralls.io/github/phodal/mooa?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/99132c580e1d74690def/maintainability)](https://codeclimate.com/github/phodal/mooa/maintainability)
 [![node](https://img.shields.io/node/v/mooa.svg)](https://www.npmjs.com/package/mooa) 
 [![npm](https://img.shields.io/npm/v/mooa.svg)](https://www.npmjs.com/mooa)
 
