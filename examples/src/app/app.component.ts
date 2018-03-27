@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     this.http = httpClient;
     this.myElement = myElement;
     this.mooa = new Mooa({
-      mode: 'iframe',
+      // mode: 'iframe',
       debug: false,
       parentElement: 'app-home',
       urlPrefix: 'app',
@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mooaWithLink();
-    // this.mooaWithConfig();
+    // this.mooaWithLink();
+    this.mooaWithConfig();
   }
 
   private mooaWithLink () {
