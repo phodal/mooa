@@ -1,15 +1,29 @@
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
+const { window, document } = new JSDOM()
+
+const globalAny: any = global
+globalAny.window = window
+globalAny.document = document
+
 import { StatusEnum } from '../../src/model/constants'
 import { ensureValidAppTimeouts } from '../../src/helper/timeouts'
 import { toUnmountPromise } from '../../src/lifecycles/unmount'
 
 test('unmount mooa success', () => {
+  let mockApp = {
+    name: 'help',
+    status: StatusEnum.MOUNTED,
+    unmount: jest.fn()
+  }
+  globalAny.window.apps = [mockApp]
   let unmountPromise = false
   let app = {
-    name: 'mooa',
+    name: 'help',
     status: StatusEnum.MOUNTED,
+    unloadApplication: jest.fn(),
     unmount: (app: any) => {
       unmountPromise = true
-      app.unloadApplication('help')
       return new Promise((resolve, reject) => {
         resolve()
       })

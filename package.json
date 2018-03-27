@@ -56,7 +56,9 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "setupFiles":["<rootDir>/jest.setup.js"],
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
     "testRegex": "(test/.*|test/\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
@@ -93,6 +95,7 @@
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.0",
     "jest": "^22.0.2",
+    "jsdom": "^11.6.2",
     "lint-staged": "^7.0.0",
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.4.4",

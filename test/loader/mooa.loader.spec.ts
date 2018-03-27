@@ -1,3 +1,11 @@
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
+const { window, document } = new JSDOM()
+
+const globalAny: any = global
+globalAny.window = window
+globalAny.document = document
+
 import mooaLoader from '../../src/loader/mooa.loader'
 import { StatusEnum } from '../../src/model/constants'
 
@@ -41,16 +49,11 @@ test('load test', () => {
 })
 
 test('mount test', () => {
-  Object.defineProperty(window, 'mooa', () => {
-    return {
-      name: 'help',
-      help: {
-        mount: () => {
-          return
-        }
-      }
+  globalAny.window.mooa = {
+    help: {
+      mount: jest.fn()
     }
-  })
+  }
 
   let opts = {
     name: 'help',
@@ -63,21 +66,11 @@ test('mount test', () => {
       scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js'],
       mode: 'iframe'
     },
-    bootstrap: () => {
-      return
-    },
-    load: () => {
-      return
-    },
-    mount: () => {
-      return
-    },
-    unload: () => {
-      return
-    },
-    unmount: () => {
-      return
-    },
+    bootstrap: jest.fn(),
+    load: jest.fn(),
+    mount: jest.fn(),
+    unload: jest.fn(),
+    unmount: jest.fn(),
     status: StatusEnum.MOUNTED
   }
 

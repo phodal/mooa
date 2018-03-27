@@ -1,5 +1,4 @@
 import { StatusEnum } from '../../src/model/constants'
-import { toBootstrapPromise } from '../../src/lifecycles/bootstrap'
 import { ensureValidAppTimeouts } from '../../src/helper/timeouts'
 import { toLoadPromise } from '../../src/lifecycles/load'
 
