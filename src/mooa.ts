@@ -43,19 +43,12 @@ class Mooa {
   ) {
     this.checkActiveWhen(activeWhen)
 
-    if (this.option.parentElement) {
-      appConfig.parentElement = this.option.parentElement
-    }
+    appConfig.includeZone = true
+    appConfig = this.mergeAppConfigOption(appConfig)
 
     if (this.option.urlPrefix) {
       appConfig.prefix = this.option.urlPrefix + '/' + appConfig.prefix
     }
-
-    if (this.option.preload) {
-      appConfig.preload = true
-    }
-
-    appConfig.includeZone = this.option.includeZone !== false
 
     const appOpt = {
       name: appName,
@@ -83,16 +76,6 @@ class Mooa {
     window.apps = apps
   }
 
-  checkActiveWhen(activeWhen: any) {
-    if (!activeWhen) {
-      throw new Error(`Lost Loader`)
-    }
-
-    if (typeof activeWhen !== 'function') {
-      throw new Error(`The activeWhen argument must be a function`)
-    }
-  }
-
   registerApplicationByLink(
     appName: string,
     link?: string,
@@ -113,17 +96,7 @@ class Mooa {
       includeZone: true
     }
 
-    if (this.option.preload) {
-      appConfig.preload = true
-    }
-
-    if (this.option.includeZone === false) {
-      appConfig.includeZone = false
-    }
-
-    if (this.option.parentElement) {
-      appConfig.parentElement = this.option.parentElement
-    }
+    appConfig = this.mergeAppConfigOption(appConfig)
 
     if (this.option.urlPrefix) {
       appConfig.prefix = this.option.urlPrefix + '/' + appConfig.name
@@ -231,6 +204,32 @@ class Mooa {
       }
     } else {
       customEvent(MOOA_EVENT.ROUTING_CHANGE, eventArgs)
+    }
+  }
+
+  private mergeAppConfigOption(appConfig: any) {
+    if (this.option.parentElement) {
+      appConfig.parentElement = this.option.parentElement
+    }
+
+    if (this.option.preload) {
+      appConfig.preload = true
+    }
+
+    if (this.option.includeZone === false) {
+      appConfig.includeZone = false
+    }
+
+    return appConfig
+  }
+
+  private checkActiveWhen(activeWhen: any) {
+    if (!activeWhen) {
+      throw new Error(`Lost Loader`)
+    }
+
+    if (typeof activeWhen !== 'function') {
+      throw new Error(`The activeWhen argument must be a function`)
     }
   }
 }
