@@ -1,6 +1,9 @@
 # Mooa
 
 [![Build Status](https://travis-ci.org/phodal/mooa.svg?branch=master)](https://travis-ci.org/phodal/mooa)
+[![Coverage Status](https://coveralls.io/repos/github/phodal/mooa/badge.svg?branch=master)](https://coveralls.io/github/phodal/mooa?branch=master)
+[![node](https://img.shields.io/node/v/mooa.svg)](https://www.npmjs.com/package/mooa) 
+[![npm](https://img.shields.io/npm/v/mooa.svg)](https://www.npmjs.com/mooa)
 
 > A single SPA Utils for Angular 2+
 
