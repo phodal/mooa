@@ -1,13 +1,21 @@
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
+const { window, document } = new JSDOM()
+
+const globalAny: any = global
+globalAny.window = window
+globalAny.document = document
+
 import { default as Mooa, mooaRouter } from '../src/mooa'
 
 beforeEach(() => {
-  ;(global as any).apps = []
-  ;(global as any).mooa = {}
+  globalAny.apps = []
+  globalAny.mooa = {}
 })
 
 afterEach(() => {
-  ;(global as any).apps = []
-  ;(global as any).mooa = {}
+  globalAny.apps = []
+  globalAny.mooa = {}
 })
 
 test('new mooa test', () => {
@@ -55,7 +63,7 @@ test('new mooa by register', () => {
   )
   mooa.start()
 
-  let currentApp = (global as any).apps[(global as any).apps.length - 1]
+  let currentApp = globalAny.apps[globalAny.apps.length - 1]
   expect(currentApp.name).toEqual('help')
   expect(currentApp.appConfig).toEqual({
     baseScriptUrl: '/assets/help',
@@ -69,11 +77,11 @@ test('new mooa by register', () => {
     selector: 'app-help',
     styles: ['styles.bundle.css']
   })
-  expect(typeof (global as any).mooa.instance).toEqual('object')
+  expect(typeof globalAny.mooa.instance).toEqual('object')
 })
 
 test('new mooa by with options', () => {
-  ;(global as any).apps = []
+  globalAny.apps = []
   const mooa = new Mooa({
     mode: 'iframe',
     debug: false,
@@ -97,7 +105,7 @@ test('new mooa by with options', () => {
   mooa.registerApplication('help', appConfig, mooaRouter.matchRoute('help'))
   mooa.start()
 
-  let currentApp = (global as any).apps[(global as any).apps.length - 1]
+  let currentApp = globalAny.apps[globalAny.apps.length - 1]
 
   expect(currentApp.name).toEqual('help')
   expect(currentApp.mode).toEqual('iframe')
@@ -114,5 +122,5 @@ test('new mooa by with options', () => {
     selector: 'app-help',
     styles: ['styles.bundle.css']
   })
-  expect(typeof (global as any).mooa.instance).toEqual('object')
+  expect(typeof globalAny.mooa.instance).toEqual('object')
 })
