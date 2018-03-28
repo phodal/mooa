@@ -1,4 +1,5 @@
 import MooaPlatform from '../../src/platform/platform'
+import { MOOA_EVENT } from '../../src/model/constants'
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
 const { window, document } = new JSDOM()
@@ -71,6 +72,25 @@ test('platform navigateTo', () => {
 })
 
 test('platform handleRouterUpdate', () => {
+  let eventOpt: any = ''
   let mooaPlatform = new MooaPlatform()
-  mooaPlatform.handleRouterUpdate('helo', '')
+  mooaPlatform.handleRouterUpdate(
+    {
+      navigate: (opt: any) => {
+        eventOpt = opt
+      }
+    },
+    'help'
+  )
+
+  window.dispatchEvent(
+    new CustomEvent(MOOA_EVENT.ROUTING_CHANGE, {
+      detail: {
+        url: '',
+        app: {
+          name: 'help'
+        }
+      }
+    })
+  )
 })
