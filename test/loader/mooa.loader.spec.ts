@@ -66,3 +66,40 @@ test('mount test', () => {
     })
   )
 })
+//
+// test('mount iframe test', () => {
+//   globalAny.window.mooa = {
+//     help: {
+//       mount: jest.fn()
+//     }
+//   }
+//
+//   let opts = {
+//     name: 'help',
+//     appConfig: {
+//       name: 'help',
+//       selector: 'app-help',
+//       baseScriptUrl: '/assets/help',
+//       styles: ['styles.bundle.css'],
+//       prefix: 'help',
+//       scripts: ['inline.bundle.js', 'polyfills.bundle.js', 'main.bundle.js']
+//     },
+//     mode: 'iframe',
+//     bootstrap: jest.fn(),
+//     load: jest.fn(),
+//     mount: jest.fn(),
+//     unload: jest.fn(),
+//     unmount: jest.fn(),
+//     status: StatusEnum.MOUNTED
+//   }
+//
+//   const loader = mooaLoader(opts)
+//
+//   loader.load()
+//   loader.bootstrap()
+//   expect(loader.mount()).toEqual(
+//     new Promise((resolve, reject) => {
+//       resolve()
+//     })
+//   )
+// })
