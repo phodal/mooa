@@ -76,7 +76,7 @@ export function createApplicationIframeContainer(mooaApp: MooaApp) {
   iframe.frameBorder = ''
   iframe.width = '100%'
   iframe.height = '100%'
-  iframe.src = window.location + 'assets/iframe.html'
+  iframe.src = window.location.origin + '/assets/iframe.html'
   iframe.id = generateIFrameID(mooaApp.appConfig.name)
 
   const el = document.createElement(opts.selector)
