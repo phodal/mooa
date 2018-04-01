@@ -50,7 +50,7 @@ test('should be able generate iframe id', () => {
   let tmp = globalAny.document.createElement('div')
   tmp.appendChild(htmlElement)
   expect(tmp.innerHTML).toBe(
-    '<iframe frameborder="" width="100%" height="100%" src="about:blankassets/iframe.html" id="help_206547"></iframe>'
+    '<iframe frameborder="" width="100%" height="100%" src="null/assets/iframe.html" id="help_206547"></iframe>'
   )
 })
 
@@ -121,6 +121,6 @@ test('should be able to hidden iframe when coexist mode', () => {
   let tmp = globalAny.document.createElement('div')
   tmp.appendChild(htmlElement)
   expect(tmp.innerHTML).toBe(
-    '<iframe frameborder="" width="100%" height="100%" src="about:blankassets/iframe.html" id="help_206547" style="display: none;"></iframe>'
+    '<iframe frameborder="" width="100%" height="100%" src="null/assets/iframe.html" id="help_206547" style="display: none;"></iframe>'
   )
 })
