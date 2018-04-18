@@ -232,6 +232,14 @@ hidden application when inactive:
 </app-home>
 ```
 
+For Angular Lazyload Module
+---
+
+``inline.bundle.js`` will load script for ``/`` path. 
+
+So, just copy ``*.chunk.js`` files to ``dist/``, then deploy it.
+
+
 API
 ---
 
