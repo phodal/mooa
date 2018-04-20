@@ -134,19 +134,7 @@ export class AppModule {
 }
 ```
 
-3. comments ``src/polyfills.ts``
-
-```javascript
-// import 'zone.js/dist/zone';
-```
-
-4. add copy zone.js to ``assets/``, modify ``index.html``
-
-```html
-<script src="/assets/zone.js"></script>
-```
-
-5. Add for handle URL Change in ``app.component.ts`` 
+3. Add for handle URL Change in ``app.component.ts`` 
 
 ```typescript
 constructor(private router: Router) {
