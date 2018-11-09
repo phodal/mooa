@@ -60,6 +60,16 @@ yarn add mooa
 
 ```typescript
 constructor(private renderer: Renderer2, http: HttpClient, private router: Router) {
+  // config Mooa
+  this.mooa = new Mooa({
+    mode: 'iframe',
+    debug: false,
+    parentElement: 'app-home',
+    urlPrefix: 'app',
+    switchMode: 'coexist',
+    preload: true,
+    includeZone: true
+  });
   http.get<IAppOption[]>('/assets/apps.json')
     .subscribe(
       data => {
@@ -71,16 +81,16 @@ constructor(private renderer: Renderer2, http: HttpClient, private router: Route
 
 private createApps(data: IAppOption[]) {
   data.map((config) => {
-    mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
+    this.mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
   });
 
   this.router.events.subscribe((event) => {
     if (event instanceof NavigationEnd) {
-      mooa.reRouter(event);
+      this.mooa.reRouter(event);
     }
   });
 
-  return mooa.start();
+  return this.mooa.start();
 }
 ```
 
@@ -186,6 +196,8 @@ Examples:
 
 Mooa Config
 ---
+
+config in Host app's ``app.component.ts`` 
 
 ```typescript
 this.mooa = new Mooa({
