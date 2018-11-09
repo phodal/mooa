@@ -2,7 +2,7 @@
   "name": "mooa",
   "version": "0.1.1",
   "description": "",
-  "keywords": [],
+  "keywords": ["spa", "microfrontends", "micro-frontends", "microservices", "microframework"],
   "bin": "dist/lib/cli.js",
   "main": "dist/mooa.umd.js",
   "module": "dist/mooa.es5.js",
@@ -13,7 +13,7 @@
   "author": "Phodal HUANG <h@phodal.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/phodal/mooa"
   },
   "license": "MIT",
   "engines": {
