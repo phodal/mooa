@@ -81,8 +81,8 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "commander": "^2.15.0",
-    "request": "^2.85.0"
+    "commander": "^2.19.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
