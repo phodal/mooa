@@ -5,6 +5,9 @@ import { generateIFrameID } from './dom.utils'
 
 function loadScriptPromise(src: string, iframeEl: any) {
   return new Promise((resolve, reject) => {
+    if (document.getElementById(hashCode(src))) {
+      return resolve()
+    }
     const script = assetsLoaderHelper.createScriptTag(src)
     script.onload = () => {
       resolve()
@@ -31,6 +34,10 @@ const loadScriptTag = (src: string, iframeEl?: any) => {
 const loadLinkTag = (url: string, iframeEl?: any) => {
   return () => {
     return new Promise((resolve, reject) => {
+      if (document.getElementById(hashCode(url))) {
+        return resolve()
+      }
+
       const link = assetsLoaderHelper.createLinkTag(url)
       link.onload = () => {
         resolve()
