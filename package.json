@@ -1,6 +1,6 @@
 {
   "name": "mooa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "keywords": ["spa", "microfrontends", "micro-frontends", "microservices", "microframework"],
   "bin": "dist/lib/cli.js",
