@@ -81,7 +81,7 @@ constructor(private renderer: Renderer2, http: HttpClient, private router: Route
 
 private createApps(data: IAppOption[]) {
   data.map((config) => {
-    this.mooa.registerApplication(config.name, config, mooaRouter.hashPrefix(config.prefix));
+    this.mooa.registerApplication(config.name, config, mooaRouter.matchRoute(config.prefix));
   });
 
   this.router.events.subscribe((event) => {
