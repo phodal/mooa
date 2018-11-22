@@ -99,7 +99,7 @@ private createApps(data: IAppOption[]) {
 1. config App ``main.ts`` for load
 
 ```typescript
-import mooaPlatform from 'mooa';
+import { mooaPlatform } from 'mooa';
 
 if (environment.production) {
   enableProdMode();
