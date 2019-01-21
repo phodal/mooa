@@ -2,7 +2,13 @@
   "name": "mooa",
   "version": "0.1.2",
   "description": "",
-  "keywords": ["spa", "microfrontends", "micro-frontends", "microservices", "microframework"],
+  "keywords": [
+    "spa",
+    "microfrontends",
+    "micro-frontends",
+    "microservices",
+    "microframework"
+  ],
   "bin": "dist/lib/cli.js",
   "main": "dist/mooa.umd.js",
   "module": "dist/mooa.es5.js",
