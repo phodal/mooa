@@ -38,6 +38,15 @@ Goal:
 2. 构建服务化的中间件，搭建高可用及高复用的前端微服务平台
 3. 支持前端的独立交付及部署
 
+Usecase
+---
+
+> If you are mooa, please provide you case to help this project.
+
+### Theory
+
+[Research and Application of Micro Frontends](https://iopscience.iop.org/article/10.1088/1757-899X/490/6/062082/meta)
+
 Boilerplate
 ---
 
