@@ -31,8 +31,8 @@ test('bootstrap test', () => {
 
   const loader = mooaLoader(opts)
 
-  loader.bootstrap(opts)
-  expect(loader.bootstrap(opts)).toEqual(
+  loader.bootstrap.call(opts)
+  expect(loader.bootstrap.call(opts)).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })
@@ -62,7 +62,7 @@ test('bootstrap iframe test', () => {
 
   const loader = mooaLoader(opts)
 
-  expect(loader.bootstrap(opts)).toEqual(
+  expect(loader.bootstrap.call(opts)).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })
@@ -92,8 +92,7 @@ test('bootstrap link test', () => {
 
   const loader = mooaLoader(opts)
 
-  loader.bootstrap(opts)
-  expect(loader.bootstrap(opts)).toEqual(
+  expect(loader.bootstrap.call(opts)).toEqual(
     new Promise((resolve, reject) => {
       resolve()
     })

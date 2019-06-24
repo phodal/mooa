@@ -21,7 +21,7 @@ test('platform base path 2', () => {
   }
   let mooaPlatform = new MooaPlatform()
   let basePath = mooaPlatform.appBase()
-  expect(basePath).toBe('/')
+  expect(basePath).toBe('//undefined')
 })
 
 test('platform base mount', () => {
