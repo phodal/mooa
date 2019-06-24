@@ -7,8 +7,9 @@ engines:
 exclude_patterns:
   - "config"
   - "**/*.d.ts"
-  - "src/**/*.spec.ts"
+  - "**/*.spec.ts"
   - "examples"
+  - "test"
 ratings:
   paths:
     - "src/**/*.ts"
