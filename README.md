@@ -8,6 +8,8 @@
 
 > A single SPA Utils for Angular 2+
 
+Simliar Projects: [https://github.com/worktile/ngx-planet](https://github.com/worktile/ngx-planet) (Production Ready)
+
 based on [single-spa](https://github.com/CanopyTax/single-spa) && [single-spa-angular-cli](https://github.com/PlaceMe-SAS/single-spa-angular-cli)
 
 difference: 
